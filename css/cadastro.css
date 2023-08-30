@@ -113,6 +113,22 @@ body{
     grid-column: span 6;
 }
 
+@media (max-width: 640px) {
+    #form{
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
+    .input-group{
+        grid-template-columns: unset;
+        overflow: auto;
+    }
+    .input-group .input-box{
+        grid-column: unset;
+    }
+}
+
 .input-box input, select{
     margin: 0.6 rem 0;
     padding: 0.8rem 1.2rem;
@@ -181,40 +197,7 @@ body{
         display: none;
     }
 
-    .container-cadastro{
-        width: 50%;
-    }
-
     .form-cadastro{
         width: 100%;
     }
-
-    .input-box input, select{
-        width: 200px;
-    }
-} 
-
-@media screen and (max-width: 1064px) {
-    .container-cadastro{
-        width: 90%;
-        height: auto;
-    }
-
-    /* .form-cadastro{
-        width: 85%;
-        height: 70%;
-    } */
-
-    .input-group{
-        flex-direction: column;
-        overflow-y: scroll;
-        flex-wrap: nowrap;
-        height: 80%;
-        padding-right: 5rem;
-    }
-
-    /* .input-box input, select {
-        width: 70%;
-    } */
-
 }
