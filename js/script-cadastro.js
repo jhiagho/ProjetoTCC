@@ -82,8 +82,9 @@ $(function(){
 user_Input.addEventListener('blur', function() {
     const username = user_Input.value;
 
-    $.post('/api/verificar_user.php', { user: username }).done(function(response) {
-        if (response.exists) {
+    $.post('/ProjetoTCC/api/verificar_user.php', { user: username }).done(function(response) {
+        const { exists } = JSON.parse(response);
+        if (exists) {
             document.getElementById("user_Error").textContent = 'Este nome de usuário já está em uso!';
             // Adicione uma variável global ou outro indicador para lembrar que o nome de usuário não é válido
         } else {
