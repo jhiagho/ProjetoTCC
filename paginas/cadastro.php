@@ -66,25 +66,9 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                                         foreach ($aux as $key => $value) {
                                             echo '<option value="' .$key. '">'.$value['nome_setor'].'</option>';
                                         }
-                                    ?>
+                                ?>
                                 </select>
                             </div>
-                            
-                            <!-- permissão automaticamaticamente sera definido por padrao, precisa ser alterado posteriomente na edição do personagem, apenas admin tem essa opção -->
-
-                            <!-- <div class="input-box">
-                                <label for="Permissão">Permissão:</label>
-                                <select name="perm">
-                                <?php
-                                        // $aux = new painel();
-                                        // $aux = $aux->listarPermissao();
-                                        
-                                        // foreach ($aux as $key => $value) {
-                                        //     echo '<option value="'.$key. '">'.$value['permissao'].'</option>';
-                                        // }
-                                    ?>
-                                </select>
-                            </div> -->
                             
                             <div class="input-box">
                                 <label for="user">Usuário:</label>

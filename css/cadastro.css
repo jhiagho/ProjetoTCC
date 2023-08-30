@@ -97,17 +97,20 @@ body{
 }
 
 .input-group{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 1rem 0;
-    gap: 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
 }
 
-.input-box{
+.input-group .input-box{
+    grid-column: span 4;
     display: flex;
     flex-direction: column;
     margin-bottom: 1.1rem;
+}
+
+.input-group > :nth-last-child(2), .input-group > :nth-last-child(1) {
+    grid-column: span 6;
 }
 
 .input-box input, select{
