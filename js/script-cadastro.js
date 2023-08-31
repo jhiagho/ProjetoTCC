@@ -18,15 +18,15 @@ form.addEventListener("submit", (event) => {
     document.getElementById("password_Error").textContent = '';
     document.getElementById("confirmpassword_Error").textContent = '';
 
-    console.log(email_Input.value);
+    //console.log(email_Input.value);
     //verifica se o nome esta vazio
-    if (name_Input.value == "") {
-        document.getElementById("primeiro_nome_Error").textContent = 'Preencha o campo nome';
+    if (name_Input.value == "" || isNomeValid(name_Input.value)) {
+        document.getElementById("primeiro_nome_Error").textContent = 'Preencha o campo de nome corretamente';
         verificarErro = true;
     }
 
-    if (lastname_Input.value == ""){
-        document.getElementById("sobre_nome_Error").textContent = 'Preencha o campo do sobrenome';
+    if (lastname_Input.value == "" || isNomeValid(name_Input.value)){
+        document.getElementById("sobre_nome_Error" ).textContent = 'Preencha o campo de sobrenome corretamente';
         verificarErro = true;
     }
     if (telefone_Input.value == "" ){
@@ -51,6 +51,22 @@ form.addEventListener("submit", (event) => {
         //verfica = false;
     }
 
+    user_Input.addEventListener('blur', function() {
+    const username = user_Input.value;
+
+    $.post('/ProjetoTCC/api/verificar_user.php', { user: username }).done(function(response) {
+        const { exists } = JSON.parse(response);
+        if (exists) {
+            document.getElementById("user_Error").textContent = 'Este nome de usuário já está em uso!';
+            verificarErro = true;
+            // Adicione uma variável global ou outro indicador para lembrar que o nome de usuário não é válido
+        } else {
+            document.getElementById("user_Error").textContent = ''; // Limpa a mensagem de erro
+        }
+    }, 'json');
+});
+
+
     if (verificarErro) {
         event.preventDefault();
     }
@@ -68,6 +84,17 @@ function isEmailValid(email_Input) {
     return false;
 }
 
+function isNomeValid(nome_Input) {
+    //criar um regex para validar email
+    const nomeRegex = new RegExp(
+        /^[a-zA-Z]+$/
+    );
+    if(nomeRegex.test(nome_Input)) {
+        return true;
+    }
+    return false;
+}
+
 function validarPassword(password, minDigits){
     if(password.length >= minDigits) {
         return true;
@@ -79,19 +106,6 @@ $(function(){
     $('#telefone').mask('(00)00000-0000');
 })
 
-user_Input.addEventListener('blur', function() {
-    const username = user_Input.value;
-
-    $.post('/ProjetoTCC/api/verificar_user.php', { user: username }).done(function(response) {
-        const { exists } = JSON.parse(response);
-        if (exists) {
-            document.getElementById("user_Error").textContent = 'Este nome de usuário já está em uso!';
-            // Adicione uma variável global ou outro indicador para lembrar que o nome de usuário não é válido
-        } else {
-            document.getElementById("user_Error").textContent = ''; // Limpa a mensagem de erro
-        }
-    }, 'json');
-});
 
    
 
