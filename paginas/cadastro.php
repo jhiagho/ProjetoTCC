@@ -1,6 +1,6 @@
 <?php  
-include('/xampp/htdocs/ProjetoTCC/config.php');
-include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
+include('ProjetoTCC/config.php');
+include('ProjetoTCC/classes/painel.php');
 
 ?>
 <html>
@@ -105,25 +105,14 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                         $senha = $_POST['senha'];
                         $user = $_POST['user'];
 
-                        $aux = new painel();
-                        $setores = $aux->listarSetor();
-                        $textoSetorSelecionado = $setores[$setor]['nome_setor'];
+                        $aux = new Banco();
+                        $aux->conectar()->prepare("INSERT INTO `tb_usuarios` values (NULL,'$pnome','$sbnome','$telefone','$setor','$user','$senha','$email','1');
+                        $aux->execute();
+            
+                        
 
-                        $aux = new painel();               
-                        if ($aux->verificar_user($user)) {
-                            echo  '<span class="error-message2">Formulario não foi enviado pois o usuario '.$user.' já existe. Insira os dados novamente.</span>';
-                            echo  '<span class="error-message2">Sugestão: '.$pnome. '.' .$sbnome.'</span>';
-                        } else {
-                            echo $pnome. " - ";
-                            echo $sbnome. " - ";	
-                            echo $email. " - ";
-                            echo $telefone. " - ";
-                            echo $setor. " - ";
-                            echo $senha. " - ";
-                            echo $user. " - ";
-                            echo "\n texto do setor: " .$textoSetorSelecionado;
-                        }
                     }
+
                     ?>
 
                 </section> <!--form-cadastro -->
@@ -136,6 +125,5 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
             
             <!-- jQuery Mask Plugin -->
             
-
     </body>
 </html>
