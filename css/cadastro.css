@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+*{
+    /* margin -> espaçamento externo do site
+   padding -> espaçamento interno do site
+   o * no começo indica que esta pegando todos os elementos do site
+    */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif; /* Altera a fonte do site para Open sans. */
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8ecae6;
+}
+
+.container-cadastro{
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
+}
+
+.form-image{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A8DF8E;
+    padding: 1rem;
+}
+
+.form-image img{
+    width: 28rem;
+}
+
+.form-cadastro{
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    background-color: #F1F0E8;
+}
+
+.form-header {
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.voltar-button {
+    display: flex;
+    align-items: center;
+}
+
+.voltar-button button{
+    border: none;
+    background-color: #8ecae6;
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.voltar-button button:hover{
+    background-color: #6aa0b9f1;
+}
+
+.voltar-button button a{
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+}
+
+.form-header h2{
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+}
+
+.form-header h2::after {
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #6aa0b9f1;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.input-group{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+}
+
+.input-group .input-box{
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.input-group > :nth-last-child(2), .input-group > :nth-last-child(1) {
+    grid-column: span 6;
+}
+
+@media (max-width: 640px) {
+    #form{
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
+    .input-group{
+        grid-template-columns: unset;
+        overflow: auto;
+    }
+    .input-group .input-box{
+        grid-column: unset;
+    }
+}
+
+.input-box input, select{
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    border:none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+    /* width: 250px; */
+}
+
+.input-box input:hover,
+.input-box select:hover{
+    background-color: #f5f5f500;
+}
+
+.input-box input:focus-visible,
+.input-box select:focus-visible{
+    outline: 1px solid #6aa0b9f1;
+}
+
+.input-box label{
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+.input-box input:placeholder {
+    color: #000000be;
+}
+
+.submit-box input{
+    text-align: center;
+    width: 100%;
+    margin-top: 0.7rem;
+    border: none;
+    background-color: #6aa0b9f1;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-box input:hover{
+    background-color: #8ecae6;
+}
+
+.submit-box input{
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.input-box span{
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: red;
+}
+
+.error-message2{
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: red;
+}
+
+@media screen and (max-width: 1330px) {
+    .form-image{
+        display: none;
+    }
+
+    .form-cadastro{
+        width: 100%;
+    }
+}
