@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+}
+
+.menu-principal{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    column-gap: 20px;
+
+    /* border-radius: 10px; */
+    box-shadow: 0 4px 8px;
+    width: 15%;
+    padding: 20px;
+    background: rgba(241, 240, 232, 0.63);
+    box-shadow: 0px 1px 26px -5px rgba(0, 0, 0, 0.70);
+    height: 100%;
+}
+
+.container-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    border-radius: 20%;
+    border: solid 1px black;
+    height: 8rem;
+    width: 8rem;
+}
+
+.container-image i{
+    font-size: 60px;
+}
+
+.subtitulo-img{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.subtitulo-img h1{
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.subtitulo-img > :first-child{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.opcoes-menus{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.opcoes-menus li{
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 15px;
+}
+.opcoes-menus > li:last-child{
+    position: absolute;
+    bottom: 0;
+}
+
+.opcoes-menus li a{
+    margin-top: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    white-space: pre-line;
+}
+
+.opcoes-menus li img{
+    height: 40px;
+    width: 40px;
+}
+
+/* .btn-sair i{
+    padding-right: 20px;
+    font-size: 25px;
+} */
+
+.conteudo{
+    box-sizing: border-box;
+    width: 85%;
+    /* right: 30%; */
+    /* padding: 30px; */
+    background: #8ECAE6;
+}
+
+.conteudo{
+    padding: 20px;
+}
+
+/* .header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+
+    background-color: beige;
+    border-radius: 10px;   
+    box-shadow: 0 4px 8px; 
+    /* position: relative;
+    left: 30%; } */ 
+
+/* .nav-bar{
+    padding: 25px;
+} */
