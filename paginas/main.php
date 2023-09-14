@@ -9,12 +9,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://localhost/ProjetoTCC/css/painel.css">
         <link rel="stylesheet" href="http://localhost/ProjetoTCC/fontawesome/css/all.min.css">
-        <link rel="stylesheet" href="../">
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="http://localhost/ProjetoTCC/painel/painel_js/painel.js"></script>
     </head>
    
     <body>
+        <div id="overlay" onclick="toggleDrawer()"></div>
+        
     <article class="menu-principal" >
-                  
             <aside class="side-bar">
                 <section class="container-image">
                     <i class="fa-solid fa-user"></i>
@@ -26,44 +29,60 @@
                 </section>
 
                 <ul class="opcoes-menus">
-                    <li>
+                    <li id="linha_menu_1">
                         <img src="./painel/imagens/editar-cadastro.png">
-                        <a href="#">Editar Usuario</a>
+                        <a href="<?php echo INCLUDE_PATH ?>/?editar_usuario">Editar Usuario</a>
                     </li>
 
-                    <li>
+                    <li id="linha_menu_2">
                         <img src="./painel/imagens/meu-chamados_2.png">
-                        <a href="#">Meus chamados</a>
+                        <a href="<?php echo INCLUDE_PATH ?>/?meus_chamados">Meus chamados</a>
                     </li>
 
-                    <li>
+                    <li id="linha_menu_3">
                         <img src="./painel/imagens/chamados.png">
-                        <a href="#">Chamados</a>
+                        <a href="<?php echo INCLUDE_PATH ?>/?hub_chamados">Chamados</a>
                     </li>
-                    <li>
+                    <li id="linha_menu_4">
                         <img src="./painel/imagens/base-conhecimento.png">
-                        <a href="#">Base de conhecimento</a>
+                        <a href="<?php echo INCLUDE_PATH ?>/?base_conhecimento">Base de conhecimento</a>
                     </li>
 
-                    <li>
+                    <li id="linha_menu_5">
                         <img src="./painel/imagens/Sair.png">
                         <a href="<?php echo INCLUDE_PATH ?>/?loggout">Sair</a>
+                            <?php 
+                                if (isset($_GET['loggout'])) {
+                                    Painel::loggout();
+                                }
+                            ?>
                     </li>
                 </ul>
                 
             </aside><!--menu-lateral-->
 
             <section class="conteudo">
+                <?php
+                    if (isset($_GET['hub_chamados'])) {
+                        include("./painel/paginas/hub_chamados.php");
+                    }
 
-                <h2>Testes</h2>
-                <?php 
-                if (isset($_GET['loggout'])) {
-                    Painel::loggout();
-                }
-                echo $_SESSION['usuario']. '<hr>';
-                echo $_SESSION['permissao']. '<hr>';
-                echo $_SESSION['setor']. '<hr>';
+                    else if (isset($_GET['meus_chamados'])) {
+                        include("./painel/paginas/meus_chamados.php");
+                    }
 
+                    else if (isset($_GET['editar_usuario'])){
+                        include("./painel/paginas/editar_usuario.php");
+                    }
+
+                    else if (isset($_GET['base_conhecimento']))
+                    {
+                        include("./painel/paginas/base_conhecimento.php");
+                    }
+
+                    else {
+                        include("./painel/paginas/meus_chamados.php");
+                    }
                 ?>
             </section>
         </article>
