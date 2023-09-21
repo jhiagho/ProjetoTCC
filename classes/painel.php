@@ -31,6 +31,21 @@
             
             return $info;
         }
+        public static function listarUsuariosTecnicos(){
+            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE `id_nivel_perm` = '2' ");
+            $banco->execute();
+            $info = $banco->fetchAll();
+            
+            return $info;
+        }
+
+        public static function listarUsuarios(){
+            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE `id_nivel_perm` <= '2' ");
+            $banco->execute();
+            $info = $banco->fetchAll();
+            
+            return $info;
+        }
 
         public static function nome_permissao($permissao){
             $array = [ '1' => 'padrao',

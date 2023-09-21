@@ -129,7 +129,21 @@ body{
     }
 }
 
-.input-box input, select{
+/* .select2-container {
+    padding: 0.5rem;
+    border-radius: 10px;
+} */
+
+/* .select2-container {
+    margin: 0;
+    padding: 0;
+}
+.select2-container .select2-selection--single {
+    padding: 0.8rem 1.2rem;
+} */
+
+
+.input-box input, select {
     margin: 0.6 rem 0;
     padding: 0.8rem 1.2rem;
     border:none;

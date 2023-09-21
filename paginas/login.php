@@ -94,7 +94,7 @@
                     if(isset($_GET['sucesso']) && $_GET['sucesso'] == true)
                         {
                             echo '<script type="text/javascript">
-                            window.onload = function () { alert("Cadastro Realizado com sucesso. Prossiga com seu usuario e senha criado"); }
+                            window.onload = function () { alert("Cadastro Realizado com sucesso. Prossiga para tela de login com seu usuario e senha criadogi"); }
                             </script>'; 
                             unset($_GET['sucesso']);
                         } 

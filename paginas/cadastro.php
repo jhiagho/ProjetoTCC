@@ -45,6 +45,18 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://localhost/ProjetoTCC/css/cadastro.css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+        <!---select2 e jquery ------------------------------------------------------------------------------------->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+        
+        <!-- <script src="http://localhost/ProjetoTCC/ajax/ajax_verificar_user.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        
+       
+
     </head>
     <body>
         <article class="container-cadastro">
@@ -68,13 +80,13 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
 
                             <div class="input-box">
                                 <label for="primeiro_nome">Primeiro nome:</label>
-                                <input id="primeiro_nome" type="text" name="pnome" placeholder="Digite seu primeiro nome" >
+                                <input id="primeiro_nome" type="text" name="pnome" placeholder="primeiro nome" >
                                 <span class="error-message" id="primeiro_nome_Error"></span>
                             </div>
 
                             <div class="input-box">
                                 <label for="sobre_nome">Sobrenome:</label>
-                                <input id="sobre_nome" type="text" name="sbnome" placeholder="Digite seu sobrenome" >
+                                <input id="sobre_nome" type="text" name="sbnome" placeholder="sobrenome" >
                                 <span class="error-message" id="sobre_nome_Error"></span>
                             </div>
 
@@ -85,14 +97,14 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                             </div>
 
                             <div class="input-box">
-                                <label for="telefone">Celular para contato:</label>
+                                <label for="telefone">Celular:</label>
                                 <input id="telefone" type="text" name="telefone" placeholder="(xx)xxxxx-xxxx" >
                                 <span class="error-message" id="telefone_Error"></span>
                             </div>
 
                             <div class="input-box">
                                 <label for="Setor">Setor:</label>
-                                <select name="setor">
+                                <select class="select_2" name="setor" id="select_2">
                                 <?php
                                         $aux = new painel();
                                         $aux = $aux->listarSetor();
@@ -131,12 +143,8 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
 
                 </section> <!--form-cadastro -->
         </article> <!--container-cadastro-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-            <script src="http://localhost/ProjetoTCC/js/script-cadastro.js" ></script>
-            <script src="http://localhost/ProjetoTCC/ajax/ajax_verificar_user.js"></script>
             <!-- jQuery -->
-            
+            <script src="http://localhost/ProjetoTCC/js/script-cadastro.js" ></script>
             <!-- jQuery Mask Plugin -->
             
     </body>

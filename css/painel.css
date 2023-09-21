@@ -2,6 +2,7 @@
     margin: 0;
     box-sizing: border-box;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .estilo-li{
@@ -46,7 +47,7 @@ body{
 }
 
 .container-image i{
-    font-size: 60px;
+    font-size: 50px;
 }
 
 .subtitulo-img{
@@ -55,13 +56,13 @@ body{
 }
 
 .subtitulo-img h1{
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 300;
     margin-bottom: 5px;
 }
 
 .subtitulo-img > :first-child{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -83,12 +84,12 @@ body{
 
 .opcoes-menus li:hover{
     background-color: white;
-    font-weight: bold;
+    
 }
 
 .opcoes-menus li.active a{
     background-color: white;
-    font-weight: bold;
+   
 }
 
 /* .opcoes-menus li:visited{
@@ -103,7 +104,7 @@ body{
 
 .opcoes-menus li a{
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     white-space: pre-line;
     color:black;
@@ -133,7 +134,7 @@ body{
 
 .show_drawer{
     height: 100%;
-    width: 300px;
+    width: 280px;
     position: fixed;
     z-index: 10;
     top: 0;
@@ -155,7 +156,8 @@ body{
     z-index: 10;
     top: 0;
     right: 0;
-    background-color: white;
+    background-color: #F1F0E8;
+    box-shadow: 0px 1px 26px -5px rgba(0, 0, 0, 0.70);
     overflow-x: hidden;
     transition: 0.5s;  /* Animation */
     padding-top: 60px;
@@ -179,11 +181,175 @@ body{
     background-color: transparent;
 }
 
-.btn_toggle_drawer{
-    /* transition: margin-right .5s;
-    padding: 20px;  */
+/*==================================================== Criar_chamados.php =====================================================================================*/
+
+.container-chamados{
+    /* width: 280; */
+    /* width: 100%; */
+    
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+
+    /* padding: 2rem; */
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.container-chamados > form{
+    padding-left: 40px;
+
 }
 
 
+.titulo-chamado{
+    margin-bottom: 3.0rem;
+    align-items:center;
+}
 
-/*=========================================================================================================================================*/
+.titulo-chamado h2{
+    font-size: 24px;
+    font-weight: bold;
+    color: #4b6967;
+}
+
+.titulo-chamado h2::after{
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #6aa0b9f1;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.container-titulo{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+}
+
+.container-titulo .input-box-titulo{
+    /* grid-column: span 4; */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.3rem;
+}
+
+.input-group-date{
+    grid-column: span 8;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input-group-descricao{
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 15px;
+}
+
+.input-box-titulo input{
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    width: 250px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+.input-group-descricao input {
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    width: 700px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+.input-group-date label, 
+.input-group-descricao label,
+.input-box label
+{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+.input-group-descricao textarea {
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    width: 700px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+    margin-bottom: 1.3rem;
+}
+
+.container-especificacao{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10em;
+
+}
+
+
+.container-especificacao .input-box{
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.submit-box input{
+    text-align: center;
+    border: none;
+    background-color: #6aa0b9f1;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-box input:hover{
+    background-color: #8ecae6;
+}
+
+.submit-box input{
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+/*==================================================== hub_chamados.php =====================================================================================*/
+.header_chamados{
+    background: white;
+    padding: 20px;
+}
+
+.header_chamados form{
+    display: flex;
+    flex-direction: row;
+}
+
+.header_chamados .btn_criar_chamados{
+    margin-top: 0.5rem;
+}
+
+.header_chamados .btn_criar_chamados button{
+    width: 200px;
+    border: none;
+    background-color: #6aa0b9f1;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.header_chamados form select { 
+    
+}

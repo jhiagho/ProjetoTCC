@@ -10,8 +10,6 @@
         <link rel="stylesheet" href="http://localhost/ProjetoTCC/css/painel.css">
         <link rel="stylesheet" href="http://localhost/ProjetoTCC/fontawesome/css/all.min.css">
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="http://localhost/ProjetoTCC/painel/painel_js/painel.js"></script>
     </head>
    
     <body>
@@ -86,7 +84,10 @@
                 ?>
             </section>
         </article>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="http://localhost/ProjetoTCC/painel/painel_js/painel.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     </body>
 </html>
 

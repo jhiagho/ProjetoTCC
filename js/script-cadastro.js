@@ -105,6 +105,35 @@ function validarPassword(password, minDigits){
 
 $(function(){
     $('#telefone').mask('(00)00000-0000');
+
+    $('.select_2').select2();
+
+    $(document).ready(function() {
+        // Inicializa o select2
+        $('.js-example-basic-single').select2();
+    
+        // Estiliza o contorno e o fundo da caixa de seleção
+        $('.select2-container--default .select2-selection--single').css({
+            'border': 'none',
+            'border-radius': '10px',
+            'box-shadow': '1px 1px 6px #0000001c',
+            'height': '38px'
+        });
+    
+        // Ajusta o alinhamento vertical do texto e o padding
+        $('.select2-container--default .select2-selection--single .select2-selection__rendered').css({
+            'line-height': '40px',
+            'padding-left': '10px',
+            'padding-right': '10px',
+            'top': '0'
+        });
+    
+        // Estiliza e ajusta a posição do ícone de seta para baixo
+        $('.select2-container--default .select2-selection--single .select2-selection__arrow').css({
+            'height': '40px'
+        });
+    });
+    
 })
 
 
