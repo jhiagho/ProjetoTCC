@@ -1,5 +1,5 @@
 <?php
-    include_once('C:/xampp/htdocs/ProjetoTCC/config.php');
+    include_once('../config.php');
     /**
      * Class painel
      */
