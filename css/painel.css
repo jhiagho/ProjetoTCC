@@ -129,6 +129,9 @@ body{
 }
 
 .conteudo{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     padding: 20px;
 }
 
@@ -146,63 +149,21 @@ body{
     color: white;
 }
 
-
-
 /*PAGINA HUB_CHAMADOS*/
-.drawer{
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    background-color: #F1F0E8;
-    box-shadow: 0px 1px 26px -5px rgba(0, 0, 0, 0.70);
-    overflow-x: hidden;
-    transition: 0.5s;  /* Animation */
-    padding-top: 60px;
-    color: black;
-}
-#overlay{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);  /* Cor preta com 70% de opacidade */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;  /* Ajuste o z-index se necessário para que fique atrás do drawer */
-    display: none;  /* Inicialmente oculto */
-}
 
-.background-transparente{
-    /* height: 100vh;
-    width: 100%; */
-    z-index: 9;
-    background-color: transparent;
-}
 
 /*==================================================== Criar_chamados.php =====================================================================================*/
 
 .container-chamados{
-    /* width: 280; */
-    /* width: 100%; */
-    
+    padding: 40px;
     height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between; 
 
-    /* padding: 2rem; */
-    align-items: center;
-    background-color: #FFFFFF;
+   /* padding: 2rem; */
+   background-color: #FFFFFF;
 }
-
-.container-chamados > form{
-    padding-left: 40px;
-
-}
-
 
 .titulo-chamado{
     margin-bottom: 3.0rem;
@@ -227,9 +188,8 @@ body{
 }
 
 .container-titulo{
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .container-titulo .input-box-titulo{
@@ -240,21 +200,28 @@ body{
 }
 
 .input-group-date{
-    grid-column: span 8;
+    width: 100%;
+    /* grid-column: span 8; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .input-group-descricao{
-    grid-column: span 6;
+    /* grid-column: span 6; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    gap: 15px;
 }
 
-.input-box-titulo input{
+.input-box-descricao{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.input-box-titulo input,
+.input-box-titulo select{
     margin: 0.6 rem 0;
     padding: 0.8rem 1.2rem;
     width: 250px;
@@ -326,7 +293,45 @@ body{
     color: #fff;
 }
 
+.error-message{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: red;
+}
+
 /*==================================================== hub_chamados.php =====================================================================================*/
+.drawer{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    background-color: #F1F0E8;
+    box-shadow: 0px 1px 26px -5px rgba(0, 0, 0, 0.70);
+    overflow-x: hidden;
+    transition: 0.5s;  /* Animation */
+    padding-top: 60px;
+    color: black;
+}
+#overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);  /* Cor preta com 70% de opacidade */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;  /* Ajuste o z-index se necessário para que fique atrás do drawer */
+    display: none;  /* Inicialmente oculto */
+}
+
+.background-transparente{
+    /* height: 100vh;
+    width: 100%; */
+    z-index: 9;
+    background-color: transparent;
+}
+
 .header_chamados{
     background: white;
     padding: 20px;
@@ -351,5 +356,36 @@ body{
 }
 
 .header_chamados form select { 
-    
+    margin: 0.4 rem 0;
+    padding: 0.6rem 0.8rem;
+    border: solid 1px black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px #0000001c;
+    margin-right: 10px;
 }
+
+.header_chamados form input { 
+    margin: 0.4 rem 0;
+    padding: 0.6rem 0.8rem;
+    border: solid 1px black;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+.header_chamados form button {
+    margin: 0.4 rem 0;
+    padding: 0.6rem 0.8rem;
+    border: none;
+    cursor: pointer;
+    background-color: #29a1d8;
+}
+
+.header_chamados form button i{
+    color: white;
+}
+
+.conteudo_chamados{
+    margin-top: 10px;
+    padding: 20px;
+    background-color: white;
+}
+

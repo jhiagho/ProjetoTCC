@@ -16,10 +16,8 @@
                     <option value="2">localizacao</option>
                     <option value="3">status</option>
                 </select>
-
                     <input type="text" name="pesquisar" placeholder="pesquisar...">
                     <button type="submit" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
-                     
             </form>
 
         <div class="btn_criar_chamados" id="btn_toggle_drawer">
@@ -30,25 +28,27 @@
     </header>
 
     <section class="conteudo_chamados">
-        <section class="drawer">
-
-        </section>
+        <section class="drawer"> </section>
+        
+        <div class="container">
+            <div class="row border">
+                <div class="col-1 border"> ID </div>
+                <div class="col border"> Titulo </div>
+                <div class="col border"> Descrição </div>
+                <div class="col border"> Status </div>
+                <div class="col border"> localizaçao </div>
+                <div class="col border"> Setor Atribuido </div>
+                <div class="col border"> Tecnico </div>
+                <div class="col border"> Requerente </div>
+                <div class="col border"> Data_Inicio </div>
+                <div class="col border"> Data_Fim </div>
+                <div class="col border"> Prioridade </div>
+            </div>
+        </div>
 
     </section>
 
-    <?php
-        if(isset($_POST['btn_criar_chamado']))
-        echo 'ESTOU FUNCIONANDO';
-
-    ?>
 </article>
-
-<h1>Teste estou na pagina hub_chamados</h1>
-<?php
-    echo $_SESSION['usuario']. '<hr>';
-    echo $_SESSION['permissao']. '<hr>';
-    echo $_SESSION['setor']. '<hr>';
-?>
 
 <script>
     window.addEventListener("DOMContentLoaded", ()=>{

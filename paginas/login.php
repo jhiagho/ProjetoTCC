@@ -12,6 +12,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        
         <!-- Carregamento dos es -->
         <link href="<?php echo INCLUDE_PATH;?>/css/style.css" rel="stylesheet" >
         <link href="<?php echo INCLUDE_PATH;?>/fontawesome/css/all.min.css" rel="stylesheet" >
@@ -27,42 +28,8 @@
                         <div class="circuferencia-box-image">
                             <i class="fa-solid fa-user"></i>
                         </div> <!--circuferencia-->
-
                     </section><!--box-image-->
 
-                    <?php
-                        
-                        if(isset($_POST['login']))
-                        {
-                            $user = $_POST['usuario']; 
-                            $senha = $_POST['senha'];
-                            $cripto = sha1($senha);
-                            echo $cripto;
-
-                            //conectar com o banco e procurar se o usuario ou senha esta presente no banco.
-                            $sql = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE usuario = '$user' AND senha = '$cripto'");
-                            $sql->execute();
-                            
-                            if($sql->rowCount() == 1){
-                                $resultado = $sql->fetch();
-                                // echo '<pre>';
-                                // print_r($resultado);
-                                // echo '</pre>';
-                                $_SESSION['login'] = true;
-                                $_SESSION['usuario'] = $user;
-                                $_SESSION['senha'] = $senha;
-                                $_SESSION['permissao'] = painel::nome_permissao($resultado['id_nivel_perm']);
-                                $_SESSION['setor'] = painel::buscar_nome_setor($user);
-
-                                //se o usuario e a senha estiver presente no banco, redirecionar para a pagina inicial.
-                                header('Location: '.INCLUDE_PATH. '/index.php');
-                            } else {
-                                //não foi logado no sistema.
-                            }
-                            
-                        }
-
-                    ?>
                     <div class="titulo">
                         <h2> Faça seu Login</h2>
                     </div>
@@ -89,8 +56,38 @@
                             <input type="submit" name= "cadastro" value="Cadastrar!" />
                         </div>
                     </form>
+                    <?php
+
+                        if(isset($_POST['login']))
+                        {
+                            $user = $_POST['usuario']; 
+                            $senha = $_POST['senha'];
+                            $cripto = sha1($senha);
+
+                            //conectar com o banco e procurar se o usuario ou senha esta presente no banco.
+                            $sql = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE usuario = '$user' AND senha = '$cripto'");
+                            $sql->execute();
+                            $info = $sql->fetch();
+                            
+                            if($sql->rowCount() == 1){
+                                $_SESSION['login'] = true;
+                                $_SESSION['usuario'] = $user;
+                                $_SESSION['senha'] = $senha;
+                                $_SESSION['permissao'] = painel::nome_permissao($info['id_nivel_perm']);
+                                $_SESSION['setor'] = painel::buscar_nome_setor($user);
+
+                                //se o usuario e a senha estiver presente no banco, redirecionar para a pagina inicial.
+                                header('Location: '.INCLUDE_PATH. '/index.php');
+                            } else {
+                                //não foi logado no sistema.
+                                echo '<div class="alert alert-danger" role="alert">
+                                      <i class="fa-solid fa-circle-exclamation"></i> Usuario ou senha Incorreta! </div>';
+                            } 
+                        }
+                    ?>
                 </section>
-                <?php
+                    <?php
+            
                     if(isset($_GET['sucesso']) && $_GET['sucesso'] == true)
                         {
                             echo '<script type="text/javascript">
@@ -101,7 +98,9 @@
                     ?>
             </div> <!--center-->
         </article><!--box-login-->
+        
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-        <script src="" async defer></script>
     </body>
 </html>

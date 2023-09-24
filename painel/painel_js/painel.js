@@ -1,14 +1,62 @@
 
 const data_inicio = document.querySelector("#Data_inicio")
-const prazo = document.querySelector("#prazo")
 const form1 = document.querySelector("#form_chamados")
+const slc_localizacao = document.querySelector("#slc_localizacao")
+const slc_requerente = document.querySelector("#slc_requerente")
+const select_prioridade = document.querySelector("#select_prioridade")
+const select_status = document.querySelector("#select_status")
 
-form1.addEventListener("submit", (event) => {
-    
-    console.log("Estou aqui");
-    event.preventDefault();
-    
-    })
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Pega a data Atual e coloca a data de fim e coloca
+    var hoje = new Date();
+    var dd = String(hoje.getDate()).padStart(2, '0');
+    var mm = String(hoje.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+    var yyyy = hoje.getFullYear();
+
+    hoje = yyyy + '-' + mm + '-' + dd;
+    data_inicio.value = hoje;
+
+});
+
+form1.addEventListener('submit', function(e) {
+
+    if (!slc_localizacao.value){
+        document.getElementById("chm_slc_localizacao_Error").textContent = 'Selecione uma localização';
+        verificarErro = true;
+    } else {
+        document.getElementById("chm_slc_localizacao_Error").textContent = '';
+    }
+
+    if (!slc_requerente.value){
+        document.getElementById("chm_slc_requerente_Error").textContent = 'Selecione um requrente';
+        verificarErro = true;
+    } else {
+        document.getElementById("chm_slc_requerente_Error").textContent = '';
+    }
+
+    if (!select_prioridade.value) {
+        document.getElementById("chm_select_prioridade_Error").textContent = 'Selecione uma prioridade';
+        verificarErro = true;
+    } else {
+        document.getElementById("chm_select_prioridade_Error").textContent = '';
+    }
+
+    if (!select_status.value) {
+        document.getElementById("chm_select_status_Error").textContent = 'Selecione um status do chamado';
+        verificarErro = true;
+    } else {
+        document.getElementById("chm_select_status_Error").textContent = '';
+    }
+
+
+
+    if(verificarErro){
+        e.preventDefault();
+    }
+});
+
 
 
 function toggleDrawer() {

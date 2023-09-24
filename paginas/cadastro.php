@@ -15,15 +15,6 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                     $senha = $_POST['senha'];
                     $user = $_POST['user'];
 
-                    // echo $pnome. '<br>';
-                    // echo $sbnome. '<br>';
-                    // echo $email. '<br>';
-                    // echo $telefone. '<br>';
-                    // echo $setor. '<br>';
-                    // echo $senha. '<br>';
-                    // echo $pnome. '<br>';
-                    // echo $user. '<br>';
-
                     $cripto = sha1($senha);
                     //echo $cripto;	
 
@@ -44,7 +35,8 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
         <title>Solve Link</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://localhost/ProjetoTCC/css/cadastro.css">
+
+        <link rel="stylesheet" href="<?php echo INCLUDE_PATH;?>/css/cadastro.css">
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
         <!---select2 e jquery ------------------------------------------------------------------------------------->
@@ -61,7 +53,7 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
     <body>
         <article class="container-cadastro">
                 <section class="form-image">
-                    <img src="http://localhost/ProjetoTCC/imagens/undraw_sign_up_n6im.svg">
+                    <img src="<?php echo INCLUDE_PATH;?>/imagens/undraw_sign_up_n6im.svg">
                 </section> <!--form-img -->
                 <section class="form-cadastro">
 
@@ -72,7 +64,7 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                             </div>
 
                             <div class="voltar-button">
-                                <button> <a href="http://localhost/ProjetoTCC/login.php"> Voltar </a> </button>
+                                <button> <a href="<?php echo INCLUDE_PATH;?>/login.php"> Voltar </a> </button>
                             </div>
                         </div> <!--form-header -->
 
@@ -144,7 +136,7 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                 </section> <!--form-cadastro -->
         </article> <!--container-cadastro-->
             <!-- jQuery -->
-            <script src="http://localhost/ProjetoTCC/js/script-cadastro.js" ></script>
+            <script src="<?php echo INCLUDE_PATH;?>/js/script-cadastro.js" ></script>
             <!-- jQuery Mask Plugin -->
             
     </body>
