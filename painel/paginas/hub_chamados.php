@@ -29,22 +29,63 @@
 
     <section class="conteudo_chamados">
         <section class="drawer"> </section>
-        
-        <div class="container">
-            <div class="row border">
-                <div class="col-1 border"> ID </div>
-                <div class="col border"> Titulo </div>
-                <div class="col border"> Descrição </div>
-                <div class="col border"> Status </div>
-                <div class="col border"> localizaçao </div>
-                <div class="col border"> Setor Atribuido </div>
-                <div class="col border"> Tecnico </div>
-                <div class="col border"> Requerente </div>
-                <div class="col border"> Data_Inicio </div>
-                <div class="col border"> Data_Fim </div>
-                <div class="col border"> Prioridade </div>
-            </div>
-        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Status </th>
+                    <th scope="col">Localizaçao </th>
+                    <th scope="col">Setor Atribuido </th>
+                    <th scope="col">Tecnico </th>
+                    <th scope="col">Requerente </th>
+                    <th scope="col">Data_Inicio </th>
+                    <th scope="col">Data_Fim </th>
+                    <th scope="col">Prioridade </th>
+                    <th scope="col">Solução </th>
+                    <th scope="col">Avaliação </th>
+                </tr>
+            </thead>
+
+        <?php
+            $aux = new painel();
+            $chamados = painel::listarChamados();
+
+            $numRows = count($chamados);
+            if ($numRows > 0) {
+                $numCols = count($chamados[0]);
+            
+                for ($i = 0; $i < $numRows; $i++) {
+                    echo '<tr>';
+                    $values = array_values($chamados[$i]); // Obtenha apenas os valores, não as chaves
+                    for ($j = 0; $j < $numCols; $j++) {
+                        if ($j == 0)  echo '<th scope="row">'. $values[$j] .'</th>';
+
+                        if (!$values[$j] == NULL)
+                        {
+                            if ($j == 3) $values[$j] = $aux->buscar_id_chamados($values[$j],'status','tb_status_chamados','id_status');
+                            if ($j == 4) $values[$j] = $aux->buscar_id_chamados($values[$j],'nome_setor','tb_setor','id_localizacao');
+                            if ($j == 5) $values[$j] = $aux->buscar_id_chamados($values[$j],'nome_setor','tb_setor','id_setor_atribuido');
+                            if ($j == 6) $values[$j] = $aux->buscar_id_chamados($values[$j],'usuario','tb_usuarios','id_tec_atribuido');
+                            if ($j == 7) $values[$j] = $aux->buscar_id_chamados($values[$j],'usuario','tb_usuarios','id_requerente');
+                            if ($j == 10) $values[$j] = $aux->buscar_id_chamados($values[$j],'prioridade','tb_prioridades_chamados','id_prioridade');
+                        }
+                        if ($j == 12 || $j == 14) continue;
+                        if ($j != 0) echo '<td>' . $values[$j] . '</td>';       
+                    }
+                    echo '</tr>';
+                }
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+            
+            //echo '<div class="col border">' .$localizacao. '</div>'; 
+
+        ?>
+    </div>
 
     </section>
 

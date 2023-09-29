@@ -1,5 +1,5 @@
 <?php
-define('INCLUDE_PATH','http://192.168.1.3/ProjetoTCC');
+define('INCLUDE_PATH','http://localhost/ProjetoTCC');
 //localhost
 //10.40.7.164
 //10.40.7.173

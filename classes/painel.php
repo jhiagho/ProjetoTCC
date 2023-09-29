@@ -72,7 +72,28 @@
             }
             return false;
         }
+
+        public static function listarChamados(){
+            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_chamados`");
+            $banco->execute();
+            $info = $banco->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $info;
+        }
+
+        public static function BuscarChamados(){
+            //A fazer, modo de busca.
+        }
+
+        public static function buscar_id_chamados($id,$nome_tipo,$tabela_destino,$tipo) {
+                $banco = Banco::conectar();
+                $quary = "SELECT `$nome_tipo` FROM `$tabela_destino` INNER JOIN `tb_chamados` ON $tabela_destino.id = tb_chamados.$tipo AND $tabela_destino.id = '$id'";
+                $stmt =$banco->prepare($quary);
+                $stmt->execute();
+
+                $info = $stmt->fetch();
+                return $info[0];
+        }
     }
-    
 
 ?>

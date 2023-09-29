@@ -1,3 +1,32 @@
+<?php
+
+if(isset($_POST["bt_cadastrar_chm"]))
+        {
+            $data_inicio = $_POST['chm_data_inicio']; 
+            $prioridade = $_POST['select_prioridade'];
+            $status = $_POST['select_status']; 
+            $titulo = $_POST['chm_titulo']; 
+            $descricao = $_POST['chm_descricao']; 
+            $localizacao = $_POST['select_localizacao'] + 1; 
+            $setor_atribuido = ($_POST['select_setor'] + 1) ?? ''; // similiar ao ISSET, se o lado esquerdo tiver valor mantem sé não preencha com ''; 
+            $requerente = $_POST['select_requerente'];
+            $tecnico_atribuido = $_POST['tecnico_atribuido'] ?? '';
+
+            $aux = new Banco();
+            $banco1 = $aux->conectar();
+
+            $arr = array($titulo,$descricao,$status,$localizacao,$setor_atribuido,$tecnico_atribuido,$requerente,$data_inicio,$prioridade );
+            $sql = "INSERT INTO `tb_chamados` VALUES (NULL,?,?,?,?,?,?,?,?,NULL,?,NULL,NULL,NULL,NULL)";
+            $stmt = $banco1->prepare($sql);
+
+            if($stmt->execute($arr)) {
+                header('Location: '.INCLUDE_PATH. '/index.php');
+               }    
+           else{
+                print_r($stmt->errorInfo());
+           }
+        }
+?>  
     <form class="container-chamados" id="form_chamados" method="post">
 
             <div class="titulo-chamado" >
@@ -9,7 +38,7 @@
 
                         <div class="input-box-titulo">
                             <label for="Data_inicio">Data-inicio:</label>
-                            <input id="Data_inicio" type="date" name="chm_data_inicio" readonly>
+                            <input id="Data_inicio" type="datetime-local" name="chm_data_inicio">
                             <span class="error-message" id="chm_data_inicio_Error"></span>
                         </div>
 
@@ -17,12 +46,12 @@
                             <label for="Prioridade">Prioridade:</label>
                             <select id="select_prioridade" name="select_prioridade">
                                 <option value="" disabled selected hidden> Selecione... </option>
-                                <option value="Critica">Critica</option>
-                                <option value="Muito_Alta">Muito Alta</option>
-                                <option value="Alta">Alta</option>
-                                <option value="Media">Media</option>
-                                <option value="Baixa">Baixa</option>
-                                <option value="Muito_Baixa">Muito Baixa</option>
+                                <option value="1">Critica</option>
+                                <option value="2">Muito Alta</option>
+                                <option value="3">Alta</option>
+                                <option value="4">Media</option>
+                                <option value="5">Baixa</option>
+                                <option value="6">Muito Baixa</option>
                             </select>
                             <span class="error-message" id="chm_select_prioridade_Error"></span>
                         </div>
@@ -51,7 +80,7 @@
 
                             <div class="input-box-descricao" id="input-box-descricao">
                                 <label for="descricao">Descrição:</label>
-                                <textarea id="descricao" type="text" name="chm_descricao" rows="8" cols="50" placeholder="Descrição do chamado..." required ></textarea>
+                                <textarea id="descricao" type="text" name="chm_descricao" rows="6" cols="100" placeholder="Descrição do chamado..." required ></textarea>
                                 <span class="error-message" id="chm_descricao_Error"></span>
                             </div>
                 </div>
@@ -72,7 +101,7 @@
                                 $aux = $aux->listarSetor();
                                                 
                                 foreach ($aux as $key => $value) {
-                                    echo '<option value="' .($key + 1). '">'.$value['nome_setor'].'</option>';
+                                    echo '<option value="' .$key. '">'.$value['nome_setor'].'</option>';
                                 }
                             ?>
                         </select>
@@ -88,7 +117,7 @@
                                 $aux = $aux->listarSetor();
                                                 
                                 foreach ($aux as $key => $value) {
-                                    echo '<option value="' .($key + 1). '">'.$value['nome_setor'].'</option>';
+                                    echo '<option value="' .$key . '">'.$value['nome_setor'].'</option>';
                                 }
                             ?>
                         </select>
@@ -137,29 +166,7 @@
                     </div>
     </form>
 
-    <?php
-        if(isset($_POST["bt_cadastrar_chm"]))
-        {
-            $data_inicio = $_POST['chm_data_inicio']; 
-            $prioridade = $_POST['select_prioridade']; 
-            $status = $_POST['select_status']; 
-            $titulo = $_POST['chm_titulo']; 
-            $descricao = $_POST['chm_descricao']; 
-            $localizacao = $_POST['select_localizacao']; 
-            $setor_atribuido = $_POST['select_setor'] ?? ''; // similiar ao ISSET, se o lado esquerdo tiver valor mantem sé não preencha com ''; 
-            $requerente = $_POST['select_requerente'];
-            $tecnico_atribuido = $_POST['tecnico_atribuido'] ?? '';
-
-            $aux = new Banco();
-            $banco = $aux->conectar()->prepare("INSERT INTO `tb_chamados` VALUES (NULL,?,?,?,?,?,NULL,?,?,?,?,NULL,NULL,NULL,NULL)");
-            $banco->execute(array($titulo,$descricao,$status,$prioridade,$data_inicio,$localizacao,$requerente,$setor_atribuido,$tecnico_atribuido));
-            echo "Enserido com sucesso!";
-
-            header("Location: ".INCLUDE_PATH. " /?hub_chamados'");
-        }
-
-    ?>
-        
+            
 
 
 

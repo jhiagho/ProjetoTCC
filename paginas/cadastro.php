@@ -84,7 +84,7 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
 
                             <div class="input-box">
                                 <label for="email">Email:</label>
-                                <input id="email" type="email" name="email" placeholder="Digire seu email" >
+                                <input id="email" type="email" name="email" placeholder="Digite seu email" >
                                 <span class="error-message" id="email_Error"></span>
                             </div>
 

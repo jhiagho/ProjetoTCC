@@ -1,11 +1,9 @@
-
 const data_inicio = document.querySelector("#Data_inicio")
 const form1 = document.querySelector("#form_chamados")
 const slc_localizacao = document.querySelector("#slc_localizacao")
 const slc_requerente = document.querySelector("#slc_requerente")
 const select_prioridade = document.querySelector("#select_prioridade")
 const select_status = document.querySelector("#select_status")
-
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -21,6 +19,10 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 form1.addEventListener('submit', function(e) {
+    // alert("Estou Funcionando");
+    // e.preventDefault();
+
+    verificarErro = false;
 
     if (!slc_localizacao.value){
         document.getElementById("chm_slc_localizacao_Error").textContent = 'Selecione uma localização';
@@ -36,6 +38,7 @@ form1.addEventListener('submit', function(e) {
         document.getElementById("chm_slc_requerente_Error").textContent = '';
     }
 
+
     if (!select_prioridade.value) {
         document.getElementById("chm_select_prioridade_Error").textContent = 'Selecione uma prioridade';
         verificarErro = true;
@@ -43,14 +46,13 @@ form1.addEventListener('submit', function(e) {
         document.getElementById("chm_select_prioridade_Error").textContent = '';
     }
 
+
     if (!select_status.value) {
         document.getElementById("chm_select_status_Error").textContent = 'Selecione um status do chamado';
         verificarErro = true;
     } else {
         document.getElementById("chm_select_status_Error").textContent = '';
     }
-
-
 
     if(verificarErro){
         e.preventDefault();
@@ -73,7 +75,7 @@ function toggleDrawer() {
         document.getElementById("btn_toggle_drawer").style.marginRight = "0px";
         overlay.style.display = "none";  // Mostra o overlay
     }
-}
+ }
 
 /* Criar_chamados.php */
 
