@@ -62,6 +62,7 @@
                     $values = array_values($chamados[$i]); // Obtenha apenas os valores, não as chaves
                     for ($j = 0; $j < $numCols; $j++) {
                         if ($j == 0)  echo '<th scope="row">'. $values[$j] .'</th>';
+                        if ($j == 1)  echo '<td> <a href="'.INCLUDE_PATH.'/painel/paginas/paginas_chamados/index.php?'.$values[0].'">' .$values[$j]. '</a> </td>';
 
                         if (!$values[$j] == NULL)
                         {
@@ -73,7 +74,7 @@
                             if ($j == 10) $values[$j] = $aux->buscar_id_chamados($values[$j],'prioridade','tb_prioridades_chamados','id_prioridade');
                         }
                         if ($j == 12 || $j == 14) continue;
-                        if ($j != 0) echo '<td>' . $values[$j] . '</td>';       
+                        if ($j > 1) echo '<td>' . $values[$j] . '</td>';       
                     }
                     echo '</tr>';
                 }

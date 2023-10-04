@@ -1,0 +1,222 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header-chamados{
+    padding: 10px;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-chamados h1{
+    font-size: 25px;
+    margin-left: 15px;
+}
+
+.header-chamados a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+    margin-right: 15px;
+}
+
+.nav-chamados{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-around; /* Centraliza horizontalmente */
+    align-items: center;
+}
+
+.detalhes-chamado{  
+    display: flex;
+}
+
+.menu-chamado{
+    width: 12rem;
+    /* height: 100vh; */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.menu-chamado ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-chamado ul li {
+    margin: 10px 0;
+}
+
+.menu-chamado ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.painel-chamado{
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/*========================================================Descrição========================================================================*/
+
+.detalhes-box{
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
+    padding: 15px;
+    margin-left: 10px;
+    background-color: #ACD59E;
+    width: 800px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.solucao-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    left: 0;
+
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: right;
+    background-color: #6aa0b9f1;
+    width: 800px;
+}
+
+.detalhes-box h1, .solucao-box h1{
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1px solid #3333336d;
+}
+
+.solucao-box h1{
+    color: white;
+}
+
+.detalhes-box p, .solucao-box p{
+    margin-top: 8px;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.detalhes-box span, .solucao-box span{
+    align-self: flex-end;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.botao-box{
+    padding: 15px;
+    background: white;
+    display: flex;
+    gap: 10px;
+}
+
+.botao-box{
+    padding: 15px;
+    background: white;
+}
+
+.botao-box button{
+        border: none;
+        padding: 0.62rem;
+        border-radius: 5px;
+        cursor: pointer;
+}
+
+.botao-box button:nth-of-type(1){
+    background-color: #6aa0b9f1;
+}
+
+.botao-box button:nth-of-type(1):hover{
+    background-color: #6aa0b972;
+}
+
+.botao-box button:nth-of-type(2){
+    background-color: #D7D48E;
+}
+
+.botao-box button:nth-of-type(2):hover{
+    background-color: #d7d58e7a;
+}
+
+.botao-box button:nth-of-type(3){
+    background-color: #ff6f00;
+}
+
+.botao-box button:nth-of-type(3):hover{
+    background-color: #ff6f0077;
+}
+
+.add_solutionBox{
+    background: #6aa0b970;
+    padding: 20px;
+    margin-top: 20px;
+    width: 800px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.add_solutionBox textarea{
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    width: 750px;
+    height: 150px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+    margin-bottom: 1.3rem;
+}
+
+.add_solutionBox button{
+    border: none;
+    background-color: #6aa0b9f1;
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add_solutionBox button:hover {
+    background-color: #6aa0b970;
+}
+
+
+.header_solution.header_solution{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.header_solution.header_solution span{
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.header_solution.header_solution button{
+    border: none;
+    margin-right: 10px;
+    font-size: 25px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+/* .submit-box input:hover{
+    background-color: #8ecae6;
+} */
+
+

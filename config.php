@@ -1,5 +1,7 @@
 <?php
-define('INCLUDE_PATH','http://localhost/ProjetoTCC');
+$host = 'localhost';
+define('INCLUDE_PATH','http://'.$host.'/ProjetoTCC');
+define('INCLUDE_PATH_CHAMADO','http://'.$host.'/ProjetoTCC/painel/paginas/paginas_chamados');
 //localhost
 //10.40.7.164
 //10.40.7.173

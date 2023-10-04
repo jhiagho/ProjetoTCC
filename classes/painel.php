@@ -81,7 +81,15 @@
             return $info;
         }
 
-        public static function BuscarChamados(){
+        public static function BuscarChamados($id){
+            $banco = Banco::conectar();
+            $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id = '$id'";
+            $stmt = $banco->prepare($quary);
+            $stmt->execute();
+
+            $info = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $info;
+
             //A fazer, modo de busca.
         }
 
