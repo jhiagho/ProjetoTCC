@@ -109,7 +109,7 @@ body{
     margin-bottom: 1.1rem;
 }
 
-.input-group > :nth-last-child(2), .input-group > :nth-last-child(1) {
+.input-group > :nth-last-child(1), .input-group > :nth-last-child(2) {
     grid-column: span 6;
 }
 
@@ -204,6 +204,17 @@ body{
     font-size: 1.0rem;
     font-weight: 600;
     color: red;
+}
+
+#togglePassword ,#togglePassword2 {
+ 
+    position: relative;
+    left: 89%;
+    bottom: 36%;
+    margin-left: 5px;
+    cursor: pointer;
+    width: 20px; 
+    height: 20px;
 }
 
 @media screen and (max-width: 1330px) {

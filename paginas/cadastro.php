@@ -43,12 +43,8 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-        
         <!-- <script src="http://localhost/ProjetoTCC/ajax/ajax_verificar_user.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        
-       
-
     </head>
     <body>
         <article class="container-cadastro">
@@ -119,13 +115,25 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                                 <label for="password">Senha:</label>
                                 <input id="password" type="password" name="senha" placeholder="Digite sua senha" >
                                 <span class="error-message" id="password_Error"></span>
+                                <img id="togglePassword" src="/ProjetoTCC/imagens/eye.svg">
                             </div>
 
+                            <!-- <div class="input-box">
+                                <img id="togglePassword" src="/ProjetoTCC/imagens/eye.svg">
+                            </div> -->
+
+                            
                             <div class="input-box">
                                 <label for="confirmpassword">Confirme sua Senhar:</label>
                                 <input id="confirmpassword" type="password" name="cofsenha" placeholder="Confirme sua senha" >
                                 <span class="error-message" id="confirmpassword_Error"></span>
+                                <img id="togglePassword2" src="/ProjetoTCC/imagens/eye.svg">
                             </div>
+
+                            <!-- <div class="input-box">
+                                <img id="togglePassword" src="/ProjetoTCC/imagens/eye.svg">
+                            </div>
+                             -->
                         </div> <!--input-group -->
 
                         <div class="submit-box">
@@ -136,6 +144,7 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                 </section> <!--form-cadastro -->
         </article> <!--container-cadastro-->
             <!-- jQuery -->
+            
             <script src="<?php echo INCLUDE_PATH;?>/js/script-cadastro.js" ></script>
             <!-- jQuery Mask Plugin -->
             

@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';
+$host = '10.40.7.183';
 define('INCLUDE_PATH','http://'.$host.'/ProjetoTCC');
 define('INCLUDE_PATH_CHAMADO','http://'.$host.'/ProjetoTCC/painel/paginas/paginas_chamados');
 //localhost
@@ -8,7 +8,7 @@ define('INCLUDE_PATH_CHAMADO','http://'.$host.'/ProjetoTCC/painel/paginas/pagina
 //10.42.33.239
 //192.168.2.159
 //192.168.1.3 -- IP da Cada.
-date_default_timezone_set('America/Sao_Paulo'); // Define a data do sistema.
+date_default_timezone_set('America/Sao_Paulo');// Define a data do sistema.
 
 session_start(); // inicializar a session.
 $_SESSION['cadastro'] = false; 

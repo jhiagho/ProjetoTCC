@@ -97,11 +97,16 @@ article.login .box-login form {
         justify-content: space-between;
 }
 
-.input-box div a{
+.input-text a{
         text-decoration: none;
         font-size: 1.0rem;
         color: #2a8dbaf5;
         font-weight: bold;
+}
+.box-esqueceu_a_senha{
+        display: flex;
+        align-items: center;
+        justify-content: center;
 }
 
 .input-box{
@@ -144,6 +149,8 @@ article.login .box-login form {
 }
 
 .box-login input[type=submit]{
+        position: relative;
+
         margin-top: 0.7rem;
         width: 180px;
         height: 32px;
@@ -178,7 +185,23 @@ article.login .box-login form {
 .alert.alert-danger{
         height: 35px;
         padding: 5px 5px;
+}
 
+.password-box{
+        display: flex;
+        align-items: center;
+        position: relative;
+
+}
+
+.password-box img{
+        position:relative;
+        right: 10%;
+        transform: translate(-50%);
+        margin-left: 5px;
+        cursor: pointer;
+        width: 20px; 
+        height: 20px;
 }
 
 /* ESTILO DA PAGINA DE CADASTRO*/
