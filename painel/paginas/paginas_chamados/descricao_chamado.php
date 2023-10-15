@@ -21,7 +21,7 @@
                               <textarea name="solutionText" id="solutionText" rows="8" cols="105" placeholder="Insira a Solução do Chamado..."></textarea>
                         </div>
 
-                        <button name="btn_adicionar_solucao">Adicionar Solução</button>
+                        <input type="submit" name="btn_adicionar_solucao" value="Adicionar Solução">
                   </form>
                  
             </div>

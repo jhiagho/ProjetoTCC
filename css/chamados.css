@@ -184,15 +184,16 @@
     margin-bottom: 1.3rem;
 }
 
-.add_solutionBox button{
+.add_solutionBox input{
     border: none;
     background-color: #6aa0b9f1;
     padding: 0.4rem 1rem;
     border-radius: 5px;
+    width: 200px;
     cursor: pointer;
 }
 
-.add_solutionBox button:hover {
+.add_solutionBox input:hover {
     background-color: #6aa0b970;
 }
 
@@ -297,14 +298,23 @@
 /*SLIDE-UP e SLIDE-DOWN*/
 
 /*Classe para remover a animação do carregamento da pagina  */
+/* Oculta os sliders por padrão */
+#slider, #slider_2 {
+    display: none;
+}
+
+
 .no-animation > #slider_id {
+    transition: none !important;
+}
+.no-animation_2 > #slider_id_2 {
     transition: none !important;
 }
 
 /*Tarefa Pedente..*/
-.no-animation_2 > #slider_id_2{
+/* .no-animation_2 > #slider_id_2{
     transition: none !important;
-}
+} */
 
 .slide-up, .slide-down{
     overflow: hidden;
