@@ -81,5 +81,13 @@
         <script src="" async defer></script>
         <link href="<?php echo INCLUDE_PATH;?>/fontawesome/css/all.min.css" rel="stylesheet" >
         <link rel="stylesheet" href="<?php echo INCLUDE_PATH;?>/css/chamados.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+
+        <script src="<?php echo INCLUDE_PATH;?>/painel/painel_js/chamado.js"></script>
+
     </body>
+      
 </html>

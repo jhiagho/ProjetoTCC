@@ -44,6 +44,7 @@ if(isset($_POST["bt_cadastrar_chm"]))
 
                         <div class="input-box-titulo">
                             <label for="Prioridade">Prioridade:</label>
+                            
                             <select id="select_prioridade" name="select_prioridade">
                                 <option value="" disabled selected hidden> Selecione... </option>
                                 <option value="1">Critica</option>
@@ -53,6 +54,7 @@ if(isset($_POST["bt_cadastrar_chm"]))
                                 <option value="5">Baixa</option>
                                 <option value="6">Muito Baixa</option>
                             </select>
+
                             <span class="error-message" id="chm_select_prioridade_Error"></span>
                         </div>
 

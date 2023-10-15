@@ -250,6 +250,7 @@ body{
 }
 
 .input-group-descricao textarea {
+    resize: vertical;
     margin: 0.6 rem 0;
     padding: 0.8rem 1.2rem;
     width: 700px;

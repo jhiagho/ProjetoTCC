@@ -160,6 +160,8 @@
     background-color: #ff6f0077;
 }
 
+/*INICIO Adicionar Solução Estilo ============================================================================*/
+
 .add_solutionBox{
     background: #6aa0b970;
     padding: 20px;
@@ -170,6 +172,8 @@
 }
 
 .add_solutionBox textarea{
+    resize: vertical;
+    overflow-x: hidden;
     margin: 0.6 rem 0;
     padding: 0.8rem 1.2rem;
     width: 750px;
@@ -214,9 +218,124 @@
     cursor: pointer;
 }
 
+/*FIM Adicionar Solução Estilo ============================================================================*/
+
+/*INICIO Adicionar Tarefa Pendente Estilo ============================================================================*/
+
+.add_TarefaPendente{
+    background: #D7D48E;
+    padding: 20px;
+    margin-top: 20px;
+    width: 900px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.add_TarefaPendente .header_task{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.add_TarefaPendente .header_task span{
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.add_TarefaPendente .header_task button{
+    border: none;
+    margin-right: 10px;
+    font-size: 25px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.add_TarefaPendente textarea{
+    resize: vertical;
+    overflow-x: hidden;
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    width: 850px;
+    height: 150px;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 6px #0000001c;
+    margin-bottom: 1.8rem;
+}
+
+.add_TarefaPendente form{
+   display: flex;
+   justify-content: space-between;
+}
+
+.add_TarefaPendente .input-box{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.add_TarefaPendente label{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000000c0;
+ }
+
+.add_TarefaPendente button{
+    border: none;
+    background-color: #ff6f00;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* FIM Adicionar Tarefa Pendente Estilo ===============================================================================*/
+
+/*ANIMAÇÃO DO BOTÃO EM SLIDE UP E SLIDE DOWN*/
+/*SLIDE-UP e SLIDE-DOWN*/
+
+/*Classe para remover a animação do carregamento da pagina  */
+.no-animation > #slider_id {
+    transition: none !important;
+}
+
+/*Tarefa Pedente..*/
+.no-animation_2 > #slider_id_2{
+    transition: none !important;
+}
+
+.slide-up, .slide-down{
+    overflow: hidden;
+}
+
+/*Tarefa Pedente..*/
+.slide-up_2, .slide-down_2{
+    overflow: hidden;
+}
+
+.slide-up > #slider_id, .slide-down > #slider_id {
+    margin-top: -25%;
+    transition: margin-top 0.4s ease-in-out;
+}
+
+/*Tarefa Pedente..*/
+.slide-up_2 > #slider_id_2, .slide-down_2 > #slider_id_2{
+    margin-top: -30%;
+    transition: margin-top 0.4s ease-in-out;
+}
+
+.slide-down > #slider_id{
+    margin-top: 0;
+}
+
+/*Tarefa Pedente..*/
+.slide-down_2 > #slider_id_2{
+    margin-top: 0;
+}
 
 /* .submit-box input:hover{
     background-color: #8ecae6;
 } */
-
 
