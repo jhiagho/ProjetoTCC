@@ -71,12 +71,12 @@
                             //conectar com o banco e procurar se o usuario ou senha esta presente no banco.
                             $sql = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE usuario = '$user' AND senha = '$cripto'");
                             $sql->execute();
-                            $info = $sql->fetch();
+                            $info = $sql->fetch(PDO::FETCH_ASSOC);
                             
                             if($sql->rowCount() == 1){
                                 $_SESSION['login'] = true;
-                                $_SESSION['usuario'] = $user;
-                                $_SESSION['senha'] = $senha;
+                                $_SESSION['usuario'] = $info['usuario'];
+                                $_SESSION['Usuario_ID'] = $info['id'];
                                 $_SESSION['permissao'] = painel::nome_permissao($info['id_nivel_perm']);
                                 $_SESSION['setor'] = painel::buscar_nome_setor($user);
 
@@ -95,7 +95,7 @@
                     if(isset($_GET['sucesso']) && $_GET['sucesso'] == true)
                         {
                             echo '<script type="text/javascript">
-                            window.onload = function () { alert("Cadastro Realizado com sucesso. Prossiga para tela de login com seu usuario e senha criadogi"); }
+                            window.onload = function () { alert("Cadastro Realizado com sucesso. Prossiga para tela de login com seu usuario e senha criado! "); }
                             </script>'; 
                             unset($_GET['sucesso']);
                         } 

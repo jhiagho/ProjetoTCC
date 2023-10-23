@@ -12,11 +12,18 @@
            if(isset($_SESSION['login'])) return true; 
               else false;
         }
+        public static function formatarData($data){
+            $dataObjeto = DateTime::createFromFormat('Y-m-d H:i:s', $data);
+            $dataFormatada = $dataObjeto->format('d-m-Y H:i:s'); // Formata a data no formato desejado
+            return $dataFormatada;
+        }
 
         public static function loggout(){
             session_destroy();
             header('Location: ' .INCLUDE_PATH);
         }
+
+        // função dos bancos de dados.
         public static function listarPermissao(){
             $banco = Banco::conectar()->prepare("SELECT * FROM `tb_permissao`");
             $banco->execute();
@@ -24,6 +31,7 @@
             
             return $info;
         }
+
         public static function listarSetor(){
             $banco = Banco::conectar()->prepare("SELECT * FROM `tb_setor`");
             $banco->execute();
@@ -31,6 +39,7 @@
             
             return $info;
         }
+
         public static function listarUsuariosTecnicos(){
             $banco = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE `id_nivel_perm` = '2' ");
             $banco->execute();
@@ -93,15 +102,42 @@
             //A fazer, modo de busca.
         }
 
-        public static function buscar_id_chamados($id,$nome_tipo,$tabela_destino,$tipo) {
+        public static function buscar_id_tabelas($id,$nome_tipo,$tabela_original,$tabela_destino,$tipo) {
                 $banco = Banco::conectar();
-                $quary = "SELECT `$nome_tipo` FROM `$tabela_destino` INNER JOIN `tb_chamados` ON $tabela_destino.id = tb_chamados.$tipo AND $tabela_destino.id = '$id'";
+                $quary = "SELECT `$nome_tipo` FROM `$tabela_destino` INNER JOIN `$tabela_original` ON $tabela_destino.id = $tabela_original.$tipo AND $tabela_destino.id = '$id'";
                 $stmt =$banco->prepare($quary);
                 $stmt->execute();
 
                 $info = $stmt->fetch();
                 return $info[0];
         }
+
+        public static function buscar_id_tabelas_all($id,$tabela_original,$tabela_destino,$tipo) {
+            $banco = Banco::conectar();
+            $quary = "SELECT $tabela_original.* FROM `$tabela_destino` INNER JOIN `$tabela_original` ON $tabela_destino.id = $tabela_original.$tipo AND $tabela_destino.id = '$id'";
+            $stmt = $banco->prepare($quary);
+            $stmt->execute();
+
+            $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $info;
+    }
+
+        public static function buscar_solucao($id) {
+            $banco = Banco::conectar();
+            $quary = "SELECT tb_solucao.* FROM `tb_solucao` INNER JOIN `tb_chamados` ON solution_chamado_id = tb_chamados.ID AND tb_chamados.ID = '$id' ";
+            $stmt = $banco->prepare($quary);
+            $stmt->execute();
+            $info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $info;
+    }
+
+        // public static function buscar_pendente($id){
+        //     $banco = Banco::conectar();
+        //     $quary = "SELECT * FROM `tb_tarefa_pendentes` INNER JOIN";
+        // }
+
+
     }
 
 ?>

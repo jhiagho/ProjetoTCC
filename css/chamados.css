@@ -80,12 +80,11 @@
     border-radius: 5px;
 }
 
-.solucao-box{
+.solucao-box, .tarefa-box{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;
-    left: 0;
 
     padding: 15px;
     margin-top: 20px;
@@ -95,25 +94,54 @@
     width: 800px;
 }
 
-.detalhes-box h1, .solucao-box h1{
+.tarefa-box{
+    float: left;
+    background-color: #d7d58e7a;
+}
+
+
+.detalhes-box h1, .solucao-box h1, .tarefa-box h1{
     font-size: 22px;
     font-weight: 600;
     border-bottom: 1px solid #3333336d;
 }
 
+.header-box {
+    border: 1px solid #dad7d796;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.header-box strong{
+    font-weight: bold;
+}
+
+.header-box h1{
+    border:none;
+    font-size: 13px;
+    font-weight: 300;
+}
+
 .solucao-box h1{
     color: white;
 }
+#h1_header_solucao{
+    color: #333;
+}
 
-.detalhes-box p, .solucao-box p{
+
+.detalhes-box p, .solucao-box p, .tarefa-box p{
     margin-top: 8px;
     font-weight: 300;
     font-size: 16px;
 }
 
-.detalhes-box span, .solucao-box span{
+.detalhes-box span, .solucao-box span, .tarefa-box span{
+    margin-top: 0.3rem;
     align-self: flex-end;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 15px;
 }
 
@@ -134,31 +162,42 @@
         padding: 0.62rem;
         border-radius: 5px;
         cursor: pointer;
+        margin-right: 10px;
 }
 
-.botao-box button:nth-of-type(1){
+.info_tarefa_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#btn_Solucionar{
     background-color: #6aa0b9f1;
 }
 
-.botao-box button:nth-of-type(1):hover{
+#btn_Solucionar:hover{
     background-color: #6aa0b972;
 }
 
-.botao-box button:nth-of-type(2){
+
+#btn_trf_pendente{
     background-color: #D7D48E;
 }
 
-.botao-box button:nth-of-type(2):hover{
+#btn_trf_pendente:hover{
     background-color: #d7d58e7a;
 }
 
-.botao-box button:nth-of-type(3){
+
+#btn_avaliar{
     background-color: #ff6f00;
 }
 
-.botao-box button:nth-of-type(3):hover{
+#btn_avaliar:hover{
     background-color: #ff6f0077;
 }
+
 
 /*INICIO Adicionar Solução Estilo ============================================================================*/
 
@@ -181,22 +220,11 @@
     border: none;
     border-radius: 10px;
     box-shadow: 1px 1px 6px #0000001c;
+}
+
+#task_solutionText_Error{
     margin-bottom: 1.3rem;
 }
-
-.add_solutionBox input{
-    border: none;
-    background-color: #6aa0b9f1;
-    padding: 0.4rem 1rem;
-    border-radius: 5px;
-    width: 200px;
-    cursor: pointer;
-}
-
-.add_solutionBox input:hover {
-    background-color: #6aa0b970;
-}
-
 
 .header_solution.header_solution{
     display: flex;
@@ -219,15 +247,51 @@
     cursor: pointer;
 }
 
+.footer_solution{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.footer_solution button{
+    border: none;
+    background-color: #6aa0b9f1;
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.footer_solution button:hover{
+    background-color: #6aa0b970;
+}
+
+.footer_solution input[type="datetime-local"]{
+    padding: 0.4rem 1rem;
+    height: 40px;
+    width: 180px;
+    border:none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px
+}
+
+
 /*FIM Adicionar Solução Estilo ============================================================================*/
 
 /*INICIO Adicionar Tarefa Pendente Estilo ============================================================================*/
+
+.error-message{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: red;
+}
 
 .add_TarefaPendente{
     background: #D7D48E;
     padding: 20px;
     margin-top: 20px;
-    width: 900px;
+    width: 800px; 
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
@@ -258,17 +322,21 @@
     overflow-x: hidden;
     margin: 0.6 rem 0;
     padding: 0.8rem 1.2rem;
-    width: 850px;
+    width: 750px;
     height: 150px;
     border: none;
     border-radius: 2px;
     box-shadow: 1px 1px 6px #0000001c;
+}
+
+#task_pendente_Text_Error{
     margin-bottom: 1.8rem;
 }
 
 .add_TarefaPendente form{
    display: flex;
    justify-content: space-between;
+   flex-wrap: wrap;
 }
 
 .add_TarefaPendente .input-box{
@@ -283,14 +351,22 @@
     color: #000000c0;
  }
 
-.add_TarefaPendente button{
+.add_TarefaPendente .input-submit button{
     border: none;
     background-color: #ff6f00;
     color: white;
     padding: 0.4rem 1rem;
     border-radius: 5px;
     cursor: pointer;
+    width: 300px;
 }
+
+.add_TarefaPendente .input-submit{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
 
 /* FIM Adicionar Tarefa Pendente Estilo ===============================================================================*/
 
@@ -332,7 +408,7 @@
 
 /*Tarefa Pedente..*/
 .slide-up_2 > #slider_id_2, .slide-down_2 > #slider_id_2{
-    margin-top: -30%;
+    margin-top: -32%;
     transition: margin-top 0.4s ease-in-out;
 }
 

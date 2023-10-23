@@ -395,9 +395,8 @@ body{
     border: 1px 1px 1px black;
 }
 
-.conteudo_chamados{
-    /* overflow: auto; */
-}
+/* .conteudo_chamados{
+    /* overflow: auto; }*/
 
 table {
     width: 100%;

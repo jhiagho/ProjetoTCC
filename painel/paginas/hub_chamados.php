@@ -12,13 +12,21 @@
 
                 <select name="column_pesquisar">
                     <option value="0">ID</option>
-                    <option value="1">setor</option>
-                    <option value="2">localizacao</option>
-                    <option value="3">status</option>
+                    <option value="1">setor_atribuido</option>
+                    <option value="2">Localização chamado</option>
+                    <option value="3">Requerente</option>
+                    <option value="4">técnico</option>
+                    <option value="5">status</option>
                 </select>
                     <input type="text" name="pesquisar" placeholder="pesquisar...">
                     <button type="submit" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
             </form>
+            <?php 
+                $aux = new painel();
+                $chamados = painel::listarChamados();
+            ?>
+
+
 
         <div class="btn_criar_chamados" id="btn_toggle_drawer">
             <button onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
@@ -50,8 +58,6 @@
             </thead>
 
         <?php
-            $aux = new painel();
-            $chamados = painel::listarChamados();
 
             $numRows = count($chamados);
             if ($numRows > 0) {
@@ -61,20 +67,32 @@
                     echo '<tr>';
                     $values = array_values($chamados[$i]); // Obtenha apenas os valores, não as chaves
                     for ($j = 0; $j < $numCols; $j++) {
-                        if ($j == 0)  echo '<th scope="row">'. $values[$j] .'</th>';
+                        if ($j == 0)  // ID do chamado
+                            {
+                                echo '<th scope="row">'. $values[$j] .'</th>';
+                            }
                         if ($j == 1)  echo '<td> <a href="'.INCLUDE_PATH.'/painel/paginas/paginas_chamados/index.php?'.$values[0].'">' .$values[$j]. '</a> </td>';
 
                         if (!$values[$j] == NULL)
                         {
-                            if ($j == 3) $values[$j] = $aux->buscar_id_chamados($values[$j],'status','tb_status_chamados','id_status');
-                            if ($j == 4) $values[$j] = $aux->buscar_id_chamados($values[$j],'nome_setor','tb_setor','id_localizacao');
-                            if ($j == 5) $values[$j] = $aux->buscar_id_chamados($values[$j],'nome_setor','tb_setor','id_setor_atribuido');
-                            if ($j == 6) $values[$j] = $aux->buscar_id_chamados($values[$j],'usuario','tb_usuarios','id_tec_atribuido');
-                            if ($j == 7) $values[$j] = $aux->buscar_id_chamados($values[$j],'usuario','tb_usuarios','id_requerente');
-                            if ($j == 10) $values[$j] = $aux->buscar_id_chamados($values[$j],'prioridade','tb_prioridades_chamados','id_prioridade');
+                            if ($j == 3) $values[$j] = $aux->buscar_id_tabelas($values[$j],'status','tb_chamados','tb_status_chamados','id_status');
+                            if ($j == 4) $values[$j] = $aux->buscar_id_tabelas($values[$j],'nome_setor','tb_chamados','tb_setor','id_localizacao');
+                            if ($j == 5) $values[$j] = $aux->buscar_id_tabelas($values[$j],'nome_setor','tb_chamados','tb_setor','id_setor_atribuido');
+                            if ($j == 6) $values[$j] = $aux->buscar_id_tabelas($values[$j],'usuario','tb_chamados','tb_usuarios','id_tec_atribuido');
+                            if ($j == 7) $values[$j] = $aux->buscar_id_tabelas($values[$j],'usuario','tb_chamados','tb_usuarios','id_requerente');
+                            if ($j == 8 || $j == 9) {
+                                $values[$j] = $aux->formatarData($values[$j]);
+                            }
+                            if ($j == 10) $values[$j] = $aux->buscar_id_tabelas($values[$j],'prioridade','tb_chamados','tb_prioridades_chamados','id_prioridade');
                         }
-                        if ($j == 12 || $j == 14) continue;
-                        if ($j > 1) echo '<td>' . $values[$j] . '</td>';       
+                        if ($j == 11) {
+                            $solucao = $aux->buscar_solucao($values[0]);
+                            if ($solucao == false) $values[$j] = '';
+                            else $values[$j] = $solucao["descricao"];  
+                        }
+
+                        if ($j == 13 ||$j == 14) continue;
+                        if ($j > 1) echo '<td>' .$values[$j]. '</td>';       
                     }
                     echo '</tr>';
                 }

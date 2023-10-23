@@ -8,22 +8,32 @@ if(isset($_POST["bt_cadastrar_chm"]))
             $titulo = $_POST['chm_titulo']; 
             $descricao = $_POST['chm_descricao']; 
             $localizacao = $_POST['select_localizacao'] + 1; 
-            $setor_atribuido = ($_POST['select_setor'] + 1) ?? ''; // similiar ao ISSET, se o lado esquerdo tiver valor mantem sé não preencha com ''; 
+            $setor_atribuido = ($_POST['select_setor'] + 1) ?? NULL; // similiar ao ISSET, se o lado esquerdo tiver valor mantem sé não preencha com ''; 
             $requerente = $_POST['select_requerente'];
-            $tecnico_atribuido = $_POST['tecnico_atribuido'] ?? '';
+            $tecnico_atribuido = $_POST['tecnico_atribuido'] ?? NULL;
+            $usuario_que_criou = $_SESSION['Usuario_ID'];
+
+            $titulo = strip_tags($titulo); // remove tag html no código.
+            $descricao = strip_tags($descricao);
 
             $aux = new Banco();
             $banco1 = $aux->conectar();
 
-            $arr = array($titulo,$descricao,$status,$localizacao,$setor_atribuido,$tecnico_atribuido,$requerente,$data_inicio,$prioridade );
-            $sql = "INSERT INTO `tb_chamados` VALUES (NULL,?,?,?,?,?,?,?,?,NULL,?,NULL,NULL,NULL,NULL)";
+            if($tecnico_atribuido != NULL)
+            {
+                $status = 2; //Atribuido.
+            }
+
+            $arr = array($titulo,$descricao,$status,$localizacao,$setor_atribuido,$tecnico_atribuido,$requerente,$data_inicio,$prioridade,$usuario_que_criou);
+            $sql = "INSERT INTO `tb_chamados` VALUES (NULL,?,?,?,?,?,?,?,?,NULL,?,NULL,NULL,NULL,?)";
             $stmt = $banco1->prepare($sql);
 
             if($stmt->execute($arr)) {
                 header('Location: '.INCLUDE_PATH. '/index.php');
                }    
            else{
-                print_r($stmt->errorInfo());
+                echo '<script> alert('.$stmt->errorInfo().') </script>';
+                //print_r($stmt->errorInfo());
            }
         }
 ?>  
@@ -64,8 +74,6 @@ if(isset($_POST["bt_cadastrar_chm"]))
                                 <option value="" disabled selected hidden> Selecione... </option>
                                 <option value="1">Novo</option>
                                 <option value="2">Atribuido</option>
-                                <option value="3">Pendente</option>
-                                <option value="4">Solucionado</option>
                             </select>
                             <span class="error-message" id="chm_select_status_Error"></span>
                         </div>
@@ -109,7 +117,7 @@ if(isset($_POST["bt_cadastrar_chm"]))
                         </select>
                         <span class="error-message" id="chm_slc_localizacao_Error"></span>
                     </div>
-
+                    
                     <div class="input-box">
                         <label for="Setor_atr">Setor atribuido:</label>
                         <select id="slc_setor" class="js-example-basic-single" style="width:250px; height: 35px; border-radius: 5px;" name="select_setor">

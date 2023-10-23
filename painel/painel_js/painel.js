@@ -8,13 +8,19 @@ const select_status = document.querySelector("#select_status")
 
 document.addEventListener("DOMContentLoaded", function() {
     // Pega a data Atual e coloca a data de fim e coloca
-    var hoje = new Date();
-    var dd = String(hoje.getDate()).padStart(2, '0');
-    var mm = String(hoje.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
-    var yyyy = hoje.getFullYear();
+    // Pega a data e hora Atual
+    var agora = new Date();
 
-    hoje = yyyy + '-' + mm + '-' + dd;
-    data_inicio.value = hoje;
+    var dd = String(agora.getDate()).padStart(2, '0');
+    var mm = String(agora.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+    var yyyy = agora.getFullYear();
+
+    var hh = String(agora.getHours()).padStart(2, '0');
+    var min = String(agora.getMinutes()).padStart(2, '0');
+
+    var dataHoraAtual = yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + min;
+
+    data_inicio.value = dataHoraAtual;
 
 });
 
