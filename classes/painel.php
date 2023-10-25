@@ -22,7 +22,7 @@
             session_destroy();
             header('Location: ' .INCLUDE_PATH);
         }
-
+        
         // função dos bancos de dados.
         public static function listarPermissao(){
             $banco = Banco::conectar()->prepare("SELECT * FROM `tb_permissao`");
@@ -89,6 +89,33 @@
             
             return $info;
         }
+
+        public static function getProximoRegistro($idAtual) {
+            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_chamados` WHERE `ID` < :idAtual ORDER BY `ID` DESC LIMIT 1");
+            $banco->bindParam(':idAtual', $idAtual, PDO::PARAM_INT);
+            $banco->execute();
+
+            $info = $banco->fetch();
+
+            if($info)
+                return $info["ID"];
+            else
+                return false;
+        }
+        
+        public static function getRegistroAnterior($idAtual) {
+            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_chamados` WHERE `ID` > :idAtual ORDER BY `ID` ASC LIMIT 1");
+            $banco->bindParam(':idAtual', $idAtual, PDO::PARAM_INT);
+            $banco->execute();
+
+            $info = $banco->fetch();
+
+            if($info)
+                return $info["ID"];
+            else
+                return false;
+        }
+
 
         public static function BuscarChamados($id){
             $banco = Banco::conectar();

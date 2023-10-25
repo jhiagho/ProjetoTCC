@@ -32,6 +32,10 @@
     align-items: center;
 }
 
+.nav-chamados i{
+
+}
+
 .detalhes-chamado{  
     display: flex;
 }
@@ -367,6 +371,113 @@
     flex-wrap: nowrap;
 }
 
+/* Editar Chamado ===================================================================*/
+.editar_chamado{
+    display: flex;
+    flex-direction: column;
+}
+
+.header_editar_chamado{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.header_editar_chamado h1{
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+}
+
+.header_editar_chamado h1::after{
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #6aa0b9f1;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.input-group_data_editar-chamado{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 40px;
+}
+
+.input-group_data_editar-chamado > :nth-child(1){
+    grid-column: span 2;
+}
+
+.input-group_data_editar-chamado > :nth-child(2){
+    grid-column: span 2;
+}
+
+.input-box{
+    grid-column: span 7;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.input-box input, select, textarea{
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    border:none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+.input-box label{
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+.select_box_editar-chamado{
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-auto-rows: auto;
+    gap: 30px;
+}
+
+.select_box_editar-chamado > :nth-child(1){
+    grid-column: span 18;
+}
+
+.select_box_editar-chamado > :nth-child(2){
+    grid-column: span 18;
+}
+
+.submit-group button{
+    margin-top: 1.0rem;
+    margin-right: 1.0rem;
+    border: none;
+    background-color: #8ecae6;
+    padding: 0.4rem 1rem;
+    width: 20rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-group > :nth-child(2){
+    background-color: #99B080;
+}
+.submit-group > :nth-child(2):hover{
+    background-color: #99b0809c;
+}
+
+.submit-group > :nth-child(3){
+    background-color: #e53935;
+}
+.submit-group > :nth-child(3):hover{
+    background-color: #e5383587;
+}
+
+.submit-group button:hover{
+    background-color: #8ecae6b6;
+}
 
 /* FIM Adicionar Tarefa Pendente Estilo ===============================================================================*/
 

@@ -7,15 +7,16 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
 <?php
                 if(isset($_POST['bt_cadastrar']))
                 {
-                    $pnome = $_POST['pnome'];
-                    $sbnome = $_POST['sbnome'];
-                    $email = $_POST['email'];
+                    $pnome = strip_tags($_POST['pnome']);
+                    $sbnome = strip_tags($_POST['sbnome']);
+                    $email = strip_tags($_POST['email']);
                     $telefone = $_POST['telefone'];
                     $setor = $_POST['setor'] + 1; // para ser inserido no banco precisa ser adicionado mais um.
-                    $senha = $_POST['senha'];
-                    $user = $_POST['user'];
+                    $senha = strip_tags($_POST['senha']);
+                    $user = strip_tags($_POST['user']);
 
                     $cripto = sha1($senha);
+                    $user = strtolower($user);
                     //echo $cripto;	
 
                     $aux = new Banco();

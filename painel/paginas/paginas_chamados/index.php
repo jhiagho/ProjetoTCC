@@ -36,18 +36,31 @@
         </header>
 
         <section class="nav-chamados">
-            <i class="fa-solid fa-arrow-left"></i>
-            <h1> <?php echo $chamado["titulo"]; ?> </h1>
-            <i class="fa-solid fa-arrow-right"></i>
+
+            <?php
+                $proximoRegistro = $aux::getProximoRegistro($chamado["ID"]);
+                $RegistroAnterior = $aux::getRegistroAnterior($chamado["ID"]);
+            ?>
+
+            <?php if($proximoRegistro) { ?>
+            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?<?php echo $proximoRegistro; ?>"> <i class="fa-solid fa-arrow-left"></i> </a>
+            <?php  } ?>
+
+            <h1> <?php echo $chamado["titulo"]. '('.$chamado["ID"].')'; ?> </h1>
+            
+            <?php if($RegistroAnterior) { ?>
+            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?<?php echo $RegistroAnterior; ?>"> <i class="fa-solid fa-arrow-right"></i> </a>
+            <?php } ?>
+
         </section>
 
         <article class="detalhes-chamado">
             <aside class="menu-chamado">
                 <ul>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?descricao=<?php echo $chamado["ID"];?>">Descrição</a></li>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_chamado=<?php echo $chamado["ID"];?>">Editar Chamado</a></li>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?ordem_servicos=<?php echo $chamado["ID"];?>">Ordem de Serviço</a></li>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?historico=<?php echo $chamado["ID"];?>">Histórico</a></li>
+                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?descricao=<?php echo $chamado["ID"];?>"> <i class="fa-solid fa-book"></i> Descrição</a></li>
+                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_chamado=<?php echo $chamado["ID"];?>"> <i class="fa-regular fa-pen-to-square"></i> Editar Chamado</a></li>
+                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?ordem_servicos=<?php echo $chamado["ID"];?>"><i class="fa-solid fa-pen"></i> Ordem de Serviço</a></li>
+                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?historico=<?php echo $chamado["ID"];?>">  <i class="fa-regular fa-bookmark"></i> Histórico</a></li>
                 </ul>
 
             </aside>

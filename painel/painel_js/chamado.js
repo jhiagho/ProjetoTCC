@@ -18,8 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var dataHoraAtual = yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + min;
 
-    data_fim.value = dataHoraAtual;
-    data_task.value = dataHoraAtual;
+    if(data_fim){
+        data_fim.value = dataHoraAtual;
+    }
+    if(data_task){
+        data_task.value = dataHoraAtual;
+    }
 
 });
 
@@ -74,24 +78,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 })
 
-/*
-            $pendente = $_POST['pendente_Text'];
-            $setor = $_POST['slc_setor_taskPendente'];
-            $tecnico = $_POST['slc_user_taskPendente'];
-            $data = $_POST['task_data'];
-            $status = $_POST['select_status_taskPendente'];
-
-*/ 
-
 const slc_setor = document.getElementById('slc_setor_taskPendente');
 const slc_user_tecnico = document.getElementById('slc_user_taskPendente');
 const task_data = document.getElementById('pendente_Text');
 const form2 = document.getElementById('form_tarefa');
-
-/* 
-   <span class="error-message" id="task_slc_setor_taskPendente_Error"></span>
-    <span class="error-message" id="task_slc_user_taskPendente_Error"></span>
-*/
 
 form2.addEventListener('submit', function(e) {  
     verificarErro = false;
@@ -128,5 +118,4 @@ form2.addEventListener('submit', function(e) {
         e.preventDefault();
     }
 });
-
 
