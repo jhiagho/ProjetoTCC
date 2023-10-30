@@ -6,15 +6,23 @@
     if (isset($_GET['descricao'])) {
         $chamado = $aux::BuscarChamados($_GET['descricao']);
     }
+
     else if (isset($_GET['editar_chamado'])) {
         $chamado = $aux::BuscarChamados($_GET['editar_chamado']);
     }
+
     else if (isset($_GET['ordem_servicos'])){
         $chamado = $aux::BuscarChamados($_GET['ordem_servicos']);
     }
+
     else if (isset($_GET['historico'])){
         $chamado = $aux::BuscarChamados($_GET['historico']);
     }
+
+    else if (isset($_GET['editar_descricao'])){
+        $chamado = $aux::BuscarChamados($_GET['editar_descricao']);
+    }
+
     else {
         $chamado = $aux::BuscarChamados(array_key_first($_GET));
     }
@@ -57,10 +65,12 @@
         <article class="detalhes-chamado">
             <aside class="menu-chamado">
                 <ul>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?descricao=<?php echo $chamado["ID"];?>"> <i class="fa-solid fa-book"></i> Descrição</a></li>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_chamado=<?php echo $chamado["ID"];?>"> <i class="fa-regular fa-pen-to-square"></i> Editar Chamado</a></li>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?ordem_servicos=<?php echo $chamado["ID"];?>"><i class="fa-solid fa-pen"></i> Ordem de Serviço</a></li>
-                    <li><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?historico=<?php echo $chamado["ID"];?>">  <i class="fa-regular fa-bookmark"></i> Histórico</a></li>
+                    <li id="chm_menu_1"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?descricao=<?php echo $chamado["ID"];?>"><i class="fa-solid fa-book"></i> Descrição</a></li>
+                    <li id="chm_menu_2"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_chamado=<?php echo $chamado["ID"];?>"><i class="fa-regular fa-pen-to-square"></i> Editar Chamado</a></li>
+                    <li id="chm_menu_3"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_descricao=<?php echo $chamado["ID"];?>"><i class="fa-regular fa-clipboard"></i> Editar Descrição</a></li>
+                    <li id="chm_menu_4"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?ordem_servicos=<?php echo $chamado["ID"];?>"><i class="fa-solid fa-pen"></i> Ordem de Serviço</a></li>
+                    <li id="chm_menu_5"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?historico=<?php echo $chamado["ID"];?>"> <i class="fa-regular fa-bookmark"></i> Histórico</a></li>
+                    <li> <i class="fa-regular fa-user"></i> <?php echo $_SESSION['usuario']?> </li>
                 </ul>
 
             </aside>
@@ -81,6 +91,10 @@
 
                     else if (isset($_GET['historico'])){
                         include("./historico_chamado.php");
+                    } //editar_descricao
+
+                    else if (isset($_GET['editar_descricao'])) {
+                        include("./editar_descricao.php");
                     }
 
                     else {
@@ -94,16 +108,16 @@
         <script src="" async defer></script>
         <link href="<?php echo INCLUDE_PATH;?>/fontawesome/css/all.min.css" rel="stylesheet" >
         <link rel="stylesheet" href="<?php echo INCLUDE_PATH;?>/css/chamados.css">
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+        <script src="<?php echo INCLUDE_PATH;?>/bibliotecas/jquery-3.7.1.min.js"> </script>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
         <!-- bootstrap -->
-
         <script src="<?php echo INCLUDE_PATH;?>/painel/painel_js/chamado.js"></script>
 
     </body>

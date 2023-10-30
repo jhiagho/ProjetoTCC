@@ -69,13 +69,36 @@
     if(isset($_POST['bt_Excluir_chamado']))
     {
         $banco1 = $aux5::conectar();
+        $contPendente = $aux4::verificar_registro_chamado($id_chamado,'tb_tarefa_pendentes','tarefa_chamado_id');
+        $contSolucao = $aux4::verificar_registro_chamado($id_chamado,'tb_solucao','solution_chamado_id');
+
+        if ($contSolucao > 0)
+        {
+            $infoSolution = $aux4::buscar_solucao($chamado["ID"]);
+            $id_solucao =  $infoSolution['id'];
+            $query1 = "DELETE FROM `tb_solucao` WHERE id = $id_solucao";
+            $stmt = $banco1->prepare($query1);
+            $stmt->execute();
+            //tem registro
+        }
+        if ($contPendente > 0)
+        {
+            $infoPendente = $aux4::buscar_id_tabelas_all($chamado["ID"],'tb_tarefa_pendentes','tb_chamados','tarefa_chamado_id');
+            foreach($infoPendente as $key => $value){
+                    $id_pendente = $value['ID'];
+                    $query1 = "DELETE FROM `tb_tarefa_pendentes` WHERE ID = $id_pendente";
+                    $stmt = $banco1->prepare($query1);
+                    $stmt->execute();
+                } 
+        }
+
         $query = "DELETE FROM `tb_chamados` WHERE ID = $id_chamado";
         $stmt = $banco1->prepare($query);
         $stmt->execute();
 
         if($stmt->execute()){
             echo ' <div class="alert alert-success" role="alert">
-                   <i class="fa-regular fa-square-check"></i> Chamdo foi Excluido com Sucesso!
+                   <i class="fa-regular fa-square-check"></i> Chamado foi Excluido com Sucesso!
                     </div> ';
         }
     }
@@ -211,7 +234,7 @@
 
             <?php if($_SESSION['permissao'] == "admin") { ?>
                 <button name="bt_Fechar_chamado" onclick="return confirmarAcao('Tem certeza que deseja fechar este chamado? Essa ação pode ser alterada posteriormente. ')"> <i class="fa-regular fa-thumbs-up"></i> Fechar Chamado </button>
-                <button name="bt_Excluir_chamado" onclick="return confirmarAcao('Tem certeza que deseja excluir este chamado? Uma vez feita, essa ação não pode ser mais desfeita! ')"> <i class='fa-solid fa-trash'></i> Excluir Chamado </button>
+                <button name="bt_Excluir_chamado" onclick="return confirmarAcao('Tem certeza que deseja excluir este chamado? Todas as soluções e tarefa pendentes feitas, seram excluidas também, Deseja continurar? ')"> <i class='fa-solid fa-trash'></i> Excluir Chamado </button>
             <?php } ?>
         </div>
 
@@ -224,3 +247,9 @@
 </article>
 
 <script src="<?php echo INCLUDE_PATH;?>/painel/painel_js/editar_chamado.js"></script>
+
+<script>
+    window.addEventListener("DOMContentLoaded", ()=>{
+        document.querySelector("#chm_menu_2").classList.toggle("chm_estilo-li");
+    })
+</script>

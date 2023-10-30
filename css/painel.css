@@ -124,7 +124,6 @@ body{
 } */
 
 .conteudo{
-    box-sizing: border-box;
     width: 100%;
     margin-left: 17rem;
     /* right: 30%; */
@@ -133,7 +132,6 @@ body{
     flex-direction: column;
     height: 100vh;
     padding: 20px;
-    
 }
 
 .show_drawer{
@@ -335,7 +333,7 @@ body{
 }
 
 .header_chamados{
-    background: white;
+    background: rgba(241, 240, 232);
     padding: 20px;
 }
 
@@ -389,6 +387,7 @@ body{
     margin-top: 10px;
     padding: 20px;
     background-color: white;
+    /* overflow: scroll; */
 }
 
 .header-row{
@@ -397,9 +396,19 @@ body{
 
 /* .conteudo_chamados{
     /* overflow: auto; }*/
+.btn_criar_chamados{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1.5rem;
+}
+
+#btn_listar i{
+    color: #111;
+}
 
 table {
-    width: 100%;
+    /* width: 100%;
+    height: 100vh; */
     /* height: 200vh; */
     border-collapse: collapse;
 }
@@ -409,7 +418,13 @@ table, th, td{
 }
 
 th, td {
-    padding: 8px 8px 8px 8px;
+    padding: 8px;
+    font-weight: 2rem !important;
+}
+
+table td a{
+    text-decoration: none;
+    font-weight: 300;
 }
 
 

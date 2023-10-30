@@ -4,6 +4,10 @@ const buttom_box = document.getElementById('botao_botao-box2');
 const data_fim = document.getElementById('solution_data_fim');
 const data_task = document.getElementById('task_data');
 
+$('.js-example-basic-single').each(function() {
+    $(this).select2();
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     // Pega a data Atual e coloca a data de fim e coloca
     // Pega a data e hora Atual
@@ -71,12 +75,6 @@ closeTarefaBox = function(){
         buttom_box.style.display = "block";
     }
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-    });
-})
 
 const slc_setor = document.getElementById('slc_setor_taskPendente');
 const slc_user_tecnico = document.getElementById('slc_user_taskPendente');

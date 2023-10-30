@@ -5,7 +5,6 @@ const slc_requerente = document.querySelector("#slc_requerente")
 const select_prioridade = document.querySelector("#select_prioridade")
 const select_status = document.querySelector("#select_status")
 
-
 document.addEventListener("DOMContentLoaded", function() {
     // Pega a data Atual e coloca a data de fim e coloca
     // Pega a data e hora Atual
@@ -65,8 +64,6 @@ form1.addEventListener('submit', function(e) {
     }
 });
 
-
-
 function toggleDrawer() {
     const drawer = document.getElementById("mydrawer");
     const overlay = document.getElementById("overlay");  // Referência ao overlay
@@ -87,4 +84,30 @@ function toggleDrawer() {
 
 $(document).ready(function() {
     $('.js-example-basic-single').select2();
+});
+
+/*hub chamados*/ 
+
+$(document).ready(function(){
+    $("#main_select").change(function(){
+        let selectedValue = $(this).val();
+        console.log(selectedValue);
+
+        if(selectedValue > 2){
+            $.get('/ProjetoTCC/api/sistema_busca.php', { column: selectedValue }, function(data) {
+                let optionsArray = data;
+                let optionsHtml = "";
+
+                for (let i = 0; i < optionsArray.length; i++) {
+                    optionsHtml += `<option value="${optionsArray[i].value}">${optionsArray[i].text}</option>`;
+                }
+
+                $("#dynamic_select_container").html('<select name="detailed_search" class="js-example-basic-single">' + optionsHtml + '</select>');
+            });
+        }
+        else{
+            $("#dynamic_select_container").html('<input type="text" name="detailed_search" placeholder="pesquisar...">');
+        }
+        //Faz a requisição AJAX
+    }).change();
 });

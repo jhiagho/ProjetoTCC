@@ -2,44 +2,74 @@
 
     <section id="mydrawer" class="drawer">
          <?php
+            global $chamados;
             include ("./painel/paginas/criar_chamados.php");
          ?>
     </section>
 
     <header class="header_chamados">
         
-            <form action="">
+            <form method="post">
 
-                <select name="column_pesquisar">
+                <select id="main_select" name="column_pesquisar">
                     <option value="0">ID</option>
-                    <option value="1">setor_atribuido</option>
-                    <option value="2">Localização chamado</option>
-                    <option value="3">Requerente</option>
-                    <option value="4">técnico</option>
-                    <option value="5">status</option>
+                    <option value="1">Titulo</option>
+                    <option value="2">Descricao</option>
+                    <option value="3">setor_atribuido</option>
+                    <option value="4">Localização chamado</option>
+                    <option value="5">Requerente</option>
+                    <option value="6">técnico</option>
+                    <option value="7">status</option>
+                    <option value="8">Prioridade</option>
                 </select>
-                    <input type="text" name="pesquisar" placeholder="pesquisar...">
+
+                    <span id="dynamic_select_container"></span>
+
+                    <!-- <input type="text" name="pesquisar" placeholder="pesquisar..."> -->
                     <button type="submit" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
             </form>
             <?php 
                 $aux = new painel();
-                $chamados = painel::listarChamados();
+                if(isset($_POST['btn_pesquisar'])){
+                    $column = $_POST['column_pesquisar'];
+                    $detail = isset($_POST['detailed_search']) ? $_POST['detailed_search'] : null;
+                    $detail = strip_tags($detail);
+                    
+                    $chamados = painel::PesquisarChamados($column,$detail);
+
+                } else {
+                    $chamados = painel::listarChamados();
+                }
             ?>
 
-
-
         <div class="btn_criar_chamados" id="btn_toggle_drawer">
-            <button onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
-            <!-- <button type="button" onclick="window.location.href='./'">Criar chamado</button> -->
+                <button onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
+            <form method="post">
+                <button type="submit" name="btn_listar" id="btn_listar"> <i class="fa-solid fa-list"></i> Listar Chamados </button>
+            </form>
+                <?php
+                    if(isset($_POST['btn_listar']))
+                    {
+                        $chamados = painel::listarChamados();
+                    }
+                ?>
         </div>
+
+        <?php 
+            if (empty($chamados)) {
+                echo ' <div class="alert alert-info" role="alert">
+                    <i class="fa-solid fa-circle-info"></i> Não foi encontrado nenhum registro de busca! </div> ';
+            }
+        ?>
 
     </header>
 
     <section class="conteudo_chamados">
         <section class="drawer"> </section>
 
-        <table class="table">
-            <thead>
+        <!-- table-hover table-bordered table-striped -->
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Titulo</th>
@@ -58,14 +88,18 @@
             </thead>
 
         <?php
-
-            $numRows = count($chamados);
+            $numRows = (is_array($chamados) || $chamados instanceof Countable) ? count($chamados) : 0;
             if ($numRows > 0) {
                 $numCols = count($chamados[0]);
             
                 for ($i = 0; $i < $numRows; $i++) {
-                    echo '<tr>';
                     $values = array_values($chamados[$i]); // Obtenha apenas os valores, não as chaves
+
+                    if ($values[3] == 1) echo '<tr class="table-success">';
+                    else if ($values[3] == 3) echo '<tr class="table-warning">';
+                    else if ($values[3] == 2) echo '<tr class="table-secondary">';
+                        else echo '<tr>';
+
                     for ($j = 0; $j < $numCols; $j++) {
                         if ($j == 0)  // ID do chamado
                             {
@@ -92,7 +126,19 @@
                         }
 
                         if ($j == 13 ||$j == 14) continue;
-                        if ($j > 1) echo '<td>' .$values[$j]. '</td>';       
+
+                        if ($j > 1) {
+                            	if($j == 10){
+                                    if($values[$j] == 'Critica' || $values[$j] == 'Muito Alta') $color = "bg-danger";
+                                    if($values[$j] == 'Alta' || $values[$j] == 'Media') $color = "table-danger";
+                                    if($values[$j] == 'Baixa') $color = "table-warning";
+                                    if($values[$j] == 'Muito Baixa') $color = "table-warning";
+
+                                    echo '<td class="'.$color.'">' .$values[$j]. '</td>';
+                                } else {
+                                    echo '<td>' .$values[$j]. '</td>';
+                                }
+                            }
                     }
                     echo '</tr>';
                 }

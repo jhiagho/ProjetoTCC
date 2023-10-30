@@ -132,13 +132,13 @@
                               </div>
 
                               <div class = "input-box">
-                                    <label for="Data_Fim">Data_de_criação: *: </label>
-                                    <input id="task_data" type="datetime-local" name="task_data" style="width:300px; height: 29px; border-radius: 5px;" readonly>
+                                    <label for="Data_Fim">Data_de_criação:* </label>
+                                    <input id="task_data" type="datetime-local" name="task_data" style="width:300px; height: 34px; border-radius: 5px;" readonly>
                               </div>
 
                               <div class = "input-box">
                                     <label>Status:</label>
-                                    <select id="select_status_taskPendente" name="select_status_taskPendente" style="width:300px; height: 29px; border-radius: 5px;" readonly>
+                                    <select id="select_status_taskPendente" name="select_status_taskPendente" style="width:300px; height: 40px; border-radius: 5px;">
                                     <option value="3">Pendente</option>
                                     </select>
                               </div>
@@ -202,6 +202,7 @@
 </section>
 
 
+<section class="container-descricao">
 
 <?php
 
@@ -253,4 +254,10 @@ if(isset($infoSolution) && $infoSolution != false) {
              }
       ?>
 
+</section>
 
+<script>
+    window.addEventListener("DOMContentLoaded", ()=>{
+        document.querySelector("#chm_menu_1").classList.toggle("chm_estilo-li");
+    })
+</script>

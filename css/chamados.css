@@ -70,6 +70,12 @@
 
 /*========================================================Descrição========================================================================*/
 
+.container-descricao{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .detalhes-box{
     margin-top: 20px;
     /* margin-bottom: 20px; */
@@ -93,15 +99,19 @@
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
-    float: right;
     background-color: #6aa0b9f1;
     width: 800px;
 }
 
+.solucao-box{
+    align-self: flex-end;
+}
+
 .tarefa-box{
-    float: left;
     background-color: #d7d58e7a;
 }
+
+
 
 
 .detalhes-box h1, .solucao-box h1, .tarefa-box h1{
@@ -459,6 +469,7 @@
     width: 20rem;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 2rem;
 }
 
 .submit-group > :nth-child(2){
@@ -478,6 +489,79 @@
 .submit-group button:hover{
     background-color: #8ecae6b6;
 }
+
+/* Editar Descrição ===================================================================================================*/
+
+.alterar_solucao{
+    display: flex;
+    flex-direction: column;
+}
+
+.alterar_solucao textarea, .alterar_tarefas textarea{
+    resize: vertical;
+    overflow-x: hidden;
+    margin: 0.6 rem 0;
+    padding: 0.8rem 1.2rem;
+    width: 750px;
+    height: 150px;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+.alterar_solucao label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+
+.header_editar_descricao h1{
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 2rem;
+}
+
+.header_editar_descricao h1::after{
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #6aa0b9f1;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.status-alterar_tarefa{
+    margin-top: 0.7rem;
+    display: flex;
+    gap: 6rem;
+}
+
+.linha-horizontal {
+    height: 3px; /* altura da linha */
+    width: 50%;
+    background: linear-gradient(to right, red, yellow); /* gradiente de vermelho para amarelo */
+    margin-bottom: 1.2rem;
+}
+
+#alterar_btn_Tarefa_pendente{
+    background-color: #ff6f00;
+}
+
+.h1-alterar h1 {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 1.0rem;
+    align-items: center;
+}
+
+.chm_estilo-li{
+    background-color: rgba(255, 255, 255, 0.136);
+}
+
 
 /* FIM Adicionar Tarefa Pendente Estilo ===============================================================================*/
 
