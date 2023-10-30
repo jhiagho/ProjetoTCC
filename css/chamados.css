@@ -597,14 +597,14 @@
 }
 
 .slide-up > #slider_id, .slide-down > #slider_id {
-    margin-top: -25%;
-    transition: margin-top 0.4s ease-in-out;
+    margin-top: -50%;
+    transition: margin-top 0.3s ease-in-out;
 }
 
 /*Tarefa Pedente..*/
 .slide-up_2 > #slider_id_2, .slide-down_2 > #slider_id_2{
-    margin-top: -32%;
-    transition: margin-top 0.4s ease-in-out;
+    margin-top: -50%;
+    transition: margin-top 0.3s ease-in-out;
 }
 
 .slide-down > #slider_id{

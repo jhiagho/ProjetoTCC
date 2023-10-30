@@ -1,9 +1,9 @@
 <?php
-    $id_chamado = $chamado["ID"];  
+    $id_chamado = $chamado2["ID"];  
     $aux4 = new painel();
     $aux5 = new Banco();
-    $data_inicial_formatada = date('Y-m-d\TH:i', strtotime($chamado['data_incial']));
-    $data_final_formatada = date('Y-m-d\TH:i', strtotime($chamado['data_final']));
+    $data_inicial_formatada = date('Y-m-d\TH:i', strtotime($chamado2['data_incial']));
+    $data_final_formatada = date('Y-m-d\TH:i', strtotime($chamado2['data_final']));
 ?>
 
 <article class="editar_chamado">
@@ -41,7 +41,7 @@
         
         if($stmt->execute($arr)) {
 
-            header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?'.$id_chamado);
+            header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
             ob_end_flush();
            }    
        else{
@@ -74,7 +74,7 @@
 
         if ($contSolucao > 0)
         {
-            $infoSolution = $aux4::buscar_solucao($chamado["ID"]);
+            $infoSolution = $aux4::buscar_solucao($chamado2["ID"]);
             $id_solucao =  $infoSolution['id'];
             $query1 = "DELETE FROM `tb_solucao` WHERE id = $id_solucao";
             $stmt = $banco1->prepare($query1);
@@ -83,7 +83,7 @@
         }
         if ($contPendente > 0)
         {
-            $infoPendente = $aux4::buscar_id_tabelas_all($chamado["ID"],'tb_tarefa_pendentes','tb_chamados','tarefa_chamado_id');
+            $infoPendente = $aux4::buscar_id_tabelas_all($chamado2["ID"],'tb_tarefa_pendentes','tb_chamados','tarefa_chamado_id');
             foreach($infoPendente as $key => $value){
                     $id_pendente = $value['ID'];
                     $query1 = "DELETE FROM `tb_tarefa_pendentes` WHERE ID = $id_pendente";
@@ -127,14 +127,14 @@
                 <!-- Título -->
                 <div class="input-box">
                     <label for="titulo">Título</label>
-                    <input type="text" id="titulo" name="titulo" value="<?php echo $chamado["titulo"];?>">
+                    <input type="text" id="titulo" name="titulo" value="<?php echo $chamado2["titulo"];?>">
                     <span></span>
                 </div>
 
                 <!-- Descrição -->
                 <div class="input-box">
                     <label for="descricao">Descrição</label>
-                    <textarea type="text" id="descricao" name="descricao" rows="6" cols="100" placeholder="Descrição do chamado..." required> <?php echo $chamado["descricao"];?> </textarea>
+                    <textarea type="text" id="descricao" name="descricao" rows="6" cols="100" placeholder="Descrição do chamado..." required> <?php echo $chamado2["descricao"];?> </textarea>
                     <span></span>
                 </div>
 
@@ -142,10 +142,10 @@
                 <div class="input-box">
                     <label for="id_status">Status</label>
                     <select id="id_status" name="id_status">
-                        <option value="1" <?php echo ($chamado['id_status'] == 1) ? 'selected' : ''; ?>>Novo</option>
-                        <option value="2" <?php echo ($chamado['id_status'] == 2) ? 'selected' : ''; ?>>Atribuido</option>
-                        <option value="3" <?php echo ($chamado['id_status'] == 3) ? 'selected' : ''; ?>>Pendente</option>
-                        <option value="4" <?php echo ($chamado['id_status'] == 4) ? 'selected' : ''; ?>>Solucionado</option>
+                        <option value="1" <?php echo ($chamado2['id_status'] == 1) ? 'selected' : ''; ?>>Novo</option>
+                        <option value="2" <?php echo ($chamado2['id_status'] == 2) ? 'selected' : ''; ?>>Atribuido</option>
+                        <option value="3" <?php echo ($chamado2['id_status'] == 3) ? 'selected' : ''; ?>>Pendente</option>
+                        <option value="4" <?php echo ($chamado2['id_status'] == 4) ? 'selected' : ''; ?>>Solucionado</option>
                     </select>
                     <span></span>
                 </div>
@@ -153,12 +153,12 @@
                 <div class="input-box">
                     <label for="id_prioridade">Prioridade</label>
                     <select id="id_prioridade" name="id_prioridade">
-                        <option value="1" <?php echo ($chamado['id_prioridade'] == 1) ? 'selected' : ''; ?>>Critica</option>
-                        <option value="2" <?php echo ($chamado['id_prioridade'] == 2) ? 'selected' : ''; ?>>Muito Alta</option>
-                        <option value="3" <?php echo ($chamado['id_prioridade'] == 3) ? 'selected' : ''; ?>>Alta</option>
-                        <option value="4" <?php echo ($chamado['id_prioridade'] == 4) ? 'selected' : ''; ?>>Media</option>
-                        <option value="5" <?php echo ($chamado['id_prioridade'] == 5) ? 'selected' : ''; ?>>Baixa</option>
-                        <option value="6" <?php echo ($chamado['id_prioridade'] == 6) ? 'selected' : ''; ?>>Muito Baixa</option>
+                        <option value="1" <?php echo ($chamado2['id_prioridade'] == 1) ? 'selected' : ''; ?>>Critica</option>
+                        <option value="2" <?php echo ($chamado2['id_prioridade'] == 2) ? 'selected' : ''; ?>>Muito Alta</option>
+                        <option value="3" <?php echo ($chamado2['id_prioridade'] == 3) ? 'selected' : ''; ?>>Alta</option>
+                        <option value="4" <?php echo ($chamado2['id_prioridade'] == 4) ? 'selected' : ''; ?>>Media</option>
+                        <option value="5" <?php echo ($chamado2['id_prioridade'] == 5) ? 'selected' : ''; ?>>Baixa</option>
+                        <option value="6" <?php echo ($chamado2['id_prioridade'] == 6) ? 'selected' : ''; ?>>Muito Baixa</option>
                     <span></span>
                    </select>
                 </div>
@@ -171,7 +171,7 @@
                                 $localizacao = $aux4::listarSetor();
                                 
                                 foreach ($localizacao as $key => $value) {
-                                    $selected = ($chamado['id_localizacao'] - 1 == $key) ? 'selected' : '';
+                                    $selected = ($chamado2['id_localizacao'] - 1 == $key) ? 'selected' : '';
                                     echo '<option value="' .$key. '" data-localizacao="' . $value['localizacao'] . '" '.$selected. '>' . $value['nome_setor'] . '</option>';
                                 }
                             ?>
@@ -187,7 +187,7 @@
                                 $setor_tribuido = $aux4::listarSetor();
                                                 
                                 foreach ($setor_tribuido as $key => $value) {
-                                    $selected = ($chamado['id_setor_atribuido'] - 1 == $key) ? 'selected' : '';
+                                    $selected = ($chamado2['id_setor_atribuido'] - 1 == $key) ? 'selected' : '';
                                     echo '<option value="' .$key.' "'.$selected.'>'.$value['nome_setor']. '</option>';
                                 }
                             ?>
@@ -203,7 +203,7 @@
                                 $tecnico_atribuido = $aux4::listarUsuariosTecnicos();
                                                 
                                 foreach ($tecnico_atribuido as $key => $value) {
-                                    $selected = ($chamado['id_tec_atribuido'] == $value['id']) ? 'selected' : '';
+                                    $selected = ($chamado2['id_tec_atribuido'] == $value['id']) ? 'selected' : '';
                                     echo '<option value="' . $value['id'] . '" ' . $selected . '>' . $value['usuario'] . '</option>';
                                 }
                             ?>
@@ -219,7 +219,7 @@
                                 $req = $aux4::listarUsuarios();
                                                 
                                 foreach ($req as $key => $value) {
-                                    $selected = ($chamado['id_requerente'] == $value['id']) ? 'selected' : '';
+                                    $selected = ($chamado2['id_requerente'] == $value['id']) ? 'selected' : '';
                                     echo '<option value=" '.$value['id'].'" '.$selected.' ">'.$value['usuario'].'</option>';
                                 }
                             ?>

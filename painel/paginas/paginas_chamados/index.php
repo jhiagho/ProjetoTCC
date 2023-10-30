@@ -1,30 +1,30 @@
 <?php
     include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
     $aux = new painel();
-    global $chamado;
+    global $chamado2;
 
     if (isset($_GET['descricao'])) {
-        $chamado = $aux::BuscarChamados($_GET['descricao']);
+        $chamado2 = $aux::BuscarChamados($_GET['descricao']);
     }
 
     else if (isset($_GET['editar_chamado'])) {
-        $chamado = $aux::BuscarChamados($_GET['editar_chamado']);
+        $chamado2 = $aux::BuscarChamados($_GET['editar_chamado']);
     }
 
     else if (isset($_GET['ordem_servicos'])){
-        $chamado = $aux::BuscarChamados($_GET['ordem_servicos']);
+        $chamado2 = $aux::BuscarChamados($_GET['ordem_servicos']);
     }
 
     else if (isset($_GET['historico'])){
-        $chamado = $aux::BuscarChamados($_GET['historico']);
+        $chamado2 = $aux::BuscarChamados($_GET['historico']);
     }
 
     else if (isset($_GET['editar_descricao'])){
-        $chamado = $aux::BuscarChamados($_GET['editar_descricao']);
+        $chamado2 = $aux::BuscarChamados($_GET['editar_descricao']);
     }
 
     else {
-        $chamado = $aux::BuscarChamados(array_key_first($_GET));
+        $chamado2 = $aux::BuscarChamados($_GET['chm']);
     }
 ?>
 
@@ -46,18 +46,18 @@
         <section class="nav-chamados">
 
             <?php
-                $proximoRegistro = $aux::getProximoRegistro($chamado["ID"]);
-                $RegistroAnterior = $aux::getRegistroAnterior($chamado["ID"]);
+                $proximoRegistro = $aux::getProximoRegistro($chamado2["ID"]);
+                $RegistroAnterior = $aux::getRegistroAnterior($chamado2["ID"]);
             ?>
 
             <?php if($proximoRegistro) { ?>
-            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?<?php echo $proximoRegistro; ?>"> <i class="fa-solid fa-arrow-left"></i> </a>
+            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $proximoRegistro; ?>"> <i class="fa-solid fa-arrow-left"></i> </a>
             <?php  } ?>
 
-            <h1> <?php echo $chamado["titulo"]. '('.$chamado["ID"].')'; ?> </h1>
+            <h1> <?php echo $chamado2["titulo"]. '('.$chamado2["ID"].')'; ?> </h1>
             
             <?php if($RegistroAnterior) { ?>
-            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?<?php echo $RegistroAnterior; ?>"> <i class="fa-solid fa-arrow-right"></i> </a>
+            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $RegistroAnterior; ?>"> <i class="fa-solid fa-arrow-right"></i> </a>
             <?php } ?>
 
         </section>
@@ -65,11 +65,11 @@
         <article class="detalhes-chamado">
             <aside class="menu-chamado">
                 <ul>
-                    <li id="chm_menu_1"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?descricao=<?php echo $chamado["ID"];?>"><i class="fa-solid fa-book"></i> Descrição</a></li>
-                    <li id="chm_menu_2"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_chamado=<?php echo $chamado["ID"];?>"><i class="fa-regular fa-pen-to-square"></i> Editar Chamado</a></li>
-                    <li id="chm_menu_3"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_descricao=<?php echo $chamado["ID"];?>"><i class="fa-regular fa-clipboard"></i> Editar Descrição</a></li>
-                    <li id="chm_menu_4"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?ordem_servicos=<?php echo $chamado["ID"];?>"><i class="fa-solid fa-pen"></i> Ordem de Serviço</a></li>
-                    <li id="chm_menu_5"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?historico=<?php echo $chamado["ID"];?>"> <i class="fa-regular fa-bookmark"></i> Histórico</a></li>
+                    <li id="chm_menu_1"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?descricao=<?php echo $chamado2["ID"];?>"><i class="fa-solid fa-book"></i> Descrição</a></li>
+                    <li id="chm_menu_2"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_chamado=<?php echo $chamado2["ID"];?>"><i class="fa-regular fa-pen-to-square"></i> Editar Chamado</a></li>
+                    <li id="chm_menu_3"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_descricao=<?php echo $chamado2["ID"];?>"><i class="fa-regular fa-clipboard"></i> Editar Descrição</a></li>
+                    <li id="chm_menu_4"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?ordem_servicos=<?php echo $chamado2["ID"];?>"><i class="fa-solid fa-pen"></i> Ordem de Serviço</a></li>
+                    <li id="chm_menu_5"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?historico=<?php echo $chamado2["ID"];?>"> <i class="fa-regular fa-bookmark"></i> Histórico</a></li>
                     <li> <i class="fa-regular fa-user"></i> <?php echo $_SESSION['usuario']?> </li>
                 </ul>
 

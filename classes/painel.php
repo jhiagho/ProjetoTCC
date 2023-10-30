@@ -124,7 +124,7 @@
             $stmt->execute();
 
             $info = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $info ? [$info] : [];
+            return $info ? $info : [];
 
             //A fazer, modo de busca.
         }

@@ -1,5 +1,5 @@
 <?php
-    $id_chamado = $chamado["ID"];  
+    $id_chamado = $chamado2["ID"];  
     $aux5 = new painel();
     $aux6 = new Banco();
     $solution = $aux5::buscar_solucao($id_chamado);

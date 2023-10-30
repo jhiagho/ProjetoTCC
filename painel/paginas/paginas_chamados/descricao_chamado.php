@@ -1,8 +1,8 @@
 <?php $aux2 = new painel(); 
       $aux3 = new painel(); 
       $aux4 = new painel();
-      $infoSolution = $aux4::buscar_solucao($chamado["ID"]);
-      $infoPendente = $aux3::buscar_id_tabelas_all($chamado["ID"],'tb_tarefa_pendentes','tb_chamados','tarefa_chamado_id');
+      $infoSolution = $aux4::buscar_solucao($chamado2["ID"]);
+      $infoPendente = $aux3::buscar_id_tabelas_all($chamado2["ID"],'tb_tarefa_pendentes','tb_chamados','tarefa_chamado_id');
 ?>
 
 
@@ -53,7 +53,7 @@
             if(isset($_POST['btn_adicionar_solucao']))
             {
                   $solucao = $_POST['solutionText'];
-                  $id_chamado = $chamado["ID"];
+                  $id_chamado = $chamado2["ID"];
                   $id_usuario = $_SESSION['Usuario_ID'];
                   $data_fim = $_POST['solution_data_fim'];
                   $banco = Banco::conectar();
@@ -73,7 +73,7 @@
                         $stmt = $banco->prepare($sql);
                         $stmt->execute();
 
-                        header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?'.$id_chamado);
+                        header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
                         ob_end_flush();
                   } else {
 
@@ -163,7 +163,7 @@
             $data = $_POST['task_data'];
             $status = $_POST['select_status_taskPendente'];
 
-            $id_chamado = $chamado["ID"];
+            $id_chamado = $chamado2["ID"];
             $id_usuario_que_criou = $_SESSION['Usuario_ID'];
             $banco = Banco::conectar();
 
@@ -179,7 +179,7 @@
                   $stmt = $banco->prepare($sql);
                   $stmt->execute();
 
-                  header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?'.$id_chamado);
+                  header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
                   ob_end_flush();
             }else{
 
@@ -193,12 +193,12 @@
 
 <section class="detalhes-box">
       <div class="header-box">
-            <h1> Chamado criado por: <strong> <?php echo $aux2->buscar_id_tabelas($chamado["id_usuario_criou"],'usuario','tb_chamados','tb_usuarios','id_usuario_criou');?> </strong> 
-             em <strong> <?php echo $aux2->formatarData($chamado["data_incial"]); ?> </strong> </h1>
+            <h1> Chamado criado por: <strong> <?php echo $aux2->buscar_id_tabelas($chamado2["id_usuario_criou"],'usuario','tb_chamados','tb_usuarios','id_usuario_criou');?> </strong> 
+             em <strong> <?php echo $aux2->formatarData($chamado2["data_incial"]); ?> </strong> </h1>
       </div>
-      <h1><?php echo $chamado["titulo"]?></h1>
-      <p><?php echo $chamado["descricao"]?></p>
-      <span><i>Requrente: </i> <?php echo $aux2->buscar_id_tabelas($chamado["id_requerente"],'usuario','tb_chamados','tb_usuarios','id_requerente');?> </span>
+      <h1><?php echo $chamado2["titulo"]?></h1>
+      <p><?php echo $chamado2["descricao"]?></p>
+      <span><i>Requrente: </i> <?php echo $aux2->buscar_id_tabelas($chamado2["id_requerente"],'usuario','tb_chamados','tb_usuarios','id_requerente');?> </span>
 </section>
 
 
@@ -244,7 +244,7 @@ if(isset($infoSolution) && $infoSolution != false) {
           echo '
             <section class="solucao-box">
                   <div class="header-box">
-                        <h1 id="h1_header_solucao"> Chamado Finalizado em: <strong> '.$aux2->formatarData($chamado["data_final"]).' </strong> </h1>
+                        <h1 id="h1_header_solucao"> Chamado Finalizado em: <strong> '.$aux2->formatarData($chamado2["data_final"]).' </strong> </h1>
                   </div>
                   <h1> Solução </h1>
                   <p> '.$infoSolution["descricao"].'</p>

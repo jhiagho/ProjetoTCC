@@ -105,7 +105,7 @@
                             {
                                 echo '<th scope="row">'. $values[$j] .'</th>';
                             }
-                        if ($j == 1)  echo '<td> <a href="'.INCLUDE_PATH.'/painel/paginas/paginas_chamados/index.php?'.$values[0].'">' .$values[$j]. '</a> </td>';
+                        if ($j == 1)  echo '<td> <a href="'.INCLUDE_PATH.'/painel/paginas/paginas_chamados/index.php?chm='.$values[0].'">' .$values[$j]. '</a> </td>';
 
                         if (!$values[$j] == NULL)
                         {
