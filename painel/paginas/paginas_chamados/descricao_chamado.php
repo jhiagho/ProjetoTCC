@@ -69,7 +69,7 @@
                         //echo '<script>  alert("Solução adicionado no chamado."); </script>';
 
                         //$banco = Banco::conectar();
-                        $sql = "UPDATE tb_chamados SET id_status = '4' , data_final = '$data_fim' WHERE ID = $id_chamado";
+                        $sql = "UPDATE tb_chamados SET id_status = '4' , data_final = '$data_fim' , id_tec_atribuido = '$id_usuario' WHERE ID = $id_chamado";
                         $stmt = $banco->prepare($sql);
                         $stmt->execute();
 
@@ -198,7 +198,7 @@
       </div>
       <h1><?php echo $chamado2["titulo"]?></h1>
       <p><?php echo $chamado2["descricao"]?></p>
-      <span><i>Requrente: </i> <?php echo $aux2->buscar_id_tabelas($chamado2["id_requerente"],'usuario','tb_chamados','tb_usuarios','id_requerente');?> </span>
+      <span><i>Requerente: </i> <?php echo $aux2->buscar_id_tabelas($chamado2["id_requerente"],'usuario','tb_chamados','tb_usuarios','id_requerente');?> </span>
 </section>
 
 

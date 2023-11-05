@@ -1,74 +1,5 @@
-<article class="hub_chamados">
+<table class="table table-hover table-bordered tabela-ajustada">
 
-    <section id="mydrawer" class="drawer">
-         <?php
-            global $chamados;
-            include ("./painel/paginas/criar_chamados.php");
-         ?>
-    </section>
-
-    <header class="header_chamados">
-        
-            <form method="post">
-
-                <select id="main_select" name="column_pesquisar">
-                    <option value="0">ID</option>
-                    <option value="1">Titulo</option>
-                    <option value="2">Descricao</option>
-                    <option value="3">setor_atribuido</option>
-                    <option value="4">Localização chamado</option>
-                    <option value="5">Requerente</option>
-                    <option value="6">técnico</option>
-                    <option value="7">status</option>
-                    <option value="8">Prioridade</option>
-                </select>
-
-                    <span id="dynamic_select_container"></span>
-
-                    <!-- <input type="text" name="pesquisar" placeholder="pesquisar..."> -->
-                    <button type="submit" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
-            </form>
-            <?php 
-                $aux = new painel();
-                if(isset($_POST['btn_pesquisar'])){
-                    $column = $_POST['column_pesquisar'];
-                    $detail = isset($_POST['detailed_search']) ? $_POST['detailed_search'] : null;
-                    $detail = strip_tags($detail);
-                    
-                    $chamados = painel::PesquisarChamados($column,$detail);
-
-                } else {
-                    $chamados = painel::listarChamados();
-                }
-            ?>
-
-        <div class="btn_criar_chamados" id="btn_toggle_drawer">
-                <button onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
-            <form method="post">
-                <button type="submit" name="btn_listar" id="btn_listar"> <i class="fa-solid fa-list"></i> Listar Chamados </button>
-            </form>
-                <?php
-                    if(isset($_POST['btn_listar']))
-                    {
-                        $chamados = painel::listarChamados();
-                    }
-                ?>
-        </div>
-
-        <?php 
-            if (empty($chamados)) {
-                echo ' <div class="alert alert-info" role="alert">
-                    <i class="fa-solid fa-circle-info"></i> Não foi encontrado nenhum registro de busca! </div> ';
-            }
-        ?>
-
-    </header>
-
-    <section class="conteudo_chamados">
-        <section class="drawer"> </section>
-
-        <!-- table-hover table-bordered table-striped -->
-        <table class="table table-hover table-bordered tabela-ajustada">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
@@ -87,13 +18,13 @@
                 </tr>
             </thead>
         <?php
-        
-            $numRows = (is_array($chamados) || $chamados instanceof Countable) ? count($chamados) : 0;
+
+            $numRows = (is_array($chamados_menu) || $chamados_menu instanceof Countable) ? count($chamados_menu) : 0;
             if ($numRows > 0) {
-                $numCols = (is_array($chamados) || $chamados instanceof Countable) ? count($chamados[0]) : 0;
+                $numCols = (is_array($chamados_menu) || $chamados_menu instanceof Countable) ? count($chamados_menu[0]) : 0;
             
                 for ($i = 0; $i < $numRows; $i++) {
-                    $values = array_values($chamados[$i]); // Obtenha apenas os valores, não as chaves
+                    $values = array_values($chamados_menu[$i]); // Obtenha apenas os valores, não as chaves
 
                     if ($values[3] == 1) echo '<tr class="table-success">';
                     else if ($values[3] == 3) echo '<tr class="table-warning">';
@@ -182,15 +113,4 @@
             echo '</tbody>';
             echo '</table>';
             //echo '<div class="col border">' .$localizacao. '</div>'; 
-        ?>
-    </div>
-
-    </section>
-
-</article>
-
-<script>
-    window.addEventListener("DOMContentLoaded", ()=>{
-        document.querySelector("#linha_menu_3").classList.toggle("estilo-li");
-    })
-</script>
+?>

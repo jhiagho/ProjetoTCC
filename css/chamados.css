@@ -90,7 +90,7 @@
     border-radius: 5px;
 }
 
-.solucao-box, .tarefa-box{
+.solucao-box, .tarefa-box , .avaliacao-box{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -111,10 +111,12 @@
     background-color: #d7d58e7a;
 }
 
+.avaliacao-box{
+    background-color: #ffc8008a;
+}
 
 
-
-.detalhes-box h1, .solucao-box h1, .tarefa-box h1{
+.detalhes-box h1, .solucao-box h1, .tarefa-box h1, .avaliacao-box h1{
     font-size: 22px;
     font-weight: 600;
     border-bottom: 1px solid #3333336d;
@@ -146,13 +148,13 @@
 }
 
 
-.detalhes-box p, .solucao-box p, .tarefa-box p{
+.detalhes-box p, .solucao-box p, .tarefa-box p, .avaliacao-box p{
     margin-top: 8px;
     font-weight: 300;
     font-size: 16px;
 }
 
-.detalhes-box span, .solucao-box span, .tarefa-box span{
+.detalhes-box span, .solucao-box span, .tarefa-box span, .avaliacao-box span{
     margin-top: 0.3rem;
     align-self: flex-end;
     font-weight: 600;
@@ -480,9 +482,16 @@
 }
 
 .submit-group > :nth-child(3){
-    background-color: #e53935;
+    background-color: #FF964A;
 }
 .submit-group > :nth-child(3):hover{
+    background-color: #ff954a77;
+}
+
+.submit-group > :nth-child(4){
+    background-color: #e53935;
+}
+.submit-group > :nth-child(4):hover{
     background-color: #e5383587;
 }
 
@@ -497,7 +506,7 @@
     flex-direction: column;
 }
 
-.alterar_solucao textarea, .alterar_tarefas textarea{
+.alterar_solucao textarea, .alterar_tarefas textarea, .container_avaliacao textarea{
     resize: vertical;
     overflow-x: hidden;
     margin: 0.6 rem 0;
@@ -560,6 +569,63 @@
 
 .chm_estilo-li{
     background-color: rgba(255, 255, 255, 0.136);
+}
+
+#chm_quebra_linha hr {
+    margin-top: 30px; /* Espaçamento acima e abaixo da linha */
+    border-color: #ccc; /* Cor da linha divisória */
+}
+
+/* AVALIAÇÃO CHAMADOS ===================================*/
+.container_avaliacao h1{
+    font-size: 25px;
+    font-weight: 300;
+    color: black;
+    margin-bottom: 2rem;
+}
+.container_avaliacao h1::after{
+    content: '';
+    display: block;
+    width: 50rem;
+    height: 0.3rem;
+    background-color: #ffc700;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+#bt_avaliar{
+    background-color: #ffc700;
+}
+#bt_avaliar:hover{
+    background-color: #ffc8007a;
+}
+
+.star-rating {
+    direction: rtl;
+    display: flex;
+    justify-content: center; /* Alinha o conteúdo das estrelas horizontalmente ao centro */
+    flex-wrap: wrap; /* Permite a quebra de linha caso necessário */
+    gap: 20px;
+}
+.star-rating input[type=radio] {
+    display: none;
+}
+.star-rating label {
+    color: #ccc;
+    font-size: 40px; /* Aumenta o tamanho das estrelas */
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    direction: ltr; /* Direção do texto da esquerda para a direita */
+}
+.star-rating label span {
+    display: block;
+    font-size: 16px; /* Tamanho do texto das avaliações */
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input[type=radio]:checked ~ label {
+    color: #ffc700;
 }
 
 

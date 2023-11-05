@@ -64,9 +64,9 @@
 
                         if(isset($_POST['login']))
                         {
-                            $user = $_POST['usuario']; 
-                            $senha = $_POST['senha'];
-                            $cripto = sha1($senha);
+                            $user = strip_tags($_POST['usuario']); 
+                            $senha = strip_tags($_POST['senha']);
+                            $cripto = base64_encode($senha);
 
                             //conectar com o banco e procurar se o usuario ou senha esta presente no banco.
                             $sql = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE usuario = '$user' AND senha = '$cripto'");
@@ -78,6 +78,7 @@
                                 $_SESSION['usuario'] = $info['usuario'];
                                 $_SESSION['Usuario_ID'] = $info['id'];
                                 $_SESSION['permissao'] = painel::nome_permissao($info['id_nivel_perm']);
+                                $_SESSION['Usuario_id_setor'] = $info['id_setor'];
                                 $_SESSION['setor'] = painel::buscar_nome_setor($user);
 
                                 //se o usuario e a senha estiver presente no banco, redirecionar para a pagina inicial.

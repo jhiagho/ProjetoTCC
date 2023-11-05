@@ -15,7 +15,7 @@ include('/xampp/htdocs/ProjetoTCC/classes/painel.php');
                     $senha = strip_tags($_POST['senha']);
                     $user = strip_tags($_POST['user']);
 
-                    $cripto = sha1($senha);
+                    $cripto = base64_encode($senha);
                     $user = strtolower($user);
                     //echo $cripto;	
 

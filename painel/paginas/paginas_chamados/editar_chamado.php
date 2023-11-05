@@ -59,7 +59,23 @@
 
         if($stmt->execute()){
             echo ' <div class="alert alert-success" role="alert">
-                   <i class="fa-regular fa-square-check"></i> Chamdo foi Fechado com Sucesso!
+                   <i class="fa-regular fa-square-check"></i> Chamado foi Fechado com Sucesso!
+                    </div>
+                        ';
+        }
+
+    }
+
+    if(isset($_POST['bt_Recusar_chamado']))
+    {
+        $banco1 = $aux5::conectar();
+        $query = "UPDATE `tb_chamados` SET `fechamento` = '0' WHERE ID = $id_chamado";
+        $stmt = $banco1->prepare($query);
+        $stmt->execute();
+
+        if($stmt->execute()){
+            echo ' <div class="alert alert-warning" role="alert">
+                   <i class="fa-regular fa-square-check"></i> Chamado foi Recusado!
                     </div>
                         ';
         }
@@ -233,8 +249,9 @@
             <button name="bt_alterar_cadastro"> <i class="fa-regular fa-pen-to-square"></i> Alterar Chamado </button>
 
             <?php if($_SESSION['permissao'] == "admin") { ?>
-                <button name="bt_Fechar_chamado" onclick="return confirmarAcao('Tem certeza que deseja fechar este chamado? Essa ação pode ser alterada posteriormente. ')"> <i class="fa-regular fa-thumbs-up"></i> Fechar Chamado </button>
-                <button name="bt_Excluir_chamado" onclick="return confirmarAcao('Tem certeza que deseja excluir este chamado? Todas as soluções e tarefa pendentes feitas, seram excluidas também, Deseja continurar? ')"> <i class='fa-solid fa-trash'></i> Excluir Chamado </button>
+                <button name="bt_Fechar_chamado" onclick="return confirmarAcao('Tem certeza que deseja fechar este chamado ? Essa ação pode ser alterada posteriormente. ')"> <i class="fa-regular fa-thumbs-up"></i> Fechar Chamado </button>
+                <button name="bt_Recusar_chamado" onclick="return confirmarAcao('Tem certeza que deseja Recusar este chamado ? Essa ação pode ser alterada posteriormente. ')"> <i class="fa-regular fa-thumbs-down"></i> Recusar Chamado </button>
+                <button name="bt_Excluir_chamado" onclick="return confirmarAcao('Tem certeza que deseja excluir este chamado ? Todas as soluções e tarefa pendentes feitas, seram excluidas também, Deseja continurar? ')"> <i class='fa-solid fa-trash'></i> Excluir Chamado </button>
             <?php } ?>
         </div>
 

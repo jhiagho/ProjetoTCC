@@ -25,7 +25,7 @@ if(isset($_POST["bt_cadastrar_chm"]))
             }
 
             $arr = array($titulo,$descricao,$status,$localizacao,$setor_atribuido,$tecnico_atribuido,$requerente,$data_inicio,$prioridade,$usuario_que_criou);
-            $sql = "INSERT INTO `tb_chamados` VALUES (NULL,?,?,?,?,?,?,?,?,NULL,?,NULL,NULL,NULL,?)";
+            $sql = "INSERT INTO `tb_chamados` VALUES (NULL,?,?,?,?,?,?,?,?,NULL,?,NULL,0,NULL,?)";
             $stmt = $banco1->prepare($sql);
 
             if($stmt->execute($arr)) {

@@ -406,6 +406,24 @@ body{
     color: #111;
 }
 
+.tabela-ajustada {
+    font-size: 0.9em;
+    overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
+}
+.descricao-col {
+    max-width: 200px; /* Ajuste este valor conforme necessário */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.avaliacao-col {
+    max-width: 120px; /* Ajuste este valor conforme necessário */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 table {
     /* width: 100%;
     height: 100vh; */

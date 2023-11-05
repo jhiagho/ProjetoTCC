@@ -25,4 +25,7 @@ $autoload = function($class){
 };
 
     spl_autoload_register($autoload);
+
+// TODO Removerer as colunas Pendente_ID e id_avalicao.
+// TODO Criar um sistema de histórico de chamados.
 ?>

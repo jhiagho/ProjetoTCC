@@ -128,14 +128,10 @@
 
             //A fazer, modo de busca.
         }
+
         public static function PesquisarChamados($column, $detail) {
             $banco = Banco::conectar();
-           
-            if($column == 0){
-                $result = self::BuscarChamados($detail);
-                return $result ? $result : [];
-            }
-
+            
             if ($column > 0 && $column < 3) 
             {
                 if($column == 1) {
@@ -150,26 +146,17 @@
                 $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $info ? $info : [];
             }
-            if($column > 2) {
+            if($column == 0 || $column > 2) {
 
-                    if($column == 3){
-                        $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_setor_atribuido = '$detail'";
-                    }
-                    if($column == 4){
-                        $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_localizacao = '$detail'";
-                    }
-                    if($column == 5){
-                        $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_requerente = '$detail'";
-                    }
-                    if($column == 6){
-                        $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_tec_atribuido = '$detail'";
-                    }
-                    if($column == 7){
-                        $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_status = '$detail'";
-                    }
-                    if($column == 8){    
-                        $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_prioridade = '$detail'";       
-                    }
+                    if($column == 0) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id = '$detail'";
+                    if($column == 3) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_setor_atribuido = '$detail'";
+                    if($column == 4) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_localizacao = '$detail'";
+                    if($column == 5) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_requerente = '$detail'";
+                    if($column == 6) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_tec_atribuido = '$detail'";
+                    if($column == 7) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_status = '$detail'";
+                    if($column == 8) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_prioridade = '$detail'";
+                    if($column == 9) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.fechamento = '$detail'";
+
                     $stmt = $banco->prepare($quary);
                     $stmt->execute();
 
@@ -177,10 +164,34 @@
                     return $info ? $info : [];
             }
         }
+        public static function PesquisarChamadosPessoal($column, $detail) {
 
-        public static function buscar_id_tabelas($id,$nome_tipo,$tabela_original,$tabela_destino,$tipo) {
+            $banco = Banco::conectar();
+                    if($column == 1) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_setor_atribuido = '$detail' AND tb_chamados.id_status <> 4";
+                    if($column == 2) $quary = "SELECT * FROM `tb_chamados` WHERE tb_chamados.id_tec_atribuido = '$detail' AND tb_chamados.id_status <> 4";
+
+                    $stmt = $banco->prepare($quary);
+                    $stmt->execute();
+
+                    $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $info ? $info : [];
+        }
+
+        public static function PesquisarAvaliacao($id_usuario) {
+            $banco = Banco::conectar();
+            // $id_usuario = 4
+            $quary = "SELECT tb_chamados.* FROM `tb_chamados` INNER JOIN `tb_avaliacao` ON tb_chamados.ID = tb_avaliacao.avaliacao_chm_id AND tb_chamados.fechamento = '1' AND tb_chamados.id_requerente = '$id_usuario' AND tb_chamados.status_avaliacao < 1";
+            $stmt = $banco->prepare($quary);
+            $stmt->execute();
+
+            $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $info ? $info : [];
+
+            }
+
+        public static function buscar_id_tabelas($id,$nome_destino,$tabela_original,$tabela_destino,$destino) {
                 $banco = Banco::conectar();
-                $quary = "SELECT `$nome_tipo` FROM `$tabela_destino` INNER JOIN `$tabela_original` ON $tabela_destino.id = $tabela_original.$tipo AND $tabela_destino.id = '$id'";
+                $quary = "SELECT `$nome_destino` FROM `$tabela_destino` INNER JOIN `$tabela_original` ON $tabela_destino.id = $tabela_original.$destino AND $tabela_destino.id = '$id'";
                 $stmt =$banco->prepare($quary);
                 $stmt->execute();
 
@@ -207,6 +218,15 @@
 
             return $info;
         }
+        public static function buscar_avaliacao($id) {
+            $banco = Banco::conectar();
+            $quary = "SELECT tb_avaliacao.* FROM `tb_avaliacao` INNER JOIN `tb_chamados` ON avaliacao_chm_id = tb_chamados.ID AND tb_chamados.ID = '$id' ";
+            $stmt = $banco->prepare($quary);
+            $stmt->execute();
+            $info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $info; 
+        }
 
         public static function verificar_registro_chamado($id_chamado,$tabela_verificar,$atributo){
             $banco = Banco::conectar();
@@ -216,6 +236,16 @@
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $resultado['total'];
+        }
+
+        public static function verificar_Fechamento($id_chamado){
+            $banco = Banco::conectar();
+            $quary = "SELECT `fechamento` FROM `tb_chamados` WHERE `ID` = $id_chamado LIMIT 1";
+            $stmt = $banco->prepare($quary);
+            $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $resultado;
         }
 
         // public static function buscar_pendente($id){
