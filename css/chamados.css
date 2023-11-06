@@ -6,7 +6,7 @@
 }
 .header-chamados{
     padding: 10px;
-    background: #f4f4f4;
+    background: rgb(238, 233, 195);
     display: flex;
     align-items: center;
     justify-content: space-between;

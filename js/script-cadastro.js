@@ -1,4 +1,5 @@
 const form = document.querySelector("#form")
+const form_senha = document.querySelector("#form_senha");
 const name_Input = document.querySelector("#primeiro_nome")
 const lastname_Input = document.querySelector("#sobre_nome")
 const email_Input = document.querySelector("#email")
@@ -7,6 +8,9 @@ const user_Input = document.querySelector("#user")
 const password_Input = document.querySelector("#password")
 const conf_password_Input = document.querySelector("#confirmpassword")
 
+form_senha.addEventListener("submit", (event) => { 
+    alert('funcionando');
+});
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -90,10 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (nameIsvalid){
                 user_Input.value = name_Input.value + '.' + lastname_Input.value;
             }
-        }
-
-        
-  
+        }       
     });
 
     
@@ -157,7 +158,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
         
-    })    
+    });
+
     document.getElementById('togglePassword').addEventListener('click',function(){
         var passwordInput = document.getElementById('password');
         var togglePasswordImage = document.getElementById('togglePassword');
@@ -186,6 +188,5 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
 });
-
 
 

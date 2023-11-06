@@ -47,25 +47,6 @@
             <a href= "<?php echo INCLUDE_PATH; ?> /index.php"> Chamados <i class="fa-solid fa-arrow-right-from-bracket"> </i> </a>
         </header>
 
-        <section class="nav-chamados">
-
-            <?php
-                $proximoRegistro = $aux::getProximoRegistro($chamado2["ID"]);
-                $RegistroAnterior = $aux::getRegistroAnterior($chamado2["ID"]);
-            ?>
-
-            <?php if($proximoRegistro) { ?>
-            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $proximoRegistro; ?>"> <i class="fa-solid fa-arrow-left"></i> </a>
-            <?php  } ?>
-
-            <h1> <?php echo $chamado2["titulo"]. '('.$chamado2["ID"].')'; ?> </h1>
-            
-            <?php if($RegistroAnterior) { ?>
-            <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $RegistroAnterior; ?>"> <i class="fa-solid fa-arrow-right"></i> </a>
-            <?php } ?>
-
-        </section>
-
         <article class="detalhes-chamado">
             <aside class="menu-chamado">
                 <ul>
@@ -95,6 +76,26 @@
             </aside>
 
             <section class="painel-chamado">
+            
+                <section class="nav-chamados">
+
+                <?php
+                    $proximoRegistro = $aux::getProximoRegistro($chamado2["ID"]);
+                    $RegistroAnterior = $aux::getRegistroAnterior($chamado2["ID"]);
+                ?>
+
+                <?php if($proximoRegistro) { ?>
+                <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $proximoRegistro; ?>"> <i class="fa-solid fa-arrow-left"></i> </a>
+                <?php  } ?>
+
+                <h1> <?php echo $chamado2["titulo"]. '('.$chamado2["ID"].')'; ?> </h1>
+
+                <?php if($RegistroAnterior) { ?>
+                <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $RegistroAnterior; ?>"> <i class="fa-solid fa-arrow-right"></i> </a>
+                <?php } ?>
+
+                </section>
+
             <?php
                     if (isset($_GET['descricao'])) {
                         include("./descricao_chamado.php");

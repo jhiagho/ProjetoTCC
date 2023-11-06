@@ -111,3 +111,6 @@ $(document).ready(function(){
         //Faz a requisição AJAX
     }).change();
 });
+
+// SCRIPT PAGINA ADMIIIN ===========================================//////////////////////////////////////////////
+

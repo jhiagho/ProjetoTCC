@@ -16,15 +16,15 @@ define('PASSWORD',''); //Nome do Password do Banco. padrao: ' ' <-- vazio -->
 define('DATABASE','projeto_tcc'); // Nome do banco de Dados a ser utilizado
 
 //Criar a classe de forma automatica sem precisar de instanciar a classe.
-$autoload = function($class){
-    if($class == 'Email')
-    {
-        require_once 'vendor/autoload.php';
-    }
-    include('classes/'.$class.'.php');
-};
+// $autoload = function($class){
+//     if($class == 'Email')
+//     {
+//         require_once 'vendor/autoload.php';
+//     }
+//     include('classes/'.$class.'.php');
+// };
 
-    spl_autoload_register($autoload);
+//     spl_autoload_register($autoload);
 
 // TODO Removerer as colunas Pendente_ID e id_avalicao.
 // TODO Criar um sistema de histórico de chamados.

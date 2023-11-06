@@ -1,7 +1,9 @@
-<h1> Meus Chamados </h1>
+<section class="header_editar_chamado">
+        <h1> Meus Chamados </h1>
+</section>
+
 <?php 
     global $chamados_menu;
-
 ?>
 
 <div class="accordion" id="accordionExample">
