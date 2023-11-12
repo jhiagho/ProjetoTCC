@@ -2,8 +2,7 @@
         <h1> Satisfação </h1>
 </section>
 
-<?php if( ($chamado2['fechamento'] == '1' && $chamado2['id_requerente'] == $_SESSION['Usuario_ID']) || ($_SESSION['permissao'] == 'admin') ) { ?>
-<?php if( $chamado2['status_avaliacao'] == '0') { ?>
+<?php if( $chamado2['fechamento'] == '1' && $chamado2['status_avaliacao'] == '0' && ( $chamado2['id_requerente'] == $_SESSION['Usuario_ID'] || $_SESSION['permissao'] == 'admin' ) ) { ?>
 
 <section class="container_avaliacao">
     <form method="post">
@@ -57,9 +56,8 @@
                 //print_r($stmt->errorInfo());
            }
         }
-    }    
     ?>
-<?php } if( $chamado2['status_avaliacao'] == '1' && ($chamado2['id_tec_atribuido'] == $_SESSION['Usuario_ID'] || $chamado2['id_requerente'] == $_SESSION['Usuario_ID'] || ($_SESSION['permissao'] == 'admin')) ) { 
+<?php } else if( $chamado2['status_avaliacao'] == '1' && ($chamado2['id_tec_atribuido'] == $_SESSION['Usuario_ID'] || $chamado2['id_requerente'] == $_SESSION['Usuario_ID'] || ($_SESSION['permissao'] == 'admin')) ) { 
            $info = painel::buscar_id_tabelas_all($chamado2["ID"],'tb_avaliacao','tb_chamados','avaliacao_chm_id');
            $avaliacao_info = $info[0];
 ?>
@@ -74,7 +72,7 @@
 <?php } else { ?>
     <div class="alert alert-success" role="alert">
             <h4 class="alert-heading"> Problema ao Avaliar esse Chamado! </h4>
-            <p> Apenas chamados solucionados e Aprovados por um usuario nivel admin podem ser availiados e visualizados.</p>
+            <p> Apenas chamados solucionados por um técnico e Aprovados por um usuario nivel admin podem ser availiados.</p>
             <hr>
             <p class="mb-0"> Importante!! Só ira aparecer o processo de Avaliação ser o requerente desse chamado estiver logado no sistema. </p>
     </div>

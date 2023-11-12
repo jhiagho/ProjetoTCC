@@ -1,4 +1,5 @@
 <?php
+      // $chamado2['fechamento'] == '1' (Travar Editar a descricao, Editar o chamado caso o chamado seja Fechado, avisar o usuário com um modal)
     $id_chamado = $chamado2["ID"];  
     $aux5 = new painel();
     $aux6 = new Banco();
@@ -121,6 +122,8 @@
                               <button id="alterar_btn_Tarefa_pendente" name="alterar_btn_Tarefa_pendente"> <i class='fa-regular fa-pen-to-square'></i> Alterar Tarefa </button>
                         </div>
         </form>
+
+
          <?php 
             if(isset($_POST['alterar_btn_Tarefa_pendente']) && $_POST['id_tarefa_form'] == $value['ID'])
             {

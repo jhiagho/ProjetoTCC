@@ -7,12 +7,42 @@ const user_Input = document.querySelector("#user")
 const password_Input = document.querySelector("#password")
 const conf_password_Input = document.querySelector("#confirmpassword")
 
+const formSenha = document.querySelector("#form_senha");
+const passwordInput3 = document.getElementById('antiga_password');
+const passwordInput4 = document.getElementById('password_alterar');
+const conf_password_Input2 = document.getElementById('confirmpassword_alterar');
 
 document.addEventListener("DOMContentLoaded", function() {
 
+    if(formSenha){
+        formSenha.addEventListener("submit", (e) => {
+    
+            let verificarErro = false;
+            document.getElementById("password_alterar_Error").textContent = '';
+            document.getElementById("confirmpassword_alterar_Error").textContent = '';
+            
+            if(!validarPassword(passwordInput4.value,8)){
+                console.log('Entrei no validarPassword');
+                document.getElementById("password_alterar_Error").textContent = 'o tamanho minimo da senha tem que ser 8';
+                verificarErro = true;
+                //verfica = false;
+            }
+        
+            if(passwordInput4.value != conf_password_Input2.value){
+                console.log('Entrei no Confirir o Password');
+                document.getElementById("confirmpassword_alterar_Error").textContent = 'As senhas não conferem!';
+                verificarErro = true;
+                //verfica = false;
+            }
+           
+            if (verificarErro) {
+                e.preventDefault();
+            }
+        })
+    }
+
     form.addEventListener("submit", (event) => {
         //const verfica = true;
-        verificarErro = false;
         nameIsvalid = true;
     
         // document.getElementById("primeiro_nome_Error").textContent = '';
@@ -87,13 +117,10 @@ document.addEventListener("DOMContentLoaded", function() {
             // verificarErro = true;
         } else {
             document.getElementById("sobre_nome_Error").textContent = '';
-            if (nameIsvalid){
+            if (nameIsvalid && user_Input.value == ""){
                 user_Input.value = name_Input.value + '.' + lastname_Input.value;
             }
-        }
-
-        
-  
+        }       
     });
 
     
@@ -157,35 +184,38 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
         
-    })    
-    document.getElementById('togglePassword').addEventListener('click',function(){
-        var passwordInput = document.getElementById('password');
-        var togglePasswordImage = document.getElementById('togglePassword');
-    
-        if(passwordInput.type === 'password'){
-            passwordInput.type = 'text';
-            togglePasswordImage.src = '/ProjetoTCC/imagens/eye-slash.svg';
-        }else {
-            passwordInput.type = 'password';
-            togglePasswordImage.src = '/ProjetoTCC/imagens/eye.svg';
-        }
-    
-    })
-    document.getElementById('togglePassword2').addEventListener('click',function(){
-        var passwordInput2 = document.getElementById('confirmpassword');
-        var togglePasswordImage2 = document.getElementById('togglePassword2');
-    
-        if(passwordInput2.type === 'password'){
-            passwordInput2.type = 'text';
-            togglePasswordImage2.src = '/ProjetoTCC/imagens/eye-slash.svg';
-        }else {
-            passwordInput2.type = 'password';
-            togglePasswordImage2.src = '/ProjetoTCC/imagens/eye.svg';
-        }
-    
-    })
+    });
+})
 
+const togglePasswordImage = document.getElementById('togglePassword');
+const togglePasswordImage2 = document.getElementById('togglePassword2');
+const togglePasswordImage3 = document.getElementById('togglePassword3');
+
+function togglePass(passwordInput, togglePasswordImage) {
+
+    if(passwordInput.type === 'password'){
+        passwordInput.type = 'text';
+        togglePasswordImage.src = '/ProjetoTCC/imagens/eye-slash.svg';
+    } else {
+        passwordInput.type = 'password';
+        togglePasswordImage.src = '/ProjetoTCC/imagens/eye.svg';
+    }
+}
+
+document.getElementById('togglePassword').addEventListener('click',function(){
+    if(passwordInput4) togglePass(passwordInput4,togglePasswordImage);
+    else togglePass(passwordInput,togglePasswordImage);
+})
+
+document.getElementById('togglePassword2').addEventListener('click',function(){
+    if(conf_password_Input2) togglePass(conf_password_Input2,togglePasswordImage2);
+    else togglePass(passwordInput2,togglePasswordImage2);
 });
 
+document.getElementById('togglePassword3').addEventListener('click',function(){
+    togglePass(passwordInput3,togglePasswordImage3);
+})
+
+//EDITAR USUARIO!!!!!!!!!!!!!!!!!!!!!!!!!
 
 

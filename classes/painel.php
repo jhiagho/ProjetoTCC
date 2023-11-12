@@ -1,6 +1,6 @@
 <?php
     include_once('C:/xampp/htdocs/ProjetoTCC/config.php');
-    include('banco.php');
+    include_once('banco.php');
     /**
      * Class painel
      */

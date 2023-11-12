@@ -19,50 +19,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var dataHoraAtual = yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + min;
 
-    data_inicio.value = dataHoraAtual;
-
+    if(data_inicio) data_inicio.value = dataHoraAtual;
 });
 
-form1.addEventListener('submit', function(e) {
-    // alert("Estou Funcionando");
-    // e.preventDefault();
+if(form1) {
+    form1.addEventListener('submit', function(e) {
+        // alert("Estou Funcionando");
+        // e.preventDefault();
+    
+        verificarErro = false;
+    
+        if (!slc_localizacao.value){
+            document.getElementById("chm_slc_localizacao_Error").textContent = 'Selecione uma localização';
+            verificarErro = true;
+        } else {
+            document.getElementById("chm_slc_localizacao_Error").textContent = '';
+        }
+    
+        if (!slc_requerente.value){
+            document.getElementById("chm_slc_requerente_Error").textContent = 'Selecione um requrente';
+            verificarErro = true;
+        } else {
+            document.getElementById("chm_slc_requerente_Error").textContent = '';
+        }
+    
+    
+        if (!select_prioridade.value) {
+            document.getElementById("chm_select_prioridade_Error").textContent = 'Selecione uma prioridade';
+            verificarErro = true;
+        } else {
+            document.getElementById("chm_select_prioridade_Error").textContent = '';
+        }
+    
+    
+        if (!select_status.value) {
+            document.getElementById("chm_select_status_Error").textContent = 'Selecione um status do chamado';
+            verificarErro = true;
+        } else {
+            document.getElementById("chm_select_status_Error").textContent = '';
+        }
+    
+        if(verificarErro){
+            e.preventDefault();
+        }
+    });
+}
+/* Editar Usuário */
 
-    verificarErro = false;
-
-    if (!slc_localizacao.value){
-        document.getElementById("chm_slc_localizacao_Error").textContent = 'Selecione uma localização';
-        verificarErro = true;
-    } else {
-        document.getElementById("chm_slc_localizacao_Error").textContent = '';
-    }
-
-    if (!slc_requerente.value){
-        document.getElementById("chm_slc_requerente_Error").textContent = 'Selecione um requrente';
-        verificarErro = true;
-    } else {
-        document.getElementById("chm_slc_requerente_Error").textContent = '';
-    }
-
-
-    if (!select_prioridade.value) {
-        document.getElementById("chm_select_prioridade_Error").textContent = 'Selecione uma prioridade';
-        verificarErro = true;
-    } else {
-        document.getElementById("chm_select_prioridade_Error").textContent = '';
-    }
-
-
-    if (!select_status.value) {
-        document.getElementById("chm_select_status_Error").textContent = 'Selecione um status do chamado';
-        verificarErro = true;
-    } else {
-        document.getElementById("chm_select_status_Error").textContent = '';
-    }
-
-    if(verificarErro){
-        e.preventDefault();
-    }
-});
+/* Criar_chamados.php */
 
 function toggleDrawer() {
     const drawer = document.getElementById("mydrawer");
@@ -111,3 +115,6 @@ $(document).ready(function(){
         //Faz a requisição AJAX
     }).change();
 });
+
+// SCRIPT PAGINA ADMIIIN ===========================================//////////////////////////////////////////////
+
