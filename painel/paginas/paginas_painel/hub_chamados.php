@@ -26,7 +26,7 @@
                     <span id="dynamic_select_container"></span>
 
                     <!-- <input type="text" name="pesquisar" placeholder="pesquisar..."> -->
-                    <button type="submit" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
+                    <button type="submit" id="btn_pesquisar_chamados" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
             </form>
             <?php 
                 $aux = new painel();
@@ -120,6 +120,8 @@
                             }
                             if ($j == 10) $values[$j] = painel::buscar_id_tabelas($values[$j],'prioridade','tb_chamados','tb_prioridades_chamados','id_prioridade');
                         }
+                        if ($j == 13) continue;
+
                         if ($j == 11) {
                             $solucao = painel::buscar_solucao($values[0]);
                             if ($solucao == false) $values[$j] = '';
@@ -134,7 +136,7 @@
                             } 
                         }
 
-                        if ($j == 13 || $j == 14) continue;
+                        
 
                         if ($j > 1) {
                                 $info_avaliacao = '';

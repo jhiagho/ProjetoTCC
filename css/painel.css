@@ -212,7 +212,7 @@ body{
 
 .input-box-titulo input,
 .input-box-titulo select{
-    margin: 0.6 rem 0;
+    margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
     width: 250px;
     border: none;
@@ -221,7 +221,7 @@ body{
 }
 
 .input-group-descricao input {
-    margin: 0.6 rem 0;
+    margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
     width: 700px;
     border: none;
@@ -240,7 +240,7 @@ body{
 
 .input-group-descricao textarea {
     resize: vertical;
-    margin: 0.6 rem 0;
+    margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
     width: 700px;
     border: none;
@@ -368,7 +368,7 @@ body{
 }
 
 .header_chamados form select { 
-    margin: 0.4 rem 0;
+    margin: 0.4rem 0;
     padding: 0.6rem 0.8rem;
     border: solid 1px black;
     border-radius: 5px;
@@ -377,15 +377,22 @@ body{
 }
 
 .header_chamados form input { 
-    margin: 0.4 rem 0;
+    margin: 0.4rem 0;
     padding: 0.6rem 0.8rem;
     border: solid 1px black;
     box-shadow: 1px 1px 6px #0000001c;
 }
 
 .header_chamados form button {
-    margin: 0.4 rem 0;
-    padding: 0.6rem 0.8rem;
+    margin: 0.6rem 0;
+    padding: 0.8rem 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #29a1d8;
+}
+#btn_pesquisar_chamados{
+    margin: 1.0rem 0;
+    padding: 0.8rem 1rem;
     border: none;
     cursor: pointer;
     background-color: #29a1d8;
@@ -595,4 +602,23 @@ table td a{
     cursor: pointer;
 }
 
+#search_text{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border:none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c; 
+}
+
+#pesquisar_user{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #29a1d8;
+}
+
+
 /*FIM EDITAR USUARIO*/
+/*Listar Usuario*/
+

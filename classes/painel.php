@@ -89,6 +89,13 @@
             
             return $info;
         }
+        public static function listarTodosUsuarios(){
+            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios`");
+            $banco->execute();
+            $info = $banco->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $info;
+        }
 
         public static function getProximoRegistro($idAtual) {
             $banco = Banco::conectar()->prepare("SELECT * FROM `tb_chamados` WHERE `ID` < :idAtual ORDER BY `ID` DESC LIMIT 1");

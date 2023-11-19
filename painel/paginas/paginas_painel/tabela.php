@@ -66,7 +66,7 @@ if ($numRows > 0) {
                 } 
             }
 
-            if ($j == 13 || $j == 14) continue;
+            if ($j == 13) continue;
 
             if ($j > 1) {
                     $info_avaliacao = '';

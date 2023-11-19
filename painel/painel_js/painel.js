@@ -95,7 +95,6 @@ $(document).ready(function() {
 $(document).ready(function(){
     $("#main_select").change(function(){
         let selectedValue = $(this).val();
-        console.log(selectedValue);
 
         if(selectedValue > 2){
             $.get('/ProjetoTCC/api/sistema_busca.php', { column: selectedValue }, function(data) {
@@ -110,9 +109,30 @@ $(document).ready(function(){
             });
         }
         else{
-            $("#dynamic_select_container").html('<input type="text" name="detailed_search" placeholder="pesquisar...">');
+            $("#dynamic_select_container").html('<input type="text" id="search_text" name="detailed_search" placeholder="pesquisar...">');
         }
         //Faz a requisição AJAX
+    }).change();
+
+    $("#main_select2").change(function(){
+        let selectedUserValue = $(this).val();
+        console.log(selectedUserValue);
+
+        if(selectedUserValue > 3){
+            $.get('/ProjetoTCC/api/sistema_busca_user.php', { column: selectedUserValue }, function(data) {
+                let optionsArray = data;
+                let optionsHtml = "";
+
+                for (let i = 0; i < optionsArray.length; i++) {
+                    optionsHtml += `<option value="${optionsArray[i].value}">${optionsArray[i].text}</option>`;
+                }
+
+                $("#dynamic_user_select_container").html('<select name="detailed_search_user" class="js-example-basic-single">' + optionsHtml + '</select>');
+            });
+        }
+        else{
+            $("#dynamic_user_select_container").html('<input type="text" id="search_text" name="detailed_search_user" placeholder="pesquisar...">');
+        }
     }).change();
 });
 

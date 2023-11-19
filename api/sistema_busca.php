@@ -4,6 +4,7 @@
     $column = $_GET['column']; // obtenha o valor do primeiro select
     $options = [];
     
+    // column_user 4 e 5
     $banco = new Banco();
     $painel = new Painel();
     $conexao1 = $banco::conectar();

@@ -1,3 +1,11 @@
+<?php 
+    $id_usuario2 = $_GET['editar_usuario'];
+    global $usuario_alt;
+    $banco = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE `id` = '$id_usuario2' ");
+    $banco->execute();
+    $usuario_alt = $banco->fetch(PDO::FETCH_ASSOC);
+?>
+
 <article class="container-editar_usuario">
 
         <form id="form" method="post">
@@ -13,25 +21,25 @@
 
                             <div class="input-box">
                                 <label for="primeiro_nome">Primeiro nome:</label>
-                                <input id="primeiro_nome" type="text" name="pnome" placeholder="primeiro nome" value="<?php echo $usuario['Primeiro nome']; ?>" required>
+                                <input id="primeiro_nome" type="text" name="pnome" placeholder="primeiro nome" value="<?php echo $usuario_alt['Primeiro nome']; ?>" required>
                                 <span class="error-message" id="primeiro_nome_Error"></span>
                             </div>
 
                             <div class="input-box">
                                 <label for="sobre_nome">Sobrenome:</label>
-                                <input id="sobre_nome" type="text" name="sbnome" placeholder="sobrenome" value="<?php echo $usuario['Sobrenome']; ?>" required>
+                                <input id="sobre_nome" type="text" name="sbnome" placeholder="sobrenome" value="<?php echo $usuario_alt['Sobrenome']; ?>" required>
                                 <span class="error-message" id="sobre_nome_Error"></span>
                             </div>
 
                             <div class="input-box">
                                 <label for="email">Email:</label>
-                                <input id="email" type="email" name="email" placeholder="Digite seu email" value="<?php echo $usuario['email']; ?>">
+                                <input id="email" type="email" name="email" placeholder="Digite seu email" value="<?php echo $usuario_alt['email']; ?>">
                                 <span class="error-message" id="email_Error"></span>
                             </div>
 
                             <div class="input-box">
                                 <label for="telefone">Celuar:</label>
-                                <input id="telefone" type="text" name="telefone" placeholder="(xx)xxxxx-xxxx" value="<?php echo $usuario['Contato']; ?> ">
+                                <input id="telefone" type="text" name="telefone" placeholder="(xx)xxxxx-xxxx" value="<?php echo $usuario_alt['Contato']; ?> ">
                                 <span class="error-message" id="telefone_Error"></span>
                             </div>
 
@@ -50,7 +58,7 @@
                                         $aux = $aux->listarSetor();
                                         
                                         foreach ($aux as $key => $value) {
-                                            $selected = ($usuario['id_setor'] - 1 == $key) ? 'selected' : '';
+                                            $selected = ($usuario_alt['id_setor'] - 1 == $key) ? 'selected' : '';
                                             echo '<option value="' .$key. '" '.$selected. '>' . $value['nome_setor'] . '</option>';
                                         }
                                 ?>
@@ -59,17 +67,15 @@
                             
                             <div class="input-box">
                                 <label for="user">Usuário:</label>
-                                <input id="user" type="text" name="user" placeholder="Digite seu usuario" value="<?php echo $usuario['usuario']; ?> " required>
+                                <input id="user" type="text" name="user" placeholder="Digite seu usuario" value="<?php echo $usuario_alt['usuario']; ?> " required>
                                 <span class="error-message" id="user_Error"></span>
                                 <span class="error-message" id="user_Error2"></span>
                             </div>
                         </div>  <!--input-group -->
 
                         <div class="submit-box">
-                            <?php if($usuario['id_nivel_perm'] < 3) { ?>
+                            <?php if($usuario['id_nivel_perm'] < 3 || $_SESSION['Usuario_ID'] == $usuario_alt['id']) { ?>
                             <input id="submit_alterar_user" type="submit" name="bt_alterar" value="Alterar Usuario">
-                            <?php } else { ?>
-                                <button name="bt_Excluir_Usuario" onclick="return confirmarAcao('Tem certeza que deseja excluir este Usuário ? Uma vez que ação for feita não poderar mais ser desfeita!, Deseja continurar? ')"> <i class='fa-solid fa-trash'></i> Excluir Chamado </button>
                             <?php } ?>
                         </div>                
         </form>
@@ -97,11 +103,12 @@
                     <i class="fa-solid fa-circle-exclamation"></i> Algo deu errado! Contate o Desenvolver do Sistema. </div>';
                 }
             }
+
         
         ?>
         <hr>
 
-        <?php if($usuario['id_nivel_perm'] < 3) { ?>
+        <?php if($usuario['id_nivel_perm'] < 3 || $_SESSION['Usuario_ID'] == $usuario_alt['id']) { ?>
                 <div class="form-header">
 
                 <div class="titulo">
@@ -135,7 +142,7 @@
                             </div>
 
                             <div class="input-box">
-                                <input id="submit_Verificar" type="submit" name="Verificar_senha" value="Verificar">
+                                <input id="submit_Verificar" onclick="return confirmarAcao('Tem certeza que deseja Alterar sua senha, em 3 segundos voçe será obrigado a logar de novo no sistema')" type="submit" name="Verificar_senha" value="Verificar">
                             </div>
 
                     </div>
@@ -162,8 +169,8 @@
                         if($stmt4->execute()){
                             echo '<div class="alert alert-success" role="alert">
                             <i class="fa-solid fa-circle-exclamation"></i> Senha Alterada com sucesso. Aguarde 3 segundos para a mudança sera realizada! </div>';
-                             header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario); 
-
+                             session_destroy();
+                             header('refresh:3;url=' .INCLUDE_PATH);
                         } else {
                             echo '<div class="alert alert-danger" role="alert">
                             <i class="fa-solid fa-circle-exclamation"></i> Algo deu errado! Contate o Desenvolver do Sistema. </div>';
@@ -196,9 +203,9 @@
                         <div class="input-box">
                                 <label for="permissao">Permissão:</label>
                                 <select name="permissao" id="slc_permissao" <?php echo $tipo ?> >
-                                    <option value="1" <?php echo ($usuario['id_nivel_perm'] == 1) ? 'selected' : ''; ?>>padrao</option>
-                                    <option value="2" <?php echo ($usuario['id_nivel_perm'] == 2) ? 'selected' : ''; ?>>Técnico</option>
-                                    <option value="3" <?php echo ($usuario['id_nivel_perm'] == 3) ? 'selected' : ''; ?>>Admin</option>
+                                    <option value="1" <?php echo ($usuario_alt['id_nivel_perm'] == 1) ? 'selected' : ''; ?>>padrao</option>
+                                    <option value="2" <?php echo ($usuario_alt['id_nivel_perm'] == 2) ? 'selected' : ''; ?>>Técnico</option>
+                                    <option value="3" <?php echo ($usuario_alt['id_nivel_perm'] == 3) ? 'selected' : ''; ?>>Admin</option>
                                 </select>
                             <span class="error-message" id="telefone_Error"></span>
                         </div>
@@ -214,13 +221,13 @@
                     $permissao = strip_tags($_POST['permissao']);
 
                     $banco4 = Banco::conectar();
-                    $query1 = "UPDATE `tb_usuarios` SET `id_nivel_perm` = '$permissao' WHERE `tb_usuarios`.`id` = $id_usuario";
+                    $query1 = "UPDATE `tb_usuarios` SET `id_nivel_perm` = '$permissao' WHERE `tb_usuarios`.`id` = $id_usuario2";
                     $stmt4 = $banco4->prepare($query1);
                     
                     if($stmt4->execute()){
                         echo '<div class="alert alert-success" role="alert">
                             <i class="fa-solid fa-circle-exclamation"></i> Permissão Alterada com sucesso. Aguarde 3 segundos para a mudança sera realizada! </div>';
-                         header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario); 
+                         header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario2); 
 
                     } else {
                         echo '<div class="alert alert-danger" role="alert">
@@ -240,6 +247,10 @@ function confirmarAcao(mensagem) {
     }
 
 document.addEventListener("DOMContentLoaded", function() {
+    
+    function confirmarAcao(mensagem) {
+    return confirm(mensagem);
+    }
 
     $(function(){
         $('#telefone').mask('(00)00000-0000');
@@ -275,8 +286,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
-
 <!---select2 e jquery ------------------------------------------------------------------------------------->
-
-
-

@@ -44,7 +44,7 @@
                             </h2>
                             <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                <ul class="admin_menu">
-                                    <li> <a href="<?php echo INCLUDE_PATH ?>/?editar_usuario=<?php echo $_SESSION['Usuario_ID'];?>"> <i class="fa-solid fa-user-pen"></i> Editar Usuario</a> </li>
+                                    <li> <a href="<?php echo INCLUDE_PATH ?>/?editar_usuario=<?php echo $id_usuario;?>"> <i class="fa-solid fa-user-pen"></i> Editar Usuario</a> </li>
                                     <li> <a href="<?php echo INCLUDE_PATH ?>/?listar_usuario"> <i class="fa-solid fa-users"></i> Listar Usuario</a> </li>
                                     <li> <a href="<?php echo INCLUDE_PATH ?>/?adicionar_setor"> <i class="fa-regular fa-square-plus"></i> Adicionar Setor</a> </li>
                                     <li> <a href="<?php echo INCLUDE_PATH ?>/?listar_setor"> <i class="fa-solid fa-table-list"></i> Listar Setor</a> </li>
