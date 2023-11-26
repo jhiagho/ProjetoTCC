@@ -6,21 +6,23 @@
 }
 .header-chamados{
     padding: 10px;
-    background: rgb(238, 233, 195);
+    background-color: #333;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid white;
 }
 
 .header-chamados h1{
     font-size: 25px;
     margin-left: 15px;
+    color: white
 }
 
 .header-chamados a{
     text-decoration: none;
     font-size: 20px;
-    color: #333;
+    color: white;
     margin-right: 15px;
 }
 

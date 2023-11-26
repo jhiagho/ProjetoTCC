@@ -350,24 +350,12 @@ body{
 }
 
 .header_chamados form{
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
 }
 
-.header_chamados .btn_criar_chamados{
-    margin-top: 0.5rem;
-}
-
-.header_chamados .btn_criar_chamados button{
-    width: 200px;
-    border: none;
-    background-color: #6aa0b9f1;
-    padding: 0.62rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.header_chamados form select { 
+.header_chamados form select, 
+.header_chamados form select, input { 
     margin: 0.4rem 0;
     padding: 0.6rem 0.8rem;
     border: solid 1px black;
@@ -376,12 +364,12 @@ body{
     margin-right: 10px;
 }
 
-.header_chamados form input { 
+/* .header_chamados form input { 
     margin: 0.4rem 0;
     padding: 0.6rem 0.8rem;
     border: solid 1px black;
     box-shadow: 1px 1px 6px #0000001c;
-}
+} */
 
 .header_chamados form button {
     margin: 0.6rem 0;
@@ -413,13 +401,40 @@ body{
     border: 1px 1px 1px black;
 }
 
+.group-btn{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+#form_botao button, #btn_criar_chamado{
+    width: 200px;
+    border: none;
+    background-color: #6aa0b9f1;
+    padding: 1.0rem;
+    border-radius: 5px;
+    cursor: pointer;
+} 
+
 /* .conteudo_chamados{
     /* overflow: auto; }*/
-.btn_criar_chamados{
+/* #form_botao {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
+    gap: 30px;
     margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
 }
+#form_botao button{
+    width: 200px;
+    border: none;
+    background-color: #6aa0b9f1;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+} */
 
 #btn_listar i{
     color: #111;

@@ -90,7 +90,7 @@
                 $user = $_POST['user'];
 
                 $banco4 = Banco::conectar();
-                $query1 = "UPDATE `tb_usuarios` SET `Primeiro nome` = '$pnome' , `Sobrenome` = '$sbnome' , `Contato` = '$telefone' , `id_setor` = '$setor' , 
+                $query1 = "UPDATE `tb_usuarios` SET `Primeiro_nome` = '$pnome' , `Sobrenome` = '$sbnome' , `Contato` = '$telefone' , `id_setor` = '$setor' , 
                             `usuario` = '$user' , `email` = '$email'  WHERE `tb_usuarios`.`id` = $id_usuario";
                 $stmt4 = $banco4->prepare($query1);
                         

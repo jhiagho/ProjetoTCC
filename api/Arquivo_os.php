@@ -59,7 +59,7 @@ body {
     font-family:Arial; 
     font-size:11pt 
 }
- 
+
  .TableNormal0 { 
 
 }
@@ -69,7 +69,9 @@ body {
 
  <body>
     <div>
-
+    <?php $requerente = painel::buscar_id_tabelas($chamado['id_requerente'],'usuario','tb_chamados','tb_usuarios','id_requerente');
+    
+    ?>
  <table cellspacing="0" cellpadding="0" class="TableNormal0" style="margin-left:6.22pt; -aw-border-insideh:0.75pt single #000000; -aw-border-insidev:0.75pt single #000000; border-collapse:collapse">
     <tr style="height:10.55pt">
         <td colspan="7" style="width:537.9pt; border-style:solid; border-width:0.75pt; vertical-align:top; background-color:#e6e6e6">
@@ -89,7 +91,7 @@ body {
 
             <td colspan="6" style="width:501.05pt; border-style:solid; border-width:0.75pt; vertical-align:top">
                 <p class="TableParagraph" style="margin-top:0.3pt; margin-left:2.7pt; font-size:10pt">
-                    <span style="-aw-import:ignore"> DIGITE AQUI O NOME DO CHAMADO DE QUEM CRIOU A REQUISÃO!!! </span>
+                    <span style="-aw-import:ignore"> <?php echo $requerente; ?> </span>
                 </p>
             </td>
     </tr>
@@ -97,13 +99,13 @@ body {
     <tr style="height:13.4pt">
         <td colspan="2" style="width:75.8pt; border-style:solid; border-width:0.75pt; vertical-align:top">
             <p class="TableParagraph" style="margin-top:0.3pt; margin-left:2.7pt; font-size:10pt">
-                <span style="font-weight:bold; letter-spacing:-0.1pt">Departamento:</span>
+                <span style="font-weight:bold; letter-spacing:-0.1pt">Departamento:  </span>
             </p>
         </td>
 
         <td colspan="5" style="width:461.35pt; border-style:solid; border-width:0.75pt; vertical-align:top">
             <p class="TableParagraph" style="margin-top:0.3pt; margin-left:2.7pt; font-size:10pt">
-                <span style="-aw-import:ignore">&#xa0;</span>
+                <span style="-aw-import:ignore"> <?php echo painel::buscar_nome_setor($requerente); ?> </span>
             </p>
         </td>
     </tr>
@@ -124,7 +126,7 @@ body {
 
         <td colspan="6" style="width:501.05pt; border-style:solid; border-width:0.75pt; vertical-align:top">
             <p class="TableParagraph" style="margin-top:0.3pt; margin-left:2.7pt; font-size:10pt">
-                <span style="-aw-import:ignore">&#xa0;</span>
+                <span style="-aw-import:ignore"> <?php echo $chamado['titulo'] ?> </span>
             </p>
         </td>
     </tr>
@@ -139,7 +141,7 @@ body {
 
         <td colspan="3" style="width:427.3pt; border-style:solid; border-width:0.75pt; vertical-align:top">
             <p class="TableParagraph" style="margin-top:0.3pt; margin-left:2.65pt; font-size:10pt">
-                <span style="-aw-import:ignore">&#xa0;</span>
+                <span style="-aw-import:ignore"> <?php echo painel::buscar_id_tabelas($chamado['id_tec_atribuido'],'usuario','tb_chamados','tb_usuarios','id_tec_atribuido') ?> </span>
             </p>
         </td>
     </tr>
@@ -154,7 +156,7 @@ body {
 
         <td colspan="2" style="width:194.85pt; border-style:solid; border-width:0.75pt; vertical-align:top">
             <p class="TableParagraph" style="margin-top:0.3pt; margin-left:2.7pt; font-size:10pt">
-                <span style="-aw-import:ignore">&#xa0;</span>
+                <span style="-aw-import:ignore"> <?php echo painel::formatarData($chamado['data_incial']); ?> </span>
             </p>
         </td>
             
@@ -183,7 +185,7 @@ body {
     <tr style="height:13.4pt">
         <td colspan="7" style="width:537.9pt; border-style:solid; border-width:0.75pt; vertical-align:top">
             <p class="TableParagraph" style="margin-top:0.3pt; margin-left:2.7pt; font-size:10pt">
-            <span style="-aw-import:ignore">&#xa0;</span>
+            <span style="-aw-import:ignore"> <?php echo $chamado['descricao'] ?> </span>
             </p>
         </td>
     </tr>
@@ -208,6 +210,10 @@ body {
             <p class="TableParagraph" style="font-size:10pt">
                 <span style="font-weight:bold; -aw-import:ignore">&#xa0;</span>
             </p>
+            <p class="TableParagraph" style="margin-left:2.7pt; font-size:10pt">
+                <span>Descreva a </span>
+                <span style="letter-spacing:-0.1pt">solução:</span>
+            </p>
             <p class="TableParagraph" style="font-size:10pt">
                 <span style="font-weight:bold; -aw-import:ignore">&#xa0;</span>
             </p>
@@ -216,10 +222,6 @@ body {
             </p>
             <p class="TableParagraph" style="margin-top:2.2pt; font-size:10pt">
                 <span style="font-weight:bold; -aw-import:ignore">&#xa0;</span>
-            </p>
-            <p class="TableParagraph" style="margin-left:2.7pt; font-size:10pt">
-                <span>Descreva a </span>
-                <span style="letter-spacing:-0.1pt">solução:</span>
             </p>
         </td>
 
@@ -244,20 +246,21 @@ body {
             </p>
 
             <p class="TableParagraph" style="margin-left:26.1pt; line-height:1pt">
-                <img src="images/Aspose.Words.378a2275-ceb4-4a69-a693-0a90c21c724e.003.png" width="291" height="1" alt="" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" />
                 <span style="width:269.35pt; font-size:1pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:295.45pt">&#xa0;</span>
-                <img src="images/Aspose.Words.378a2275-ceb4-4a69-a693-0a90c21c724e.003.png" width="291" height="1" alt="" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" />
             </p>
 
             <p class="TableParagraph" style="margin-top:4pt; margin-left:5.95pt; text-align:center; font-size:7pt">
                 <span style="width:261.85pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:267.8pt">&#xa0;</span>
             </p>
 
-            <p class="TableParagraph" style="margin-top:6.15pt; margin-left:122.3pt; font-size:7pt">
-                <span style="letter-spacing:-0.1pt">Técnico</span>
-                <span style="width:199.64pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:346.45pt">&#xa0;</span>
-                <span>Requerente (Assinatura por </span>
-                <span style="letter-spacing:-0.1pt">extenso)</span>
+            <div style="text-align: center;">
+                <hr style="width: 35%; border: 0.5px solid black; display: inline-block; vertical-align: top; margin-right:120px">
+                <hr style="width: 35%; border: 0.5px solid black; display: inline-block; vertical-align: top;">
+            </div>  
+            <p class="TableParagraph" style="margin-top:6.15pt; margin-left:88.3pt; font-size:7pt">
+                <span style="letter-spacing:-0.1pt">Técnico: <?php echo painel::buscar_id_tabelas($chamado['id_tec_atribuido'],'usuario','tb_chamados','tb_usuarios','id_tec_atribuido')?></span>
+                <span style="width:220.64pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:346.45pt">&#xa0;</span>
+                <span> Requerente: <?php echo $requerente; ?> </span>
             </p>
 
             <p class="TableParagraph" style="font-size:10pt">
@@ -269,35 +272,8 @@ body {
             </p>
 
             <p class="TableParagraph" style="margin-left:160.75pt; line-height:1pt">
-                <img src="images/Aspose.Words.378a2275-ceb4-4a69-a693-0a90c21c724e.003.png" width="291" height="1" alt="" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" />
+                
             </p>
-
-            <p class="TableParagraph" style="margin-right:181.4pt; margin-left:182.05pt; text-align:center; line-height:14pt">
-                <span style="font-size:7pt">Responsável</span>
-                <span style="font-size:7pt; letter-spacing:-0.4pt"> </span>
-                <span style="font-size:7pt">pelo</span>
-                <span style="font-size:7pt; letter-spacing:-0.4pt">
-                </span><span style="font-size:7pt">recebimento</span>
-                <span style="font-size:7pt; letter-spacing:-0.4pt"> </span>
-                <span style="font-size:7pt">(Assinatura</span>
-                <span style="font-size:7pt; letter-spacing:-0.4pt"> </span>
-                <span style="font-size:7pt">por</span>
-                <span style="font-size:7pt; letter-spacing:-0.4pt"> </span>
-                <span style="font-size:7pt">extenso)</span>
-                <span style="font-size:7pt; letter-spacing:2pt"> </span>
-                <span style="font-size:7pt">Entregue,</span>
-                <span style="font-size:7pt; letter-spacing:-0.1pt"> </span>
-                <span style="width:5.39pt; font-family:'Lucida Console'; font-size:7pt; text-decoration:underline; display:inline-block; -aw-font-family:'Arial'">&#xa0;</span>
-                <span style="font-size:7pt; text-decoration:underline; letter-spacing:-0.5pt">/</span>
-                <span style="width:34.06pt; font-family:'Lucida Console'; font-size:7pt; text-decoration:underline; display:inline-block; -aw-font-family:'Arial'">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
-                <span style="font-size:7pt; text-decoration:underline; letter-spacing:-0.5pt">/</span>
-                <span style="width:34.06pt; font-family:'Lucida Console'; font-size:7pt; text-decoration:underline; display:inline-block; -aw-font-family:'Arial'">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
-                <span style="font-size:7pt"> às </span>
-                <span style="width:24.72pt; font-family:'Lucida Console'; font-size:7pt; text-decoration:underline; display:inline-block; -aw-font-family:'Arial'">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
-                <span style="font-size:7pt; text-decoration:underline; letter-spacing:-0.5pt">:</span>
-                <span style="width:34.06pt; font-family:'Lucida Console'; font-size:7pt; text-decoration:underline; display:inline-block; -aw-font-family:'Arial'">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
-            </p>
-
         </td>
     </tr>
 

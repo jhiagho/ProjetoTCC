@@ -73,7 +73,6 @@ if(isset($_POST["bt_cadastrar_chm"]))
                             <select id="select_status" name="select_status">
                                 <option value="" disabled selected hidden> Selecione... </option>
                                 <option value="1">Novo</option>
-                                <option value="2">Atribuido</option>
                             </select>
                             <span class="error-message" id="chm_select_status_Error"></span>
                         </div>
@@ -103,7 +102,7 @@ if(isset($_POST["bt_cadastrar_chm"]))
 
                     <div class="input-box">
 
-                        <label for="localizacao">Localizacao:</label>
+                        <label for="localizacao">Localização:</label>
                         <select id="slc_localizacao" class="js-example-basic-single" style="width:250px; height: 35px; border-radius: 5px;" name="select_localizacao">
                         <option value="" disabled selected hidden> Selecione uma Localização </option>
                             <?php
@@ -144,9 +143,10 @@ if(isset($_POST["bt_cadastrar_chm"]))
                         <?php
                                 $aux = new painel();
                                 $aux = $aux->listarUsuarios();
-                                                
+                                
                                 foreach ($aux as $key => $value) {
-                                    echo '<option value="' .$value['id']. '">'.$value['usuario'].'</option>';
+                                    $selected = ($_SESSION['Usuario_ID'] == $value['id']) ? 'selected' : '';
+                                    echo '<option value=" '.$value['id'].'" '.$selected.' ">'.$value['usuario'].'</option>';
                                 }
                             ?>
                         </select>

@@ -14,8 +14,6 @@
                         echo '<button onclick="openTarefaBox()" id="btn_trf_pendente" name="btn_trf_pendente"> <i class="fa-solid fa-plus"></i> Adicionar Tarefa Pendente</button>';
                   }
             ?>
-
-            <button id="btn_avaliar" name="btn_avaliar"><i class="fa-regular fa-star"></i> Avaliar</button>
       </div>
 </section>
 

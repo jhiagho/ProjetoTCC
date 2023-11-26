@@ -30,6 +30,8 @@
     else {
         $chamado2 = $aux::BuscarChamados($_GET['chm']);
     }
+
+    $fechamento = painel::verificar_Fechamento($chamado2["ID"]);
 ?>
 
 <html>
@@ -53,14 +55,15 @@
                     <li id="chm_menu_1"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?descricao=<?php echo $chamado2["ID"];?>"><i class="fa-solid fa-book"></i> Descrição</a></li>
                     <li id="chm_menu_6"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?satisfacao=<?php echo $chamado2["ID"];?>"><i class="fa-regular fa-face-smile"></i> Satisfação</a></li>
                     <li id="chm_menu_2"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_chamado=<?php echo $chamado2["ID"];?>"><i class="fa-regular fa-pen-to-square"></i> Editar Chamado</a></li>
+                    <?php if($chamado2["fechamento"] == 0 && ( is_null($fechamento['fechamento']) || $fechamento['fechamento'] === '0') ) { ?>
                     <li id="chm_menu_3"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?editar_descricao=<?php echo $chamado2["ID"];?>"><i class="fa-regular fa-clipboard"></i> Editar Descrição</a></li>
+                    <?php } ?>
                     <li id="chm_menu_4"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?ordem_servicos=<?php echo $chamado2["ID"];?>"><i class="fa-solid fa-pen"></i> Ordem de Serviço</a></li>
                     <li id="chm_menu_5"><a href="<?php echo INCLUDE_PATH_CHAMADO ?>/?historico=<?php echo $chamado2["ID"];?>"> <i class="fa-regular fa-bookmark"></i> Histórico</a></li>
                     <li id="chm_quebra_linha"><hr></li>
                     <li id="chm_menu_99"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['usuario']; ?></li>
                     <li> 
                         <?php 
-                            $fechamento = painel::verificar_Fechamento($chamado2["ID"]);
                             
                             if ($fechamento['fechamento'] === '1') {
                                 echo '<i class="fa-solid fa-thumbs-up"></i> Aprovado';
@@ -88,7 +91,7 @@
                 <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $proximoRegistro; ?>"> <i class="fa-solid fa-arrow-left"></i> </a>
                 <?php  } ?>
 
-                <h1> <?php echo $chamado2["titulo"]. '('.$chamado2["ID"].')'; ?> </h1>
+                <h1> <?php echo $chamado2["titulo"]. ' ('.$chamado2["ID"].') '; ?> </h1>
 
                 <?php if($RegistroAnterior) { ?>
                 <a href="<?php echo INCLUDE_PATH;?>/painel/paginas/paginas_chamados/index.php?chm=<?php echo $RegistroAnterior; ?>"> <i class="fa-solid fa-arrow-right"></i> </a>

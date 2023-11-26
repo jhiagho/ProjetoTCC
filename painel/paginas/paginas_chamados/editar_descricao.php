@@ -51,7 +51,7 @@
 <?php } else { ?>
       <div class="alert alert-success" role="alert">
                   <h4 class="alert-heading"> Nenhuma Solução foi criada! </h4>
-                  <p> Verifique a aba de "Descrição", Crie um nova tarefa, para que possa ser edita por aqui !</p>
+                  <p> Verifique a aba de "Descrição", Crie um nova Solução, para que possa ser edita por aqui !</p>
                   <hr>
                   <p class="mb-0"> Importante!! Só ira aparecer a solução caso esteja logado quem a criou ou um admin do sistema. </p>
             </div>

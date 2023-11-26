@@ -34,8 +34,8 @@
                     $column = $_POST['column_pesquisar'];
                     $detail = isset($_POST['detailed_search_user']) ? $_POST['detailed_search_user'] : null;
                     $detail = strip_tags($detail);
-                    echo $column;
-                    echo $detail;
+
+                    $listar_usuario = painel::PesquisarUsuarios($column,$detail);
                    
                 }
                 else {

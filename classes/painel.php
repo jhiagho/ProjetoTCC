@@ -49,7 +49,7 @@
         }
 
         public static function listarUsuarios(){
-            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE `id_nivel_perm` <= '2' ");
+            $banco = Banco::conectar()->prepare("SELECT * FROM `tb_usuarios` WHERE `id` <> 2");
             $banco->execute();
             $info = $banco->fetchAll();
             
@@ -255,10 +255,38 @@
             return $resultado;
         }
 
-        // public static function buscar_pendente($id){
-        //     $banco = Banco::conectar();
-        //     $quary = "SELECT * FROM `tb_tarefa_pendentes` INNER JOIN";
-        // }
+        public static function PesquisarUsuarios($column, $detail){
+            $banco = Banco::conectar();
+
+            if ($column > 0 && $column < 4) 
+            {
+                if($column == 1) {
+                    $quary = "SELECT * FROM `tb_usuarios` WHERE `Primeiro_nome` LIKE :termo ";
+                }
+                if($column == 2) {
+                    $quary = "SELECT * FROM `tb_usuarios` WHERE `Sobrenome` LIKE :termo ";
+                }
+                if($column == 3) {
+                    $quary = "SELECT * FROM `tb_usuarios` WHERE `usuario` LIKE :termo ";
+                }
+                $stmt = $banco->prepare($quary);
+                $stmt->execute(['termo' => "%$detail%"]);
+
+                $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $info ? $info : [];
+            }
+            else if($column == 0 || $column > 3) {
+
+                    if($column == 0) $quary = "SELECT * FROM `tb_usuarios` WHERE tb_usuarios.id = '$detail'";
+                    if($column == 4) $quary = "SELECT * FROM `tb_usuarios` WHERE tb_usuarios.id_setor = '$detail'";
+                    if($column == 5) $quary = "SELECT * FROM `tb_usuarios` WHERE tb_usuarios.id_nivel_perm = '$detail'";
+
+                    $stmt = $banco->prepare($quary);
+                    $stmt->execute();
+            }
+            $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $info ? $info : [];
+        }
 
 
     }

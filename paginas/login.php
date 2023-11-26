@@ -64,7 +64,8 @@
 
                         if(isset($_POST['login']))
                         {
-                            $user = strip_tags($_POST['usuario']); 
+                            $user1 = strip_tags($_POST['usuario']); 
+                            $user = strtolower($user1);
                             $senha = strip_tags($_POST['senha']);
                             $cripto = base64_encode($senha);
 

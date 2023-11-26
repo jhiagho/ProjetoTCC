@@ -14,12 +14,12 @@
                 <select id="main_select" name="column_pesquisar">
                     <option value="0">ID</option>
                     <option value="1">Titulo</option>
-                    <option value="2">Descricao</option>
-                    <option value="3">setor_atribuido</option>
-                    <option value="4">Localização chamado</option>
+                    <option value="2">Descrição</option>
+                    <option value="3">Aetor Atribuido</option>
+                    <option value="4">Localização Chamado</option>
                     <option value="5">Requerente</option>
-                    <option value="6">técnico</option>
-                    <option value="7">status</option>
+                    <option value="6">Técnico</option>
+                    <option value="7">Status</option>
                     <option value="8">Prioridade</option>
                 </select>
 
@@ -42,18 +42,22 @@
                 }
             ?>
 
-        <div class="btn_criar_chamados" id="btn_toggle_drawer">
-                <button onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
-            <form method="post">
-                <button type="submit" name="btn_listar" id="btn_listar"> <i class="fa-solid fa-list"></i> Listar Chamados </button>
-            </form>
+            <div class="group-btn">
+                <button id="btn_criar_chamado" onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
+                <form id="form_botao" method="post">
+                    <button type="submit" name="btn_listar" id="btn_listar"> <i class="fa-solid fa-list"></i> Listar Chamados </button>
+                </form>
+            </div>
+
+
+            
                 <?php
                     if(isset($_POST['btn_listar']))
                     {
                         $chamados = painel::listarChamados();
                     }
                 ?>
-        </div>
+
 
         <?php 
             if (empty($chamados)) {

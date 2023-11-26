@@ -1,5 +1,5 @@
 <?php
-    $id_chamado = $chamado2["ID"];  
+    $id_chamado = $chamado2["ID"];
     $aux4 = new painel();
     $aux5 = new Banco();
     $data_inicial_formatada = date('Y-m-d\TH:i', strtotime($chamado2['data_incial']));
@@ -87,6 +87,7 @@
         $banco1 = $aux5::conectar();
         $contPendente = $aux4::verificar_registro_chamado($id_chamado,'tb_tarefa_pendentes','tarefa_chamado_id');
         $contSolucao = $aux4::verificar_registro_chamado($id_chamado,'tb_solucao','solution_chamado_id');
+        $status_avalicao = $chamado2["status_avaliacao"];
 
         if ($contSolucao > 0)
         {
@@ -246,12 +247,14 @@
 
         
         <div class="submit-group">
+            <?php if($chamado2["fechamento"] == 0) { ?>
             <button name="bt_alterar_cadastro"> <i class="fa-regular fa-pen-to-square"></i> Alterar Chamado </button>
+            <?php } ?>
 
             <?php if($_SESSION['permissao'] == "admin") { ?>
-                <button name="bt_Fechar_chamado" onclick="return confirmarAcao('Tem certeza que deseja fechar este chamado ? Essa ação pode ser alterada posteriormente. ')"> <i class="fa-regular fa-thumbs-up"></i> Fechar Chamado </button>
-                <button name="bt_Recusar_chamado" onclick="return confirmarAcao('Tem certeza que deseja Recusar este chamado ? Essa ação pode ser alterada posteriormente. ')"> <i class="fa-regular fa-thumbs-down"></i> Recusar Chamado </button>
-                <button name="bt_Excluir_chamado" onclick="return confirmarAcao('Tem certeza que deseja excluir este chamado ? Todas as soluções e tarefa pendentes feitas, seram excluidas também, Deseja continurar? ')"> <i class='fa-solid fa-trash'></i> Excluir Chamado </button>
+                <button name="bt_Fechar_chamado" onclick="return confirmarAcao('Deseja fechar este chamado ? Essa ação pode ser alterada posteriormente. Porem não será possivel Editar os dados do chamado.')"> <i class="fa-regular fa-thumbs-up"></i> Fechar Chamado </button>
+                <button name="bt_Recusar_chamado" onclick="return confirmarAcao('Deseja Recusar este chamado ? Essa ação pode ser alterada posteriormente. ')"> <i class="fa-regular fa-thumbs-down"></i> Recusar Chamado </button>
+                <button name="bt_Excluir_chamado" onclick="return confirmarAcao('Deseja excluir este chamado ? Uma vez que for aceita essa ação não poder ser desfeitas, é todas as soluções, avaliações e tarefa pendentes feitas, seram excluidas também, deseja continurar ? ')"> <i class='fa-solid fa-trash'></i> Excluir Chamado </button>
             <?php } ?>
         </div>
 
