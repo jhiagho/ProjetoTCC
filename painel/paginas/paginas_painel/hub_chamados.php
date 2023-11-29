@@ -72,7 +72,7 @@
         <section class="drawer"> </section>
 
         <!-- table-hover table-bordered table-striped -->
-        <table class="table table-hover table-bordered tabela-ajustada">
+        <table class="table table-hover table-bordered overflow-scroll">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>

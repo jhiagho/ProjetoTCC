@@ -96,7 +96,7 @@
                         
             if($stmt4->execute()){
                 echo '<div class="alert alert-success" role="alert">
-                <i class="fa-solid fa-circle-exclamation"></i> Usuário Alterado com sucesso. Aguarde 3 segundos para a mudançã sera realizada! </div>';
+                <i class="fa-solid fa-circle-exclamation"></i> Usuário Alterado com sucesso. Aguarde 3 segundos para que a mudança seja realizada! </div>';
                  header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario);             
                 } else {
                 echo '<div class="alert alert-danger" role="alert">
