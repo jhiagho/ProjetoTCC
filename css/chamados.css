@@ -34,10 +34,6 @@
     align-items: center;
 }
 
-.nav-chamados i{
-
-}
-
 .detalhes-chamado{  
     display: flex;
 }
@@ -567,6 +563,10 @@
     font-weight: 300;
     margin-bottom: 1.0rem;
     align-items: center;
+}
+html body{
+    overflow: auto;
+    background-color: white;
 }
 
 .chm_estilo-li{

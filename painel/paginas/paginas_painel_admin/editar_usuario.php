@@ -21,7 +21,7 @@
 
                             <div class="input-box">
                                 <label for="primeiro_nome">Primeiro nome:</label>
-                                <input id="primeiro_nome" type="text" name="pnome" placeholder="primeiro nome" value="<?php echo $usuario_alt['Primeiro nome']; ?>" required>
+                                <input id="primeiro_nome" type="text" name="pnome" placeholder="primeiro nome" value="<?php echo $usuario_alt['Primeiro_nome']; ?>" required>
                                 <span class="error-message" id="primeiro_nome_Error"></span>
                             </div>
 
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="input-box">
-                                <label for="telefone">Celuar:</label>
+                                <label for="telefone">Celular:</label>
                                 <input id="telefone" type="text" name="telefone" placeholder="(xx)xxxxx-xxxx" value="<?php echo $usuario_alt['Contato']; ?> ">
                                 <span class="error-message" id="telefone_Error"></span>
                             </div>
@@ -121,7 +121,7 @@
 
                     <div class="group-password">
                             <div class="input-box">
-                                <label for="password">Senha Aniga:</label>
+                                <label for="password">Senha Antiga:</label>
                                 <input id="antiga_password" type="password" name="antiga-senha" placeholder="Digite sua senha" >
                                 <span class="error-message" id="password_Error"></span>
                                 <img id="togglePassword3" src="/ProjetoTCC/imagens/eye.svg">

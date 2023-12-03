@@ -10,8 +10,12 @@
     font-weight: bold;
 }
 
-body{
-    height: 100vh;
+#container{
+    height: 400px;
+}
+
+html body{
+    overflow: hidden;
     background-color: white;
 }
 
@@ -120,6 +124,7 @@ body{
     /* right: 30%; */
     /* padding: 30px; */
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     height: 100vh;
     padding: 20px;
@@ -346,7 +351,7 @@ body{
 
 .header_chamados{
     background: rgba(241, 240, 232);
-    padding: 20px;
+    padding-left: 10px;
 }
 
 .header_chamados form{
@@ -440,9 +445,14 @@ body{
     color: #111;
 }
 
+#tabela{
+    height: 700px;
+    overflow: scroll;
+}
+
 .tabela-ajustada {
     font-size: 0.9em;
-    /* overflow-x: auto; */
+    overflow-x: auto;
 }
 .descricao-col {
     max-width: 200px; /* Ajuste este valor conforme necessário */
@@ -461,6 +471,8 @@ body{
 table {
     max-width: 100%;
     overflow: scroll;
+    text-align: left;
+
     /* table-layout: auto; */
     /* height: 200vh; */
     /* border-collapse: collapse; */
@@ -468,6 +480,13 @@ table {
 
 table, th, td{
     border: 1px solid rgba(0, 0, 0, 0.297);
+    padding: 0.25rem;
+}
+thead th{
+    top:-5;
+    position: sticky;
+    background: gray;
+    z-index: 100;
 }
 
 th, td {
@@ -620,7 +639,7 @@ table td a{
 
 #search_text{
     margin: 0.6rem 0;
-    padding: 0.8rem 1.2rem;
+    /* padding: 0.8rem 1.2rem; */
     border:none;
     border-radius: 10px;
     box-shadow: 1px 1px 6px #0000001c; 

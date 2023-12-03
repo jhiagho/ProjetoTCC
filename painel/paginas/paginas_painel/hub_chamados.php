@@ -1,34 +1,36 @@
-<article class="hub_chamados">
+<div id="Container" class="hub_chamados">
 
     <section id="mydrawer" class="drawer">
-         <?php
+        <?php
             global $chamados;
             include ("./painel/paginas/paginas_painel/criar_chamados.php");
          ?>
     </section>
 
     <header class="header_chamados">
-        
-            <form method="post">
 
-                <select id="main_select" name="column_pesquisar">
-                    <option value="0">ID</option>
-                    <option value="1">Titulo</option>
-                    <option value="2">Descrição</option>
-                    <option value="3">Aetor Atribuido</option>
-                    <option value="4">Localização Chamado</option>
-                    <option value="5">Requerente</option>
-                    <option value="6">Técnico</option>
-                    <option value="7">Status</option>
-                    <option value="8">Prioridade</option>
-                </select>
+        <form method="post">
 
-                    <span id="dynamic_select_container"></span>
+            <select id="main_select" name="column_pesquisar">
+                <option value="0">ID</option>
+                <option value="1">Titulo</option>
+                <option value="2">Descrição</option>
+                <option value="3">Setor Atribuido</option>
+                <option value="4">Localização Chamado</option>
+                <option value="5">Requerente</option>
+                <option value="6">Técnico</option>
+                <option value="7">Status</option>
+                <option value="8">Prioridade</option>
+            </select>
 
-                    <!-- <input type="text" name="pesquisar" placeholder="pesquisar..."> -->
-                    <button type="submit" id="btn_pesquisar_chamados" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
-            </form>
-            <?php 
+            <span id="dynamic_select_container"></span>
+
+            <!-- <input type="text" name="pesquisar" placeholder="pesquisar..."> -->
+            <button type="submit" id="btn_pesquisar_chamados" name="btn_pesquisar"> <i class="fa fa-search"></i> </button>
+
+            <button type="submit" name="btn_listar" id="btn_listar"> <i class="fa-solid fa-list"></i> Listar Chamados </button>
+        </form>
+        <?php 
                 $aux = new painel();
                 if(isset($_POST['btn_pesquisar'])){
                     $column = $_POST['column_pesquisar'];
@@ -42,16 +44,15 @@
                 }
             ?>
 
-            <div class="group-btn">
-                <button id="btn_criar_chamado" onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
-                <form id="form_botao" method="post">
-                    <button type="submit" name="btn_listar" id="btn_listar"> <i class="fa-solid fa-list"></i> Listar Chamados </button>
-                </form>
-            </div>
+        <div class="group-btn">
+            <button id="btn_criar_chamado" onclick="toggleDrawer()"> <i class="fa-solid fa-plus"></i> Criar chamado</button>
+            <!-- <form id="form_botao" method="post">
+            </form> -->
+        </div>
 
 
-            
-                <?php
+
+        <?php
                     if(isset($_POST['btn_listar']))
                     {
                         $chamados = painel::listarChamados();
@@ -68,11 +69,11 @@
 
     </header>
 
-    <section class="conteudo_chamados">
-        <section class="drawer"> </section>
+    <div class="conteudo_chamados">
+        <div id="tabela" >
 
-        <!-- table-hover table-bordered table-striped -->
-        <table class="table table-hover table-bordered overflow-scroll">
+            <!-- table-hover table-bordered table-striped -->
+        <table class="table table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
@@ -81,16 +82,16 @@
                     <th scope="col">Status </th>
                     <th scope="col">Localizaçao </th>
                     <th scope="col">Setor Atribuido </th>
-                    <th scope="col">Tecnico </th>
+                    <th scope="col">Técnico </th>
                     <th scope="col">Requerente </th>
-                    <th scope="col">Data_Inicio </th>
+                    <th scope="col">Data_Início </th>
                     <th scope="col">Data_Fim </th>
                     <th scope="col">Prioridade </th>
                     <th scope="col">Solução </th>
                     <th scope="col">Avaliação </th>
                 </tr>
             </thead>
-        <?php
+            <?php
         
             $numRows = (is_array($chamados) || $chamados instanceof Countable) ? count($chamados) : 0;
             if ($numRows > 0) {
@@ -157,9 +158,7 @@
 
                                 } else if($j == 12) {
                                     if($values[$j] != '') {
-                                        // $info_avaliacao = '<i class="fa-solid fa-star" style="color: #ffc800;"> </i>';
-                                        // echo '<td>' .$values[$j].$info_avaliacao. '</td>';
-
+  
                                         $avaliacao = (int)$values[$j]; // Cast para inteiro, garantindo que trabalhamos com números
                                         $estrelas = '';
 
@@ -171,8 +170,8 @@
                                                 $estrelas .= '<i class="fa-regular fa-star" style="color: #ccc;"></i>';
                                             }
                                         } else {
-                                            // Caso não haja avaliação
-                                            $estrelas = 'Não avaliado'; // Ou você pode escolher mostrar 5 estrelas cinzas ou nenhum ícone
+                                             // Ou você pode escolher mostrar 5 estrelas cinzas ou nenhum ícone
+                                            $estrelas = 'Não avaliado';
                                         }
                                         echo '<td class="avaliacao-col">' . $estrelas . '</td>';
                                     }
@@ -185,18 +184,21 @@
                     echo '</tr>';
                 }
             }
-            echo '</tbody>';
-            echo '</table>';
             //echo '<div class="col border">' .$localizacao. '</div>'; 
         ?>
+        </tbody>
+        </table>
+        </div>
+
+        
     </div>
 
-    </section>
+</div>
 
-</article>
+</div>
 
 <script>
-    window.addEventListener("DOMContentLoaded", ()=>{
-        document.querySelector("#linha_menu_3").classList.toggle("estilo-li");
-    })
+window.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#linha_menu_3").classList.toggle("estilo-li");
+})
 </script>

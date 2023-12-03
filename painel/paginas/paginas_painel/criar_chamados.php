@@ -30,6 +30,7 @@ if(isset($_POST["bt_cadastrar_chm"]))
 
             if($stmt->execute($arr)) {
                 header('Location: '.INCLUDE_PATH. '/index.php');
+                
                }    
            else{
                 echo '<script> alert('.$stmt->errorInfo().') </script>';
