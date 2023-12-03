@@ -41,8 +41,12 @@
         
         if($stmt->execute($arr)) {
 
-            header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
+            echo ' <div class="alert alert-info" role="alert">
+                   <i class="fa-regular fa-square-check"></i> Chamado foi Alterado com Sucesso! Aguarde 4 segundo para que a alteração seja feita.
+                    </div>';
+            header("refresh:3;url=".INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
             ob_end_flush();
+
            }    
        else{
             echo '<script> alert('.$stmt->errorInfo().') </script>';
@@ -59,9 +63,10 @@
 
         if($stmt->execute()){
             echo ' <div class="alert alert-success" role="alert">
-                   <i class="fa-regular fa-square-check"></i> Chamado foi Fechado com Sucesso!
-                    </div>
-                        ';
+                   <i class="fa-regular fa-square-check"></i> Chamado foi Fechado com Sucesso! Aguarde 4 segundo para que a alteração seja feita.
+                    </div>';
+            header("refresh:3;url=".INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
+            ob_end_flush();
         }
 
     }
@@ -75,9 +80,10 @@
 
         if($stmt->execute()){
             echo ' <div class="alert alert-warning" role="alert">
-                   <i class="fa-regular fa-square-check"></i> Chamado foi Recusado!
-                    </div>
-                        ';
+                   <i class="fa-regular fa-square-check"></i> Chamado foi Recusado! Aguarde 4 segundo para que a alteração seja feita.
+                    </div>';
+            header("refresh:3;url=".INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
+            ob_end_flush();
         }
 
     }
@@ -115,8 +121,10 @@
 
         if($stmt->execute()){
             echo ' <div class="alert alert-success" role="alert">
-                   <i class="fa-regular fa-square-check"></i> Chamado foi Excluido com Sucesso!
+                   <i class="fa-regular fa-square-check"></i> Chamado foi Excluido com Sucesso! Aguarde 3 segundo para que a alteração seja feita.
                     </div> ';
+            header("refresh:3;url=".INCLUDE_PATH."/?hub_chamados");
+            ob_end_flush();
         }
     }
 ?>
@@ -202,7 +210,11 @@
                     <select id="id_setor_atribuido" name="id_setor_atribuido"  class="js-example-basic-single" >
                             <?php
                                 $setor_tribuido = $aux4::listarSetor();
-                                                
+                                
+                                if (is_null($chamado2['id_setor_atribuido'])){
+                                    echo '<option value="" disabled selected hidden> Selecione um setor </option>';
+                                } 
+
                                 foreach ($setor_tribuido as $key => $value) {
                                     $selected = ($chamado2['id_setor_atribuido'] - 1 == $key) ? 'selected' : '';
                                     echo '<option value="' .$key.' "'.$selected.'>'.$value['nome_setor']. '</option>';
@@ -218,11 +230,16 @@
                     <select id="id_tec_atribuido" name="id_tec_atribuido" class="js-example-basic-single" >
                             <?php
                                 $tecnico_atribuido = $aux4::listarUsuariosTecnicos();
-                                                
+                                
+                                if (is_null($chamado2['id_tec_atribuido'])){
+                                    echo '<option value="" disabled selected hidden> Selecione um técnico </option>';
+                                } 
                                 foreach ($tecnico_atribuido as $key => $value) {
-                                    $selected = ($chamado2['id_tec_atribuido'] == $value['id']) ? 'selected' : '';
-                                    echo '<option value="' . $value['id'] . '" ' . $selected . '>' . $value['usuario'] . '</option>';
+                                        $selected = ($chamado2['id_tec_atribuido'] == $value['id']) ? 'selected' : '';
+                                        echo '<option value="' . $value['id'] . '" ' . $selected . '>' . $value['usuario'] . '</option>';
                                 }
+                                
+
                             ?>
                     </select>
                     <span></span>
@@ -267,6 +284,35 @@
 </article>
 
 <script src="<?php echo INCLUDE_PATH;?>/painel/painel_js/editar_chamado.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+
+        $('.select2-container--default .select2-selection--single').css({
+            'border': 'none',
+            'border-radius': '10px',
+            'box-shadow': '1px 1px 6px #0000001c',
+            'height': '38px'
+        });
+    
+        // Ajusta o alinhamento vertical do texto e o padding
+        $('.select2-container--default .select2-selection--single .select2-selection__rendered').css({
+            'line-height': '40px',
+            'padding-left': '10px',
+            'padding-right': '10px',
+            'top': '0'
+        });
+    
+        // Estiliza e ajusta a posição do ícone de seta para baixo
+        $('.select2-container--default .select2-selection--single .select2-selection__arrow').css({
+            'height': '40px'
+        });
+    });
+
+});
+</script>
 
 <script>
     window.addEventListener("DOMContentLoaded", ()=>{

@@ -142,7 +142,7 @@
                   $stmt = $banco2->prepare($query);
                   $stmt->execute();
       
-                  header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?'.$id_chamado);
+                  header('Location: '.INCLUDE_PATH. '/painel/paginas/paginas_chamados/index.php?chm='.$id_chamado);
                   ob_end_flush();
             }
          

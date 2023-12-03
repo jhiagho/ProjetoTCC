@@ -97,7 +97,8 @@
             if($stmt4->execute()){
                 echo '<div class="alert alert-success" role="alert">
                 <i class="fa-solid fa-circle-exclamation"></i> Usuário Alterado com sucesso. Aguarde 3 segundos para que a mudança seja realizada! </div>';
-                 header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario);             
+                 header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario);
+                 ob_end_flush();             
                 } else {
                 echo '<div class="alert alert-danger" role="alert">
                     <i class="fa-solid fa-circle-exclamation"></i> Algo deu errado! Contate o Desenvolver do Sistema. </div>';
@@ -171,6 +172,7 @@
                             <i class="fa-solid fa-circle-exclamation"></i> Senha Alterada com sucesso. Aguarde 3 segundos para a mudança sera realizada! </div>';
                              session_destroy();
                              header('refresh:3;url=' .INCLUDE_PATH);
+                             ob_end_flush();
                         } else {
                             echo '<div class="alert alert-danger" role="alert">
                             <i class="fa-solid fa-circle-exclamation"></i> Algo deu errado! Contate o Desenvolver do Sistema. </div>';
@@ -227,7 +229,8 @@
                     if($stmt4->execute()){
                         echo '<div class="alert alert-success" role="alert">
                             <i class="fa-solid fa-circle-exclamation"></i> Permissão Alterada com sucesso. Aguarde 3 segundos para a mudança sera realizada! </div>';
-                         header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario2); 
+                         header("refresh:3;url=".INCLUDE_PATH."/?editar_usuario=".$id_usuario2);
+                         ob_end_flush();
 
                     } else {
                         echo '<div class="alert alert-danger" role="alert">

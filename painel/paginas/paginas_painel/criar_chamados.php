@@ -8,7 +8,7 @@ if(isset($_POST["bt_cadastrar_chm"]))
             $titulo = $_POST['chm_titulo']; 
             $descricao = $_POST['chm_descricao']; 
             $localizacao = $_POST['select_localizacao'] + 1; 
-            $setor_atribuido = ($_POST['select_setor'] + 1) ?? NULL; // similiar ao ISSET, se o lado esquerdo tiver valor mantem sé não preencha com ''; 
+            $setor_atribuido = $_POST['select_setor'] ?? NULL; // similiar ao ISSET, se o lado esquerdo tiver valor mantem sé não preencha com ''; 
             $requerente = $_POST['select_requerente'];
             $tecnico_atribuido = $_POST['tecnico_atribuido'] ?? NULL;
             $usuario_que_criou = $_SESSION['Usuario_ID'];
@@ -18,6 +18,9 @@ if(isset($_POST["bt_cadastrar_chm"]))
 
             $aux = new Banco();
             $banco1 = $aux->conectar();
+            
+            if ($setor_atribuido != NULL)
+                $setor_atribuido = $setor_atribuido + 1;
 
             if($tecnico_atribuido != NULL)
             {

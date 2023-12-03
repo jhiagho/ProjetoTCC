@@ -321,7 +321,7 @@ html body{
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 10;
+    z-index: 999;
     top: 0;
     right: 0;
     background-color: #F1F0E8;
