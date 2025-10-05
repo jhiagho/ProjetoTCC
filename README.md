@@ -28,6 +28,7 @@ No repositório você vê que a distribuição do código reflete essas escolhas
 ---
 
 ## 📂 Estrutura do Repositório
+```text
 /
 ├── api/ → endpoints do backend
 ├── bibliotecas/ → bibliotecas externas
@@ -43,6 +44,7 @@ No repositório você vê que a distribuição do código reflete essas escolhas
 ├── projeto_tcc.sql → script SQL para criar o banco de dados
 ├── TCCII_v4.3_JL_Final.pdf → o documento do TCC que descreve o sistema
 └── README.md → este arquivo
+```
 
 ## 🚀 Funcionalidades Principais
 
