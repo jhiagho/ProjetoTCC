@@ -23,11 +23,12 @@ Aqui estão as linguagens, frameworks e bibliotecas utilizadas no projeto:
 | Banco de dados              | MySQL (via scripts SQL incluidos)       |
 | Arquivos de configuração    | Arquivo `config.php`                    |
 
-No repositório você vê que a distribuição do código reflete essas escolhas: PHP, JS, CSS, bibliotecas externas etc. :contentReference[oaicite:0]{index=0}
+No repositório você vê que a distribuição do código reflete essas escolhas: PHP, JS, CSS, bibliotecas externas etc. 
 
 ---
 
 ## 📂 Estrutura do Repositório
+/
 ├── api/ → endpoints do backend
 ├── bibliotecas/ → bibliotecas externas
 ├── classes/ → classes auxiliares / modelos
